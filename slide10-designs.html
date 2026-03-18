@@ -1129,71 +1129,66 @@
         </div>
       </div>
 
-      <!-- Phase progression bars -->
+      <!-- Phase timeline SVG -->
       <div class="right-section-label">18-Month Roadmap</div>
 
       <div class="phases-section">
+        <svg viewBox="0 0 808 265" width="100%" style="display:block;">
+          <defs>
+            <linearGradient id="rl-g12" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#FFA45B"/>
+              <stop offset="100%" stop-color="#0EA5E9"/>
+            </linearGradient>
+            <linearGradient id="rl-g23" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#0EA5E9"/>
+              <stop offset="100%" stop-color="#22C55E"/>
+            </linearGradient>
+          </defs>
 
-        <!-- Phase 1 -->
-        <div class="phase-bar-row">
-          <div class="phase-bar-header">
-            <div>
-              <span class="phase-bar-name" style="color:#FFA45B;">Phase 1</span>
-              <span style="font-size:10px;color:#A1A1AA;font-weight:400;margin-left:6px;">M1–6 · Engine at Scale</span>
-            </div>
-            <div class="phase-bar-mrr" style="color:#FFA45B;">$1M MRR</div>
-          </div>
-          <div class="phase-bar-track">
-            <div class="phase-bar-fill" style="width:10%;background:linear-gradient(to right,#FFA45B,#FFC3A0);"></div>
-          </div>
-          <div class="phase-milestones-row">
-            <div class="phase-milestone-tag">3+ franchise partners</div>
-            <div class="phase-milestone-tag">MY · SG · TH · PH</div>
-            <div class="phase-milestone-tag">50K+ users</div>
-            <div class="phase-milestone-tag">30K MAU</div>
-          </div>
-        </div>
+          <!-- Rail -->
+          <line x1="40" y1="130" x2="768" y2="130" stroke="#E4E4E7" stroke-width="2" stroke-linecap="round"/>
+          <line x1="162" y1="130" x2="375" y2="130" stroke="url(#rl-g12)" stroke-width="3"/>
+          <line x1="431" y1="130" x2="644" y2="130" stroke="url(#rl-g23)" stroke-width="3"/>
 
-        <!-- Phase 2 -->
-        <div class="phase-bar-row">
-          <div class="phase-bar-header">
-            <div>
-              <span class="phase-bar-name" style="color:#0EA5E9;">Phase 2</span>
-              <span style="font-size:10px;color:#A1A1AA;font-weight:400;margin-left:6px;">M7–12 · Exchange Beta</span>
-            </div>
-            <div class="phase-bar-mrr" style="color:#0EA5E9;">$5M MRR</div>
-          </div>
-          <div class="phase-bar-track">
-            <div class="phase-bar-fill" style="width:50%;background:linear-gradient(to right,#0EA5E9,#38BDF8);"></div>
-          </div>
-          <div class="phase-milestones-row">
-            <div class="phase-milestone-tag">Exchange beta live</div>
-            <div class="phase-milestone-tag">Japan ↔ SEA ↔ Korea</div>
-            <div class="phase-milestone-tag">500K+ users</div>
-            <div class="phase-milestone-tag">DAU/MAU 30%+</div>
-          </div>
-        </div>
+          <!-- ===== PHASE 1 (cx=134) ===== -->
+          <text x="134" y="18" text-anchor="middle" font-family="Sora,sans-serif" font-size="10" font-weight="600" fill="#A1A1AA" letter-spacing="1.5">M1 – M6</text>
+          <text x="134" y="66" text-anchor="middle" font-family="Sora,sans-serif" font-size="44" font-weight="800" fill="#FFA45B" letter-spacing="-1">$1M</text>
+          <text x="134" y="82" text-anchor="middle" font-family="Sora,sans-serif" font-size="8" font-weight="600" fill="#A1A1AA" letter-spacing="2">MRR TARGET</text>
+          <line x1="134" y1="90" x2="134" y2="102" stroke="#FFA45B" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.6"/>
+          <circle cx="134" cy="130" r="28" fill="#FFA45B"/>
+          <text x="134" y="136" text-anchor="middle" font-family="Sora,sans-serif" font-size="16" font-weight="800" fill="white">1</text>
+          <text x="134" y="175" text-anchor="middle" font-family="Sora,sans-serif" font-size="9.5" font-weight="700" fill="#FFA45B" letter-spacing="0.8">ENGINE AT SCALE</text>
+          <text x="10" y="198" font-family="Sora,sans-serif" font-size="10" fill="#71717A">▸ MY · SG · TH · PH GTM</text>
+          <text x="10" y="214" font-family="Sora,sans-serif" font-size="10" fill="#71717A">▸ 3+ franchise partners live</text>
+          <text x="10" y="230" font-family="Sora,sans-serif" font-size="10" fill="#71717A">▸ 50K users · 30K MAU</text>
+          <text x="10" y="246" font-family="Sora,sans-serif" font-size="10" fill="#71717A">▸ Korea channel locked</text>
 
-        <!-- Phase 3 -->
-        <div class="phase-bar-row">
-          <div class="phase-bar-header">
-            <div>
-              <span class="phase-bar-name" style="color:#22C55E;">Phase 3</span>
-              <span style="font-size:10px;color:#A1A1AA;font-weight:400;margin-left:6px;">M13–18 · Series A Ready</span>
-            </div>
-            <div class="phase-bar-mrr" style="color:#22C55E;">$10M MRR</div>
-          </div>
-          <div class="phase-bar-track">
-            <div class="phase-bar-fill" style="width:100%;background:linear-gradient(to right,#22C55E,#4ADE80);"></div>
-          </div>
-          <div class="phase-milestones-row">
-            <div class="phase-milestone-tag">$10M+ monthly GMV</div>
-            <div class="phase-milestone-tag">Pro API + institutional</div>
-            <div class="phase-milestone-tag">Series A $10–15M</div>
-            <div class="phase-milestone-tag">$80–100M cap</div>
-          </div>
-        </div>
+          <!-- ===== PHASE 2 (cx=403) ===== -->
+          <text x="403" y="18" text-anchor="middle" font-family="Sora,sans-serif" font-size="10" font-weight="600" fill="#A1A1AA" letter-spacing="1.5">M7 – M12</text>
+          <text x="403" y="66" text-anchor="middle" font-family="Sora,sans-serif" font-size="44" font-weight="800" fill="#0EA5E9" letter-spacing="-1">$5M</text>
+          <text x="403" y="82" text-anchor="middle" font-family="Sora,sans-serif" font-size="8" font-weight="600" fill="#A1A1AA" letter-spacing="2">MRR TARGET</text>
+          <line x1="403" y1="90" x2="403" y2="102" stroke="#0EA5E9" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.6"/>
+          <circle cx="403" cy="130" r="28" fill="#0EA5E9"/>
+          <text x="403" y="136" text-anchor="middle" font-family="Sora,sans-serif" font-size="16" font-weight="800" fill="white">2</text>
+          <text x="403" y="175" text-anchor="middle" font-family="Sora,sans-serif" font-size="9.5" font-weight="700" fill="#0EA5E9" letter-spacing="0.8">EXCHANGE BETA</text>
+          <text x="279" y="198" font-family="Sora,sans-serif" font-size="10" fill="#71717A">▸ Exchange beta live</text>
+          <text x="279" y="214" font-family="Sora,sans-serif" font-size="10" fill="#71717A">▸ Japan ↔ SEA ↔ Korea XB</text>
+          <text x="279" y="230" font-family="Sora,sans-serif" font-size="10" fill="#71717A">▸ 500K+ users · DAU 30%</text>
+          <text x="279" y="246" font-family="Sora,sans-serif" font-size="10" fill="#71717A">▸ 5+ IP partners · Edge live</text>
 
+          <!-- ===== PHASE 3 (cx=672) ===== -->
+          <text x="672" y="18" text-anchor="middle" font-family="Sora,sans-serif" font-size="10" font-weight="600" fill="#A1A1AA" letter-spacing="1.5">M13 – M18</text>
+          <text x="672" y="66" text-anchor="middle" font-family="Sora,sans-serif" font-size="44" font-weight="800" fill="#22C55E" letter-spacing="-1">$10M</text>
+          <text x="672" y="82" text-anchor="middle" font-family="Sora,sans-serif" font-size="8" font-weight="600" fill="#A1A1AA" letter-spacing="2">MRR TARGET</text>
+          <line x1="672" y1="90" x2="672" y2="102" stroke="#22C55E" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.6"/>
+          <circle cx="672" cy="130" r="28" fill="#22C55E"/>
+          <text x="672" y="136" text-anchor="middle" font-family="Sora,sans-serif" font-size="16" font-weight="800" fill="white">3</text>
+          <text x="672" y="175" text-anchor="middle" font-family="Sora,sans-serif" font-size="9.5" font-weight="700" fill="#22C55E" letter-spacing="0.8">SERIES A READY</text>
+          <text x="548" y="198" font-family="Sora,sans-serif" font-size="10" fill="#71717A">▸ $10M+ monthly GMV</text>
+          <text x="548" y="214" font-family="Sora,sans-serif" font-size="10" fill="#71717A">▸ Pro API + institutional</text>
+          <text x="548" y="230" font-family="Sora,sans-serif" font-size="10" fill="#71717A">▸ Series A: $10–15M raise</text>
+          <text x="548" y="246" font-family="Sora,sans-serif" font-size="10" fill="#71717A">▸ Edge products live</text>
+        </svg>
       </div>
 
     </div>
