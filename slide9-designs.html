@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 9 — The Team · Designs A & C</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --c-sky: #0EA5E9;
+    --c-tangerine: #FFA45B;
+    --c-gold: #FECF6A;
+    --c-peach: #FFC3A0;
+    --c-near-black: #09090B;
+    --c-success: #22C55E;
+    --c-bg-alt: #F8F8FA;
+    --gradient: linear-gradient(to right, #FFA45B, #FFC3A0, #FECF6A, #0EA5E9);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Sora', sans-serif;
+    background: #111827;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .design-label {
+    width: 1280px;
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #9CA3AF;
+    padding: 8px 0;
+    border-top: 1px solid #374151;
+  }
+
+  /* ── SLIDE BASE ── */
+  .slide {
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    position: relative;
+    font-family: 'Sora', sans-serif;
+  }
+
+  /* ── SHARED TOP BAR ── */
+  .top-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--gradient);
+    z-index: 10;
+  }
+
+  /* ── SHARED BOTTOM BAR ── */
+  .bottom-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    z-index: 10;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  /* ═══════════════════════════════════════════
+     DESIGN A — DARK BLOOMBERG
+  ═══════════════════════════════════════════ */
+  #slide-a {
+    background: var(--c-near-black);
+  }
+
+  #slide-a .bottom-bar {
+    background: #111113;
+    border-top: 1px solid #27272A;
+    color: #52525B;
+  }
+
+  #slide-a .bottom-bar .bb-email { color: #71717A; }
+  #slide-a .bottom-bar .bb-num {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--c-tangerine);
+  }
+  #slide-a .bottom-bar .bb-conf { color: #3F3F46; }
+
+  /* pill tag */
+  .pill-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,164,91,0.12);
+    border: 1px solid rgba(255,164,91,0.35);
+    border-radius: 999px;
+    padding: 4px 12px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--c-tangerine);
+  }
+  .pill-tag::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--c-tangerine);
+    flex-shrink: 0;
+  }
+
+  /* headline */
+  .a-headline {
+    font-size: 28px;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    margin-top: 10px;
+  }
+  .a-headline span {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* columns */
+  .a-columns {
+    position: absolute;
+    top: 92px;
+    left: 28px; right: 28px;
+    display: flex;
+    gap: 14px;
+    height: 490px;
+  }
+
+  .a-col {
+    flex: 1;
+    border: 1px solid #1E1E22;
+    border-radius: 8px;
+    padding: 16px 14px 14px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .a-col::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 8px 8px 0 0;
+  }
+  .a-col.ceo::before { background: var(--c-sky); }
+  .a-col.cto::before { background: var(--c-gold); }
+  .a-col.coo::before { background: var(--c-tangerine); }
+  .a-col.cbo::before { background: var(--gradient); }
+
+  .role-badge {
+    display: inline-block;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    align-self: flex-start;
+  }
+  .ceo .role-badge { background: rgba(14,165,233,0.15); color: var(--c-sky); }
+  .cto .role-badge { background: rgba(254,207,106,0.15); color: var(--c-gold); }
+  .coo .role-badge { background: rgba(255,164,91,0.15); color: var(--c-tangerine); }
+  .cbo .role-badge { background: rgba(255,195,160,0.12); color: var(--c-peach); }
+
+  .a-col-name {
+    font-size: 8.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #71717A;
+    margin-bottom: 8px;
+  }
+
+  .a-hero-num {
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  .ceo .a-hero-num { color: var(--c-sky); }
+  .cto .a-hero-num { color: var(--c-gold); }
+  .coo .a-hero-num { color: var(--c-tangerine); }
+  .cbo .a-hero-num {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .a-hero-label {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #52525B;
+    margin-bottom: 12px;
+  }
+
+  .a-divider {
+    height: 1px;
+    background: #1E1E22;
+    margin-bottom: 10px;
+  }
+
+  .a-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    flex: 1;
+  }
+
+  .a-bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 9.5px;
+    font-weight: 400;
+    color: #A1A1AA;
+    line-height: 1.4;
+  }
+  .a-bullet::before {
+    content: '▸';
+    font-size: 8px;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+  .ceo .a-bullet::before { color: var(--c-sky); }
+  .cto .a-bullet::before { color: var(--c-gold); }
+  .coo .a-bullet::before { color: var(--c-tangerine); }
+  .cbo .a-bullet::before { color: var(--c-peach); }
+
+  .a-bullet strong {
+    font-weight: 700;
+    color: #D4D4D8;
+  }
+
+  /* bottom achievement strip */
+  .a-strip {
+    position: absolute;
+    bottom: 40px; left: 0; right: 0;
+    height: 48px;
+    background: #111113;
+    border-top: 1px solid #1E1E22;
+    display: flex;
+    align-items: center;
+    padding: 0 28px;
+    gap: 0;
+    overflow: hidden;
+  }
+
+  .strip-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    border-right: 1px solid #27272A;
+    padding: 0 16px 0 0;
+  }
+  .strip-group:last-child { border-right: none; }
+  .strip-group:first-child { padding-left: 0; }
+
+  .strip-chain {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .strip-chip {
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .chip-sky { background: rgba(14,165,233,0.12); color: var(--c-sky); }
+  .chip-gold { background: rgba(254,207,106,0.12); color: var(--c-gold); }
+  .chip-tan { background: rgba(255,164,91,0.12); color: var(--c-tangerine); }
+  .chip-peach { background: rgba(255,195,160,0.12); color: var(--c-peach); }
+
+  .strip-arrow {
+    font-size: 9px;
+    color: #3F3F46;
+  }
+
+  .strip-label {
+    font-size: 7.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #3F3F46;
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+
+  /* ═══════════════════════════════════════════
+     DESIGN C — SPLIT
+  ═══════════════════════════════════════════ */
+  #slide-c {
+    background: var(--c-bg-alt);
+    display: flex;
+  }
+
+  /* LEFT PANEL */
+  .c-left {
+    width: 380px;
+    flex-shrink: 0;
+    background: var(--c-near-black);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 26px 48px;
+    overflow: hidden;
+  }
+
+  .c-left .top-bar {
+    right: auto;
+    width: 380px;
+  }
+
+  .c-left-overline {
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--c-tangerine);
+    margin-top: 4px;
+    margin-bottom: 6px;
+  }
+
+  .c-left-headline {
+    font-size: 21px;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 22px;
+  }
+  .c-left-headline span {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .c-stat-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    flex: 1;
+  }
+
+  .c-stat-row {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-top: 1px solid #1E1E22;
+  }
+  .c-stat-row:last-child { border-bottom: 1px solid #1E1E22; }
+
+  .c-stat-num {
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 130px;
+  }
+  .c-stat-num.sky { color: var(--c-sky); }
+  .c-stat-num.gold { color: var(--c-gold); }
+  .c-stat-num.tan { color: var(--c-tangerine); }
+  .c-stat-num.grad {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .c-stat-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .c-stat-badge {
+    display: inline-block;
+    font-size: 7px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    align-self: flex-start;
+  }
+  .badge-sky { background: rgba(14,165,233,0.15); color: var(--c-sky); }
+  .badge-gold { background: rgba(254,207,106,0.15); color: var(--c-gold); }
+  .badge-tan { background: rgba(255,164,91,0.15); color: var(--c-tangerine); }
+  .badge-peach { background: rgba(255,195,160,0.12); color: var(--c-peach); }
+
+  .c-stat-desc {
+    font-size: 10px;
+    font-weight: 500;
+    color: #71717A;
+    line-height: 1.3;
+  }
+
+  .c-left-bottom {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 40px;
+    background: #111113;
+    border-top: 1px solid #1E1E22;
+    display: flex;
+    align-items: center;
+    padding: 0 26px;
+  }
+  .c-left-bottom span {
+    font-size: 9px;
+    color: #3F3F46;
+    font-weight: 500;
+  }
+
+  /* RIGHT PANEL */
+  .c-right {
+    flex: 1;
+    min-height: 0;
+    background: var(--c-bg-alt);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 28px 48px;
+    overflow: hidden;
+  }
+
+  .c-right-title {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #A1A1AA;
+    margin-bottom: 14px;
+    margin-top: 8px;
+  }
+
+  /* SVG credential map */
+  .c-diagram {
+    flex: 1;
+    position: relative;
+  }
+
+  .c-right .bottom-bar {
+    background: #EDEDF0;
+    border-top: 1px solid #D4D4D8;
+    color: #A1A1AA;
+  }
+  .c-right .bottom-bar .bb-num {
+    font-weight: 700;
+    color: var(--c-tangerine);
+    font-size: 12px;
+  }
+  .c-right .bottom-bar .bb-conf { color: #C4C4C8; }
+
+  /* node cards in SVG */
+  .node-bg-dark { fill: #09090B; }
+  .node-bg-light { fill: #FFFFFF; }
+  .node-border-sky { stroke: #0EA5E9; stroke-width: 1.5; }
+  .node-border-gold { stroke: #FECF6A; stroke-width: 1.5; }
+  .node-border-tan { stroke: #FFA45B; stroke-width: 1.5; }
+  .node-border-peach { stroke: #FFC3A0; stroke-width: 1.5; }
+  .node-border-center { stroke: #E4E4E7; stroke-width: 1.5; }
+
+  .node-label { font-family: 'Sora', sans-serif; }
+
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     DESIGN A — DARK BLOOMBERG
+═══════════════════════════════════════════════════════════ -->
+<div class="design-label">Design A — Dark Bloomberg</div>
+
+<div class="slide" id="slide-a">
+  <!-- Top gradient bar -->
+  <div class="top-bar"></div>
+
+  <!-- Header row -->
+  <div style="position:absolute; top:14px; left:28px; right:28px; display:flex; align-items:center; justify-content:space-between;">
+    <div>
+      <div class="pill-tag">The Team</div>
+      <div class="a-headline">Built by <span>Collectors.</span><br>Backed by Operators.</div>
+    </div>
+    <!-- aggregate stat cluster -->
+    <div style="display:flex; gap:20px; align-items:flex-start;">
+      <div style="text-align:right;">
+        <div style="font-size:36px; font-weight:800; letter-spacing:-0.04em; color:#FFFFFF; line-height:1;">$73M+</div>
+        <div style="font-size:8px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#52525B;">Combined Capital Managed</div>
+      </div>
+      <div style="width:1px; height:50px; background:#27272A; margin-top:4px;"></div>
+      <div style="text-align:right;">
+        <div style="font-size:36px; font-weight:800; letter-spacing:-0.04em; color:#FFFFFF; line-height:1;">200M+</div>
+        <div style="font-size:8px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#52525B;">Content Views</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 columns -->
+  <div class="a-columns">
+    <!-- CEO -->
+    <div class="a-col ceo">
+      <div class="role-badge">CEO</div>
+      <div class="a-col-name">Thee Khai Chun</div>
+      <div class="a-hero-num">18</div>
+      <div class="a-hero-label">Age — Built Binance SEA</div>
+      <div class="a-divider"></div>
+      <div class="a-bullets">
+        <div class="a-bullet"><strong>Binance SEA</strong> — Built community at 18</div>
+        <div class="a-bullet"><strong>NFT Fund</strong> — 7-fig asset mgmt co-founder</div>
+        <div class="a-bullet"><strong>Virtuals Protocol</strong> — AI/MLOps, 7-fig ARR</div>
+        <div class="a-bullet">Arknights · Genshin · FGO collector</div>
+      </div>
+      <!-- collector tag -->
+      <div style="margin-top:8px; display:flex; gap:4px; flex-wrap:wrap;">
+        <span style="font-size:7px; padding:2px 6px; border-radius:3px; background:rgba(14,165,233,0.08); color:#52525B; font-weight:600;">COLLECTOR</span>
+        <span style="font-size:7px; padding:2px 6px; border-radius:3px; background:rgba(14,165,233,0.08); color:#52525B; font-weight:600;">BUILDER</span>
+      </div>
+    </div>
+
+    <!-- CTO -->
+    <div class="a-col cto">
+      <div class="role-badge">CTO</div>
+      <div class="a-col-name">John Koh Mei Jin</div>
+      <div class="a-hero-num">2011</div>
+      <div class="a-hero-label">Bitcoin OG · BitcoinTalk</div>
+      <div class="a-divider"></div>
+      <div class="a-bullets">
+        <div class="a-bullet"><strong>Bitcoin OG</strong> — Legendary Super Admin</div>
+        <div class="a-bullet"><strong>YC Insurtech</strong> — Founding MLOps Engineer</div>
+        <div class="a-bullet">Trading cards · Fine art · Watches</div>
+        <div class="a-bullet">Full-stack ML infra expertise</div>
+      </div>
+      <div style="margin-top:8px; display:flex; gap:4px; flex-wrap:wrap;">
+        <span style="font-size:7px; padding:2px 6px; border-radius:3px; background:rgba(254,207,106,0.08); color:#52525B; font-weight:600;">OG CRYPTO</span>
+        <span style="font-size:7px; padding:2px 6px; border-radius:3px; background:rgba(254,207,106,0.08); color:#52525B; font-weight:600;">MLOPS</span>
+      </div>
+    </div>
+
+    <!-- COO -->
+    <div class="a-col coo">
+      <div class="role-badge">COO</div>
+      <div class="a-col-name">Lau Soong Huey</div>
+      <div class="a-hero-num" style="font-size:44px;">$30M+</div>
+      <div class="a-hero-label">GMV — Discover Collectibles</div>
+      <div class="a-divider"></div>
+      <div class="a-bullets">
+        <div class="a-bullet"><strong>Discover Collectibles</strong> — $30M+ GMV, 200+ shops</div>
+        <div class="a-bullet"><strong>Lambda Society</strong> — $1M+/yr, 500+ scholars</div>
+        <div class="a-bullet"><strong>Liontrooper</strong> — 200M+ views, 100 staff</div>
+        <div class="a-bullet">Genshin · MiHoYo · Bilibili partner</div>
+      </div>
+      <div style="margin-top:8px; display:flex; gap:4px; flex-wrap:wrap;">
+        <span style="font-size:7px; padding:2px 6px; border-radius:3px; background:rgba(255,164,91,0.08); color:#52525B; font-weight:600;">OPERATOR</span>
+        <span style="font-size:7px; padding:2px 6px; border-radius:3px; background:rgba(255,164,91,0.08); color:#52525B; font-weight:600;">SUPPLY CHAIN</span>
+      </div>
+    </div>
+
+    <!-- CBO -->
+    <div class="a-col cbo">
+      <div class="role-badge">CBO</div>
+      <div class="a-col-name">Melody Taira ふしき種</div>
+      <div class="a-hero-num" style="font-size:44px;">$43M</div>
+      <div class="a-hero-label">AUM — Quant Fund</div>
+      <div class="a-divider"></div>
+      <div class="a-bullets">
+        <div class="a-bullet"><strong>竜星の嵐</strong> — Investor, Japan TCG chain</div>
+        <div class="a-bullet"><strong>Quant Fund</strong> — Managing $43M AUM</div>
+        <div class="a-bullet"><strong>Primary Markets</strong> — VeChain, Stepn, Nervos</div>
+        <div class="a-bullet">Investing since 2017 · Polkadot LP</div>
+      </div>
+      <div style="margin-top:8px; display:flex; gap:4px; flex-wrap:wrap;">
+        <span style="font-size:7px; padding:2px 6px; border-radius:3px; background:rgba(255,195,160,0.08); color:#52525B; font-weight:600;">CAPITAL</span>
+        <span style="font-size:7px; padding:2px 6px; border-radius:3px; background:rgba(255,195,160,0.08); color:#52525B; font-weight:600;">JP MARKET</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Achievement chain strip -->
+  <div class="a-strip">
+    <!-- CEO chain -->
+    <div class="strip-group">
+      <span class="strip-label" style="color:#1E1E22; font-size:6px;">CEO</span>
+      <div class="strip-chain">
+        <span class="strip-chip chip-sky">Binance SEA</span>
+        <span class="strip-arrow">→</span>
+        <span class="strip-chip chip-sky">7-fig NFTs</span>
+        <span class="strip-arrow">→</span>
+        <span class="strip-chip chip-sky">Virtuals ARR</span>
+      </div>
+    </div>
+    <!-- CTO chain -->
+    <div class="strip-group" style="padding-left:16px;">
+      <span class="strip-label" style="color:#1E1E22; font-size:6px;">CTO</span>
+      <div class="strip-chain">
+        <span class="strip-chip chip-gold">Bitcoin 2011</span>
+        <span class="strip-arrow">→</span>
+        <span class="strip-chip chip-gold">YC Insurtech</span>
+        <span class="strip-arrow">→</span>
+        <span class="strip-chip chip-gold">MLOps Arch</span>
+      </div>
+    </div>
+    <!-- COO chain -->
+    <div class="strip-group" style="padding-left:16px;">
+      <span class="strip-label" style="color:#1E1E22; font-size:6px;">COO</span>
+      <div class="strip-chain">
+        <span class="strip-chip chip-tan">$30M+ GMV</span>
+        <span class="strip-arrow">→</span>
+        <span class="strip-chip chip-tan">$1M+/yr</span>
+        <span class="strip-arrow">→</span>
+        <span class="strip-chip chip-tan">200M+ Views</span>
+      </div>
+    </div>
+    <!-- CBO chain -->
+    <div class="strip-group" style="padding-left:16px; border-right:none;">
+      <span class="strip-label" style="color:#1E1E22; font-size:6px;">CBO</span>
+      <div class="strip-chain">
+        <span class="strip-chip chip-peach">$43M AUM</span>
+        <span class="strip-arrow">→</span>
+        <span class="strip-chip chip-peach">JP TCG Chain</span>
+        <span class="strip-arrow">→</span>
+        <span class="strip-chip chip-peach">Since 2017</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="bottom-bar">
+    <span class="bb-email">hello@nextrare.com</span>
+    <span class="bb-num">09</span>
+    <span class="bb-conf">Confidential · NextRare 2026</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     DESIGN C — SPLIT
+═══════════════════════════════════════════════════════════ -->
+<div class="design-label">Design C — Split</div>
+
+<div class="slide" id="slide-c">
+  <!-- LEFT PANEL -->
+  <div class="c-left">
+    <div class="top-bar" style="right:auto; width:380px;"></div>
+
+    <div class="c-left-overline" style="margin-top:14px;">The Team</div>
+    <div class="c-left-headline">Built by <span>Collectors.</span><br>Backed by<br>Operators.</div>
+
+    <div class="c-stat-rows">
+      <!-- CEO -->
+      <div class="c-stat-row">
+        <div class="c-stat-num sky">×7fig</div>
+        <div class="c-stat-meta">
+          <span class="c-stat-badge badge-sky">CEO</span>
+          <span class="c-stat-desc">Thee Khai Chun<br>Binance → NFTs → AI</span>
+        </div>
+      </div>
+      <!-- CTO -->
+      <div class="c-stat-row">
+        <div class="c-stat-num gold">2011</div>
+        <div class="c-stat-meta">
+          <span class="c-stat-badge badge-gold">CTO</span>
+          <span class="c-stat-desc">John Koh Mei Jin<br>Bitcoin OG · YC MLOps</span>
+        </div>
+      </div>
+      <!-- COO -->
+      <div class="c-stat-row">
+        <div class="c-stat-num tan">$30M+</div>
+        <div class="c-stat-meta">
+          <span class="c-stat-badge badge-tan">COO</span>
+          <span class="c-stat-desc">Lau Soong Huey<br>GMV · 200+ Shops</span>
+        </div>
+      </div>
+      <!-- CBO -->
+      <div class="c-stat-row">
+        <div class="c-stat-num grad">$43M</div>
+        <div class="c-stat-meta">
+          <span class="c-stat-badge badge-peach">CBO</span>
+          <span class="c-stat-desc">Melody Taira<br>AUM · JP TCG Investor</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Left panel bottom -->
+    <div class="c-left-bottom">
+      <span>hello@nextrare.com</span>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="c-right">
+    <div class="c-right-title" style="margin-top:10px;">Founder Credential Map — How Each Role Feeds the Business</div>
+
+    <!-- SVG Credential Map -->
+    <div class="c-diagram">
+      <svg width="870" height="590" viewBox="0 0 870 590" xmlns="http://www.w3.org/2000/svg" style="font-family:'Sora',sans-serif; overflow:visible;">
+        <defs>
+          <marker id="arrow-sky" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#0EA5E9" opacity="0.5"/>
+          </marker>
+          <marker id="arrow-gold" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#FECF6A" opacity="0.5"/>
+          </marker>
+          <marker id="arrow-tan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#FFA45B" opacity="0.5"/>
+          </marker>
+          <marker id="arrow-peach" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#FFC3A0" opacity="0.5"/>
+          </marker>
+          <linearGradient id="grad-center" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#FFA45B"/>
+            <stop offset="33%" stop-color="#FFC3A0"/>
+            <stop offset="66%" stop-color="#FECF6A"/>
+            <stop offset="100%" stop-color="#0EA5E9"/>
+          </linearGradient>
+        </defs>
+
+        <!-- ── CENTER NODE: NextRare ── -->
+        <rect x="330" y="220" width="210" height="100" rx="12"
+              fill="white" stroke="url(#grad-center)" stroke-width="2"
+              filter="drop-shadow(0 4px 16px rgba(0,0,0,0.10))"/>
+        <text x="435" y="256" text-anchor="middle" font-size="11" font-weight="700" letter-spacing="0.1" fill="#09090B" text-transform="uppercase">NEXTRARE</text>
+        <text x="435" y="274" text-anchor="middle" font-size="9" fill="#71717A">TCG Marketplace</text>
+        <!-- center stats mini row -->
+        <text x="370" y="300" text-anchor="middle" font-size="8" font-weight="700" fill="#09090B">$73M+</text>
+        <text x="435" y="300" text-anchor="middle" font-size="8" font-weight="700" fill="#09090B">4 Verticals</text>
+        <text x="502" y="300" text-anchor="middle" font-size="8" font-weight="700" fill="#09090B">200+ Shops</text>
+
+        <!-- ── PILLAR NODES (output from center) ── -->
+
+        <!-- Product / Community (CEO → center → ) -->
+        <rect x="0" y="204" width="160" height="132" rx="10"
+              fill="#F0F9FF" stroke="#0EA5E9" stroke-width="1.5"/>
+        <!-- CEO badge -->
+        <rect x="10" y="214" width="34" height="14" rx="3" fill="rgba(14,165,233,0.15)"/>
+        <text x="27" y="225" text-anchor="middle" font-size="7" font-weight="800" fill="#0EA5E9" letter-spacing="0.1">CEO</text>
+        <text x="80" y="232" text-anchor="middle" font-size="10" font-weight="700" fill="#09090B">Product &amp;</text>
+        <text x="80" y="247" text-anchor="middle" font-size="10" font-weight="700" fill="#09090B">Community</text>
+        <!-- sub-items -->
+        <text x="16" y="267" font-size="8.5" fill="#52525B">▸ Collector culture depth</text>
+        <text x="16" y="282" font-size="8.5" fill="#52525B">▸ Community flywheel</text>
+        <text x="16" y="297" font-size="8.5" fill="#52525B">▸ Product vision</text>
+        <!-- hero stat -->
+        <text x="80" y="322" text-anchor="middle" font-size="13" font-weight="800" fill="#0EA5E9">×7-Fig ARR</text>
+
+        <!-- connector CEO → center -->
+        <line x1="160" y1="270" x2="330" y2="270" stroke="#0EA5E9" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.5" marker-end="url(#arrow-sky)"/>
+
+        <!-- Tech Infra (CTO) — top right -->
+        <rect x="710" y="110" width="160" height="132" rx="10"
+              fill="#FFFBEB" stroke="#FECF6A" stroke-width="1.5"/>
+        <rect x="720" y="120" width="32" height="14" rx="3" fill="rgba(254,207,106,0.18)"/>
+        <text x="736" y="131" text-anchor="middle" font-size="7" font-weight="800" fill="#FECF6A" letter-spacing="0.1">CTO</text>
+        <text x="790" y="138" text-anchor="middle" font-size="10" font-weight="700" fill="#09090B">Tech</text>
+        <text x="790" y="153" text-anchor="middle" font-size="10" font-weight="700" fill="#09090B">Infrastructure</text>
+        <text x="726" y="172" font-size="8.5" fill="#52525B">▸ ML authentication</text>
+        <text x="726" y="187" font-size="8.5" fill="#52525B">▸ Blockchain rails</text>
+        <text x="726" y="202" font-size="8.5" fill="#52525B">▸ Pricing engine</text>
+        <text x="790" y="228" text-anchor="middle" font-size="13" font-weight="800" fill="#FECF6A">Since 2011</text>
+
+        <!-- connector CTO → center -->
+        <line x1="710" y1="176" x2="540" y2="248" stroke="#FECF6A" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.5" marker-end="url(#arrow-gold)"/>
+
+        <!-- Supply Chain (COO) — bottom right -->
+        <rect x="710" y="388" width="160" height="132" rx="10"
+              fill="#FFF7EE" stroke="#FFA45B" stroke-width="1.5"/>
+        <rect x="720" y="398" width="32" height="14" rx="3" fill="rgba(255,164,91,0.15)"/>
+        <text x="736" y="409" text-anchor="middle" font-size="7" font-weight="800" fill="#FFA45B" letter-spacing="0.1">COO</text>
+        <text x="790" y="416" text-anchor="middle" font-size="10" font-weight="700" fill="#09090B">Supply Chain</text>
+        <text x="790" y="431" text-anchor="middle" font-size="10" font-weight="700" fill="#09090B">&amp; Operations</text>
+        <text x="726" y="450" font-size="8.5" fill="#52525B">▸ 200+ shop network</text>
+        <text x="726" y="465" font-size="8.5" fill="#52525B">▸ Seller onboarding</text>
+        <text x="726" y="480" font-size="8.5" fill="#52525B">▸ P2E guild playbook</text>
+        <text x="790" y="506" text-anchor="middle" font-size="13" font-weight="800" fill="#FFA45B">$30M+ GMV</text>
+
+        <!-- connector COO → center -->
+        <line x1="710" y1="454" x2="540" y2="320" stroke="#FFA45B" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.5" marker-end="url(#arrow-tan)"/>
+
+        <!-- Capital (CBO) — bottom left -->
+        <rect x="0" y="388" width="160" height="132" rx="10"
+              fill="#FFF5F0" stroke="#FFC3A0" stroke-width="1.5"/>
+        <rect x="10" y="398" width="32" height="14" rx="3" fill="rgba(255,195,160,0.18)"/>
+        <text x="26" y="409" text-anchor="middle" font-size="7" font-weight="800" fill="#FFC3A0" letter-spacing="0.1">CBO</text>
+        <text x="80" y="416" text-anchor="middle" font-size="10" font-weight="700" fill="#09090B">Capital &amp;</text>
+        <text x="80" y="431" text-anchor="middle" font-size="10" font-weight="700" fill="#09090B">JP Market</text>
+        <text x="16" y="450" font-size="8.5" fill="#52525B">▸ JP TCG pipeline</text>
+        <text x="16" y="465" font-size="8.5" fill="#52525B">▸ Quant fund access</text>
+        <text x="16" y="480" font-size="8.5" fill="#52525B">▸ Primary deal flow</text>
+        <text x="80" y="506" text-anchor="middle" font-size="13" font-weight="800" fill="#FFC3A0">$43M AUM</text>
+
+        <!-- connector CBO → center -->
+        <line x1="160" y1="454" x2="330" y2="320" stroke="#FFC3A0" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.5" marker-end="url(#arrow-peach)"/>
+
+        <!-- ── EXPERIENCE TIMELINE (top strip) ── -->
+        <!-- label -->
+        <text x="435" y="72" text-anchor="middle" font-size="8" font-weight="700" letter-spacing="0.1" fill="#A1A1AA">EXPERIENCE TIMELINE</text>
+
+        <!-- timeline track -->
+        <line x1="60" y1="100" x2="810" y2="100" stroke="#E4E4E7" stroke-width="1.5"/>
+
+        <!-- 2011 dot -->
+        <circle cx="60" cy="100" r="5" fill="#FECF6A"/>
+        <text x="60" y="92" text-anchor="middle" font-size="7.5" font-weight="700" fill="#FECF6A">2011</text>
+        <text x="60" y="116" text-anchor="middle" font-size="7" fill="#71717A">BTC OG</text>
+
+        <!-- 2017 dot -->
+        <circle cx="210" cy="100" r="5" fill="#FFC3A0"/>
+        <text x="210" y="92" text-anchor="middle" font-size="7.5" font-weight="700" fill="#FFC3A0">2017</text>
+        <text x="210" y="116" text-anchor="middle" font-size="7" fill="#71717A">Primary Mkts</text>
+
+        <!-- 2020 dot -->
+        <circle cx="370" cy="100" r="5" fill="#FFA45B"/>
+        <text x="370" y="92" text-anchor="middle" font-size="7.5" font-weight="700" fill="#FFA45B">2020</text>
+        <text x="370" y="116" text-anchor="middle" font-size="7" fill="#71717A">Discover GMV</text>
+
+        <!-- 2022 dot -->
+        <circle cx="560" cy="100" r="5" fill="#0EA5E9"/>
+        <text x="560" y="92" text-anchor="middle" font-size="7.5" font-weight="700" fill="#0EA5E9">2022</text>
+        <text x="560" y="116" text-anchor="middle" font-size="7" fill="#71717A">Binance SEA</text>
+
+        <!-- 2024 dot -->
+        <circle cx="715" cy="100" r="5" fill="#22C55E"/>
+        <text x="715" y="92" text-anchor="middle" font-size="7.5" font-weight="700" fill="#22C55E">2024</text>
+        <text x="715" y="116" text-anchor="middle" font-size="7" fill="#71717A">NextRare</text>
+
+        <!-- now marker -->
+        <circle cx="810" cy="100" r="7" fill="none" stroke="#09090B" stroke-width="1.5"/>
+        <circle cx="810" cy="100" r="3" fill="#09090B"/>
+        <text x="810" y="92" text-anchor="middle" font-size="7.5" font-weight="700" fill="#09090B">NOW</text>
+
+        <!-- ── BOTTOM STATS ROW ── -->
+        <rect x="150" y="548" width="570" height="32" rx="8" fill="white" stroke="#E4E4E7" stroke-width="1"/>
+        <text x="245" y="568" text-anchor="middle" font-size="11" font-weight="800" fill="#FFA45B">$30M+</text>
+        <text x="245" y="578" text-anchor="middle" font-size="7" fill="#A1A1AA">GMV</text>
+        <line x1="300" y1="552" x2="300" y2="576" stroke="#E4E4E7" stroke-width="1"/>
+        <text x="360" y="568" text-anchor="middle" font-size="11" font-weight="800" fill="#FFC3A0">$43M</text>
+        <text x="360" y="578" text-anchor="middle" font-size="7" fill="#A1A1AA">AUM</text>
+        <line x1="415" y1="552" x2="415" y2="576" stroke="#E4E4E7" stroke-width="1"/>
+        <text x="475" y="568" text-anchor="middle" font-size="11" font-weight="800" fill="#FFA45B">$1M+/yr</text>
+        <text x="475" y="578" text-anchor="middle" font-size="7" fill="#A1A1AA">Lambda</text>
+        <line x1="530" y1="552" x2="530" y2="576" stroke="#E4E4E7" stroke-width="1"/>
+        <text x="600" y="568" text-anchor="middle" font-size="11" font-weight="800" fill="#0EA5E9">200M+</text>
+        <text x="600" y="578" text-anchor="middle" font-size="7" fill="#A1A1AA">Views</text>
+        <line x1="650" y1="552" x2="650" y2="576" stroke="#E4E4E7" stroke-width="1"/>
+        <text x="695" y="568" text-anchor="middle" font-size="11" font-weight="800" fill="#09090B">200+</text>
+        <text x="695" y="578" text-anchor="middle" font-size="7" fill="#A1A1AA">Shops</text>
+      </svg>
+    </div>
+
+    <!-- Bottom bar (right side) -->
+    <div class="bottom-bar" style="left:380px;">
+      <span class="bb-email" style="color:#A1A1AA; font-size:10px;">hello@nextrare.com</span>
+      <span class="bb-num" style="font-size:12px; font-weight:700; color:var(--c-tangerine);">09</span>
+      <span class="bb-conf" style="color:#C4C4C8; font-size:10px;">Confidential · NextRare 2026</span>
+    </div>
+  </div>
+
+  <!-- slide number for left panel -->
+  <div style="position:absolute; bottom:0; left:0; width:380px; height:40px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+    <!-- intentionally empty — number shown in right panel center -->
+  </div>
+</div>
+
+</body>
+</html>

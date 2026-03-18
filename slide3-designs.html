@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 3 — The Opportunity · Designs A & C</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --c-sky: #0EA5E9;
+    --c-tangerine: #FFA45B;
+    --c-peach: #FFC3A0;
+    --c-gold: #FECF6A;
+    --c-blue-light: #A1E3FF;
+    --c-blue-dark: #0284C7;
+    --c-blue-soft: #EFF9FF;
+    --c-near-black: #09090B;
+    --c-white: #FFFFFF;
+    --c-text: #18181B;
+    --c-text-2: #3F3F46;
+    --c-text-3: #52525B;
+    --c-text-4: #71717A;
+    --c-text-5: #A1A1AA;
+    --c-border: #D4D4D8;
+    --c-border-2: #E4E4E7;
+    --c-bg-alt: #F8F8FA;
+    --gradient: linear-gradient(to right, #FFA45B, #FFC3A0, #FECF6A, #0EA5E9);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Sora', sans-serif;
+    background: #1a1a2e;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .geist {
+    font-family: 'SF Pro Display', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+  }
+  .geist-800 { font-family: 'SF Pro Display', 'Inter', -apple-system, sans-serif; font-weight: 800; }
+  .geist-700 { font-family: 'SF Pro Display', 'Inter', -apple-system, sans-serif; font-weight: 700; }
+
+  .overline {
+    font-family: 'SF Pro Display', 'Inter', -apple-system, sans-serif;
+    font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+  }
+
+  .slide {
+    width: 1280px; height: 720px;
+    position: relative; overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+  }
+
+  .design-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 20px; border-radius: 24px;
+    font-size: 13px; font-weight: 700; letter-spacing: 0.5px;
+    margin-bottom: 12px; align-self: flex-start; width: 1280px;
+  }
+  .badge-a { background: #1a1a2e; color: #A1E3FF; border: 1px solid #0EA5E9; }
+  .badge-c { background: #1a1a2e; color: #FECF6A; border: 1px solid #FECF6A; }
+
+  /* Shared bottom bar */
+  .bottom-bar {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 64px;
+  }
+  .bottom-bar .bb-left, .bottom-bar .bb-right {
+    font-size: 10px; letter-spacing: 0.5px; color: var(--c-text-5);
+  }
+  .bottom-bar .bb-slide { font-size: 10px; color: var(--c-text-5); letter-spacing: 1px; }
+
+  /* Shared gradient badge (overline pill) */
+  .pill-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 12px;
+    background: rgba(14,165,233,0.12);
+    border: 1px solid rgba(14,165,233,0.25);
+    border-radius: 24px; width: fit-content;
+  }
+  .pill-tag .dot { width: 5px; height: 5px; background: var(--c-sky); border-radius: 50%; }
+  .pill-tag span { color: var(--c-sky); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+
+
+  /* ============================================================
+     DESIGN 3A — DARK BLOOMBERG  "The Platform Gap"
+  ============================================================ */
+
+  .slide-3a { background: var(--c-near-black); }
+
+  /* 4-px gradient rule at top */
+  .slide-3a .gradient-bar {
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: var(--gradient);
+  }
+
+  /* Header: top-left */
+  .a3-header {
+    position: absolute; top: 44px; left: 64px;
+  }
+  .a3-title {
+    font-size: 36px; font-weight: 700; line-height: 1.12;
+    color: var(--c-white); letter-spacing: -1.2px;
+    margin-top: 12px; max-width: 860px;
+  }
+  .a3-title .grad {
+    background: var(--gradient);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  /* ── Platform landscape ── */
+  .a3-landscape {
+    position: absolute; top: 176px; left: 64px; right: 64px; height: 358px;
+    display: flex; gap: 10px;
+  }
+
+  /* Each zone */
+  .a3-zone {
+    flex: 1; border-radius: 12px; padding: 18px 20px;
+    display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+  }
+
+  /* Legacy zone */
+  .a3-zone.legacy {
+    flex: 1.35;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .a3-zone.legacy::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: rgba(239,68,68,0.4);
+  }
+
+  /* Void zone (The Gap) */
+  .a3-zone.void {
+    flex: 0.9;
+    background: rgba(14,165,233,0.03);
+    border: 1.5px dashed rgba(14,165,233,0.28);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; gap: 0;
+  }
+  .a3-zone.void::before {
+    content: ''; position: absolute; inset: 0; border-radius: 12px;
+    background: radial-gradient(ellipse at 50% 35%, rgba(14,165,233,0.07) 0%, transparent 65%);
+  }
+
+  /* Niche zone */
+  .a3-zone.niche {
+    flex: 1;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .a3-zone.niche::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: rgba(255,164,91,0.35);
+  }
+
+  /* Zone tier labels */
+  .a3-tier-tag {
+    font-size: 8px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 4px; width: fit-content; margin-bottom: 14px;
+  }
+  .a3-tier-tag.red   { color: rgba(252,165,165,0.75); background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.12); }
+  .a3-tier-tag.amber { color: rgba(255,164,91,0.75);  background: rgba(255,164,91,0.08); border: 1px solid rgba(255,164,91,0.12); }
+
+  /* Platform rows in legacy */
+  .a3-plat-stack { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+  .a3-plat-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px;
+  }
+  .a3-plat-icon { font-size: 14px; flex-shrink: 0; opacity: 0.7; }
+  .a3-plat-name { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.45); flex: 1; }
+  .a3-plat-tag-pill {
+    font-size: 8.5px; font-weight: 700; letter-spacing: 0.3px;
+    color: rgba(239,68,68,0.65); padding: 2px 7px;
+    background: rgba(239,68,68,0.08); border-radius: 12px;
+  }
+
+  /* Issues list in legacy */
+  .a3-issues {
+    margin-top: auto; padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex; flex-direction: column; gap: 5px;
+  }
+  .a3-issue { font-size: 10.5px; color: rgba(255,255,255,0.3); display: flex; align-items: center; gap: 6px; }
+  .a3-issue-x { color: rgba(239,68,68,0.55); font-weight: 800; font-size: 12px; }
+
+  /* Void zone elements */
+  .a3-void-q {
+    font-family: 'SF Pro Display', 'Inter', -apple-system, sans-serif;
+    font-size: 52px; font-weight: 900; letter-spacing: -2px;
+    color: rgba(14,165,233,0.2); line-height: 1; margin-bottom: 10px;
+    position: relative; z-index: 1;
+  }
+  .a3-void-name {
+    font-size: 13px; font-weight: 800; color: rgba(255,255,255,0.85);
+    letter-spacing: -0.2px; line-height: 1.3; margin-bottom: 6px;
+    position: relative; z-index: 1;
+  }
+  .a3-void-sub {
+    font-size: 9.5px; color: rgba(255,255,255,0.35); line-height: 1.6;
+    margin-bottom: 16px; position: relative; z-index: 1;
+  }
+  .a3-void-users {
+    font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.5);
+    margin-bottom: 10px; position: relative; z-index: 1;
+  }
+  .a3-void-badge {
+    padding: 5px 14px;
+    background: rgba(14,165,233,0.12); border: 1px solid rgba(14,165,233,0.28);
+    border-radius: 20px; font-size: 10px; font-weight: 700; color: var(--c-sky);
+    letter-spacing: 0.2px; position: relative; z-index: 1;
+  }
+
+  /* Niche zone elements */
+  .a3-niche-stack { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+  .a3-niche-item {
+    padding: 9px 14px;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px;
+    font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.4);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .a3-niche-item .ni-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,164,91,0.4); flex-shrink: 0; }
+  .a3-niche-note {
+    margin-top: auto; padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    font-size: 10px; color: rgba(255,255,255,0.25); line-height: 1.55;
+  }
+
+  /* ── Bottom stats row ── */
+  .a3-stats-row {
+    position: absolute; top: 546px; left: 64px; right: 64px;
+    height: 132px;
+    display: flex; gap: 12px;
+  }
+
+  .a3-stat-card {
+    flex: 1; border-radius: 10px; padding: 16px 20px;
+    display: flex; flex-direction: column; justify-content: center;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.025);
+  }
+  .a3-stat-card.sky-card  { border-color: rgba(14,165,233,0.18); }
+  .a3-stat-card.amber-card { border-color: rgba(255,164,91,0.18); }
+  .a3-stat-card.quote-card {
+    flex: 1.6;
+    border-color: rgba(14,165,233,0.12);
+    background: rgba(14,165,233,0.04);
+    border-left: 3px solid rgba(14,165,233,0.4);
+    justify-content: center;
+  }
+
+  .a3-sc-eye { font-size: 8px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 5px; }
+  .a3-sc-eye.sky   { color: rgba(14,165,233,0.6); }
+  .a3-sc-eye.amber { color: rgba(255,164,91,0.6); }
+  .a3-sc-eye.quote { color: rgba(14,165,233,0.5); }
+
+  .a3-sc-num {
+    font-family: 'SF Pro Display', 'Inter', -apple-system, sans-serif;
+    font-weight: 900; font-size: 38px; letter-spacing: -2px; line-height: 1; margin-bottom: 4px;
+  }
+  .a3-sc-num.sky   { color: var(--c-sky); }
+  .a3-sc-num.amber {
+    background: linear-gradient(to right, var(--c-tangerine), var(--c-gold));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  .a3-sc-lbl { font-size: 11px; color: rgba(255,255,255,0.55); line-height: 1.4; }
+  .a3-sc-sub { font-size: 9px; color: rgba(255,255,255,0.28); margin-top: 5px; }
+
+  .a3-quote-text {
+    font-size: 12px; font-weight: 500; font-style: italic;
+    color: rgba(255,255,255,0.65); line-height: 1.55;
+  }
+  .a3-quote-text strong { color: var(--c-sky); font-style: normal; font-weight: 700; }
+
+
+  /* ============================================================
+     DESIGN 3C — SPLIT  "The Void"  (dark left / light right)
+  ============================================================ */
+
+  .slide-3c { display: flex; }
+
+  /* ── Left dark panel ── */
+  .c3-left {
+    width: 44%;
+    background: var(--c-near-black);
+    padding: 44px 40px 52px 64px;
+    display: flex; flex-direction: column;
+    overflow: hidden; position: relative;
+  }
+  .c3-left::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--gradient);
+  }
+
+  .c3-overline { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .c3-overline .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--c-sky); }
+  .c3-overline span { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--c-text-5); }
+
+  .c3-title {
+    font-size: 28px; font-weight: 700; line-height: 1.2;
+    color: var(--c-white); letter-spacing: -0.8px; margin-bottom: 20px;
+  }
+  .c3-title .grad {
+    background: var(--gradient);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  /* Platform comparison matrix */
+  .c3-matrix {
+    flex: 1; min-height: 0;
+    display: flex; flex-direction: column;
+  }
+
+  .c3-mx-header {
+    display: grid; grid-template-columns: 1fr 56px 56px 70px;
+    gap: 4px; padding: 0 0 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    margin-bottom: 2px;
+  }
+  .c3-mx-head {
+    font-size: 8px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    text-align: center; color: var(--c-text-5);
+  }
+  .c3-mx-head.nr { color: var(--c-sky); }
+
+  .c3-mx-row {
+    display: grid; grid-template-columns: 1fr 56px 56px 70px;
+    gap: 4px; align-items: center;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .c3-mx-label { font-size: 10.5px; color: rgba(255,255,255,0.5); font-weight: 500; }
+  .c3-mx-cell { display: flex; justify-content: center; align-items: center; }
+  .mx-x     { font-size: 14px; font-weight: 700; color: rgba(239,68,68,0.5); }
+  .mx-half  { font-size: 10px; font-weight: 700; color: rgba(255,164,91,0.5); letter-spacing: 0; }
+  .mx-check { font-size: 14px; font-weight: 700; color: var(--c-sky); }
+
+  /* Cross-border friction stat at bottom of left panel */
+  .c3-friction {
+    margin-top: 16px; flex-shrink: 0;
+    padding: 14px 18px;
+    background: rgba(255,164,91,0.05);
+    border: 1px solid rgba(255,164,91,0.15);
+    border-radius: 10px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .c3-friction-num {
+    font-family: 'SF Pro Display', 'Inter', -apple-system, sans-serif;
+    font-weight: 900; font-size: 34px; letter-spacing: -1.5px; line-height: 1; flex-shrink: 0;
+    background: linear-gradient(to right, var(--c-tangerine), var(--c-gold));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .c3-friction-body {}
+  .c3-friction-label { font-size: 11px; color: rgba(255,255,255,0.6); line-height: 1.4; font-weight: 600; }
+  .c3-friction-sub   { font-size: 9px;  color: rgba(255,255,255,0.28); margin-top: 3px; }
+
+  /* ── Right light panel ── */
+  .c3-right {
+    flex: 1;
+    background: var(--c-bg-alt);
+    padding: 44px 48px 52px 44px;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    border-left: 1px solid #E4E4E7;
+  }
+
+  .c3-right-eye {
+    font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--c-text-4); margin-bottom: 16px;
+  }
+
+  .c3-cards {
+    flex: 1; min-height: 0;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+
+  .c3-card {
+    flex: 1;
+    background: white; border: 1px solid #E4E4E7; border-radius: 12px;
+    padding: 16px 20px;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .c3-card.apac     { border-left: 3px solid var(--c-sky); }
+  .c3-card.format   { border-left: 3px solid var(--c-gold); }
+  .c3-card.position { border-left: 3px solid rgba(14,165,233,0.4); background: #EFF9FF; }
+
+  .c3-card-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; line-height: 1; }
+  .c3-card-body { flex: 1; min-width: 0; }
+
+  .c3-card-eye { font-size: 8px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--c-text-5); margin-bottom: 5px; }
+
+  .c3-card-num {
+    font-family: 'SF Pro Display', 'Inter', -apple-system, sans-serif;
+    font-weight: 900; font-size: 30px; letter-spacing: -1.5px; color: var(--c-sky);
+    line-height: 1; margin-bottom: 3px;
+  }
+  .c3-card-title { font-size: 13px; font-weight: 700; color: var(--c-text); margin-bottom: 4px; line-height: 1.3; }
+  .c3-card-desc  { font-size: 10.5px; color: var(--c-text-4); line-height: 1.55; }
+  .c3-card-desc strong { color: var(--c-text-2); }
+
+  /* IP tags */
+  .c3-ip-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; flex-shrink: 0; }
+  .c3-ip-tag {
+    padding: 4px 12px; background: white; border: 1px solid #E4E4E7; border-radius: 20px;
+    font-size: 10px; color: var(--c-text-4);
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     DESIGN 3A — DARK BLOOMBERG
+     "The Platform Gap"
+============================================================ -->
+<div class="design-badge badge-a">✦ Design A — Dark Bloomberg | Platform gap + APAC void + cross-border friction</div>
+<div class="slide slide-3a">
+
+  <!-- Gradient rule -->
+  <div class="gradient-bar"></div>
+
+  <!-- Header: overline + title -->
+  <div class="a3-header">
+    <div class="pill-tag">
+      <div class="dot"></div>
+      <span>The Opportunity</span>
+    </div>
+    <div class="a3-title">
+      $90B Market. <span class="grad">Legacy Platforms.</span><br>
+      A New Format Taking Over.
+    </div>
+  </div>
+
+  <!-- ── Platform Landscape ── -->
+  <div class="a3-landscape">
+
+    <!-- Zone 1: Legacy Platforms -->
+    <div class="a3-zone legacy">
+      <span class="a3-tier-tag red">Legacy Platforms · Built for Another Era</span>
+
+      <div class="a3-plat-stack">
+        <div class="a3-plat-row">
+          <span class="a3-plat-icon">🛒</span>
+          <span class="a3-plat-name">eBay</span>
+          <span class="a3-plat-tag-pill">Generic</span>
+        </div>
+        <div class="a3-plat-row">
+          <span class="a3-plat-icon">⚡</span>
+          <span class="a3-plat-name">Yahoo Auctions</span>
+          <span class="a3-plat-tag-pill">Japan-only</span>
+        </div>
+        <div class="a3-plat-row">
+          <span class="a3-plat-icon">📘</span>
+          <span class="a3-plat-name">Facebook Groups</span>
+          <span class="a3-plat-tag-pill">Informal</span>
+        </div>
+      </div>
+
+      <div class="a3-issues">
+        <div class="a3-issue"><span class="a3-issue-x">✗</span> Match rates: Low</div>
+        <div class="a3-issue"><span class="a3-issue-x">✗</span> Discovery: Broken</div>
+        <div class="a3-issue"><span class="a3-issue-x">✗</span> Cross-border: Painful</div>
+      </div>
+    </div>
+
+    <!-- Zone 2: The Void / Gap -->
+    <div class="a3-zone void">
+      <div class="a3-void-q">?</div>
+      <div class="a3-void-name">Digital Card<br>Acquisition</div>
+      <div class="a3-void-sub">Gacha-style · App-native<br>Mission-driven</div>
+      <div class="a3-void-users">Millions of collectors</div>
+      <div class="a3-void-badge">No platform owns this</div>
+    </div>
+
+    <!-- Zone 3: Niche Digital Players -->
+    <div class="a3-zone niche">
+      <span class="a3-tier-tag amber">Niche Digital · Enthusiast-Only</span>
+
+      <div class="a3-niche-stack">
+        <div class="a3-niche-item">
+          <span class="ni-dot"></span>
+          Triumph
+        </div>
+        <div class="a3-niche-item">
+          <span class="ni-dot"></span>
+          Courtyard.io
+        </div>
+      </div>
+
+      <div class="a3-niche-note">
+        Virtually unknown outside<br>enthusiast circles.<br><br>
+        No regional home for APAC.<br>No cross-border solution.
+      </div>
+    </div>
+
+  </div><!-- end landscape -->
+
+  <!-- ── Bottom Stats Row ── -->
+  <div class="a3-stats-row">
+
+    <!-- APAC gap -->
+    <div class="a3-stat-card sky-card">
+      <div class="a3-sc-eye sky">Asia-Pacific Gap</div>
+      <div class="a3-sc-num sky geist">0</div>
+      <div class="a3-sc-lbl">dominant regional platforms for digital TCG</div>
+      <div class="a3-sc-sub">Fastest-growing region · 9.4% CAGR · Japan · Korea · SEA</div>
+    </div>
+
+    <!-- Cross-border stat -->
+    <div class="a3-stat-card amber-card">
+      <div class="a3-sc-eye amber">Cross-border Friction</div>
+      <div class="a3-sc-num amber geist">+30–40%</div>
+      <div class="a3-sc-lbl">Japanese card cost in SEA</div>
+      <div class="a3-sc-sub">Tariffs · Customs · VAT · No regional hub</div>
+    </div>
+
+    <!-- Positioning quote -->
+    <div class="a3-stat-card quote-card">
+      <div class="a3-sc-eye quote">Our Position</div>
+      <div class="a3-quote-text">
+        "We are not building against eBay.<br>
+        <strong>We are building the next generation</strong> of how collectors
+        acquire, trade, and own cards."
+      </div>
+    </div>
+
+  </div><!-- end stats row -->
+
+  <!-- Bottom bar -->
+  <div class="bottom-bar" style="border-top: 1px solid rgba(255,255,255,0.06);">
+    <span class="bb-left">hello@nextrare.com</span>
+    <span class="bb-slide">03</span>
+    <span class="bb-right">Confidential · NextRare 2026</span>
+  </div>
+
+</div><!-- end slide-3a -->
+
+
+<!-- ============================================================
+     DESIGN 3C — SPLIT  "The Void"
+     Dark left: platform matrix  /  Light right: opportunity insights
+============================================================ -->
+<div class="design-badge badge-c">✦ Design C — Data Narrative | Dark left (platform gap matrix) / Light right (opportunity cards)</div>
+<div class="slide slide-3c">
+
+  <!-- ── Left dark panel ── -->
+  <div class="c3-left">
+
+    <div class="c3-overline">
+      <div class="dot"></div>
+      <span>The Opportunity · Platform Landscape</span>
+    </div>
+
+    <div class="c3-title">
+      Legacy Infrastructure.<br>
+      <span class="grad">A $90B Gap.</span>
+    </div>
+
+    <!-- Platform comparison matrix -->
+    <div class="c3-matrix">
+
+      <div class="c3-mx-header">
+        <div style="font-size:8px; color:rgba(255,255,255,0.2); text-transform:uppercase; letter-spacing:1px; font-weight:700;">Capability</div>
+        <div class="c3-mx-head">Legacy</div>
+        <div class="c3-mx-head">Niche</div>
+        <div class="c3-mx-head nr">NextRare</div>
+      </div>
+
+      <div class="c3-mx-row">
+        <div class="c3-mx-label">Card Discovery</div>
+        <div class="c3-mx-cell"><span class="mx-x">✗</span></div>
+        <div class="c3-mx-cell"><span class="mx-half">◐</span></div>
+        <div class="c3-mx-cell"><span class="mx-check">✓</span></div>
+      </div>
+
+      <div class="c3-mx-row">
+        <div class="c3-mx-label">Cross-border</div>
+        <div class="c3-mx-cell"><span class="mx-x">✗</span></div>
+        <div class="c3-mx-cell"><span class="mx-x">✗</span></div>
+        <div class="c3-mx-cell"><span class="mx-check">✓</span></div>
+      </div>
+
+      <div class="c3-mx-row">
+        <div class="c3-mx-label">App-native</div>
+        <div class="c3-mx-cell"><span class="mx-x">✗</span></div>
+        <div class="c3-mx-cell"><span class="mx-half">◐</span></div>
+        <div class="c3-mx-cell"><span class="mx-check">✓</span></div>
+      </div>
+
+      <div class="c3-mx-row">
+        <div class="c3-mx-label">Digital Acquisition</div>
+        <div class="c3-mx-cell"><span class="mx-x">✗</span></div>
+        <div class="c3-mx-cell"><span class="mx-x">✗</span></div>
+        <div class="c3-mx-cell"><span class="mx-check">✓</span></div>
+      </div>
+
+      <div class="c3-mx-row">
+        <div class="c3-mx-label">APAC Regional</div>
+        <div class="c3-mx-cell"><span class="mx-x">✗</span></div>
+        <div class="c3-mx-cell"><span class="mx-x">✗</span></div>
+        <div class="c3-mx-cell"><span class="mx-check">✓</span></div>
+      </div>
+
+      <div class="c3-mx-row">
+        <div class="c3-mx-label">Price Discovery</div>
+        <div class="c3-mx-cell"><span class="mx-half">◐</span></div>
+        <div class="c3-mx-cell"><span class="mx-half">◐</span></div>
+        <div class="c3-mx-cell"><span class="mx-check">✓</span></div>
+      </div>
+
+    </div><!-- end matrix -->
+
+    <!-- Cross-border friction callout -->
+    <div class="c3-friction">
+      <div class="c3-friction-num geist">+30–40%</div>
+      <div class="c3-friction-body">
+        <div class="c3-friction-label">Japanese card cost in SEA via import tariffs + customs + VAT</div>
+        <div class="c3-friction-sub">Cross-border friction is growing — no regional platform solves it</div>
+      </div>
+    </div>
+
+  </div><!-- end left panel -->
+
+  <!-- ── Right light panel ── -->
+  <div class="c3-right">
+
+    <div class="c3-right-eye">The Opportunity</div>
+
+    <div class="c3-cards">
+
+      <!-- APAC gap -->
+      <div class="c3-card apac">
+        <div class="c3-card-icon">🌏</div>
+        <div class="c3-card-body">
+          <div class="c3-card-eye">Asia-Pacific</div>
+          <div class="c3-card-num geist">0</div>
+          <div class="c3-card-title">Dominant regional platforms for digital card acquisition</div>
+          <div class="c3-card-desc">Fastest-growing collector region (9.4% CAGR) — Japan, Korea, SEA — with no regional digital home for the new era.</div>
+        </div>
+      </div>
+
+      <!-- New format -->
+      <div class="c3-card format">
+        <div class="c3-card-icon">🎴</div>
+        <div class="c3-card-body">
+          <div class="c3-card-eye">New Format Taking Over</div>
+          <div class="c3-card-title">Digital card acquisition — gacha-style, app-native, mission-driven</div>
+          <div class="c3-card-desc">Millions of collectors already use this format. <strong>No secondary market platform owns this experience.</strong> The winner is still unclaimed.</div>
+        </div>
+      </div>
+
+      <!-- Our position -->
+      <div class="c3-card position">
+        <div class="c3-card-icon">🎯</div>
+        <div class="c3-card-body">
+          <div class="c3-card-eye">Our Position</div>
+          <div class="c3-card-title">Not against eBay. Building the next generation.</div>
+          <div class="c3-card-desc">NextRare is designed for how <strong>Gen Z and Millennials</strong> discover, acquire, and own TCG cards — app-first, community-driven, cross-border ready.</div>
+        </div>
+      </div>
+
+    </div><!-- end cards -->
+
+    <!-- IP tags -->
+    <div class="c3-ip-tags">
+      <span class="c3-ip-tag">Pokémon</span>
+      <span class="c3-ip-tag">One Piece</span>
+      <span class="c3-ip-tag">MTG</span>
+      <span class="c3-ip-tag">Yu-Gi-Oh!</span>
+    </div>
+
+  </div><!-- end right panel -->
+
+  <!-- Bottom bar -->
+  <div class="bottom-bar" style="background: rgba(248,248,250,0.92); border-top: 1px solid #E4E4E7;">
+    <span class="bb-left" style="color:#A1A1AA;">hello@nextrare.com</span>
+    <span class="bb-slide" style="color:#A1A1AA;">03</span>
+    <span class="bb-right" style="color:#A1A1AA;">Confidential · NextRare 2026</span>
+  </div>
+
+</div><!-- end slide-3c -->
+
+</body>
+</html>

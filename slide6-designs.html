@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Slide 6 — Traction · Designs A & C</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --c-sky:#0EA5E9; --c-tangerine:#FFA45B; --c-peach:#FFC3A0; --c-gold:#FECF6A;
+    --c-blue-light:#A1E3FF; --c-near-black:#09090B; --c-white:#FFFFFF;
+    --c-text:#18181B; --c-text-4:#71717A; --c-text-5:#A1A1AA;
+    --c-bg-alt:#F8F8FA; --c-success:#22C55E;
+    --gradient:linear-gradient(to right,#FFA45B,#FFC3A0,#FECF6A,#0EA5E9);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Sora',sans-serif; background:#1a1a2e; padding:40px 20px; display:flex; flex-direction:column; gap:60px; align-items:center; }
+
+  .slide { width:1280px; height:720px; position:relative; overflow:hidden; flex-shrink:0; box-shadow:0 32px 80px rgba(0,0,0,0.5); }
+  .design-badge { display:inline-flex; align-items:center; gap:8px; padding:8px 20px; border-radius:24px; font-size:13px; font-weight:700; letter-spacing:0.5px; margin-bottom:12px; align-self:flex-start; width:1280px; }
+  .badge-a { background:#1a1a2e; color:#A1E3FF; border:1px solid #0EA5E9; }
+  .badge-c { background:#1a1a2e; color:#FECF6A; border:1px solid #FECF6A; }
+
+  .bottom-bar { position:absolute; bottom:0; left:0; right:0; height:40px; display:flex; align-items:center; justify-content:space-between; padding:0 64px; }
+  .bb-left,.bb-right { font-size:10px; letter-spacing:0.5px; color:var(--c-text-5); }
+  .bb-slide { font-size:10px; color:var(--c-text-5); letter-spacing:1px; }
+
+  /* Green pill for traction */
+  .pill-tag { display:inline-flex; align-items:center; gap:6px; padding:4px 12px; background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.25); border-radius:24px; width:fit-content; }
+  .pill-tag .dot { width:5px; height:5px; background:var(--c-success); border-radius:50%; }
+  .pill-tag span { color:rgba(34,197,94,0.85); font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; }
+
+  /* ======================================================
+     DESIGN 6A — DARK BLOOMBERG  "Traction Dashboard"
+     Hero number left · 4 metric grid right · PMF strip bottom
+  ====================================================== */
+  .slide-6a { background:var(--c-near-black); }
+  .slide-6a .gradient-bar { position:absolute; top:0; left:0; right:0; height:4px; background:var(--gradient); }
+
+  /* Left hero zone */
+  .a6-left { position:absolute; top:44px; left:64px; width:600px; }
+
+  .a6-hero-num {
+    font-family:'SF Pro Display','Inter',-apple-system,sans-serif;
+    font-weight:900; font-size:96px; letter-spacing:-5px; line-height:1;
+    background:var(--gradient);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    margin-top:12px; margin-bottom:10px;
+  }
+
+  .a6-context {
+    display:flex; align-items:center; gap:8px; margin-bottom:20px;
+  }
+  .a6-ctx-badge {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:4px 12px; border-radius:20px; font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+  }
+  .a6-ctx-badge.days { background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.25); color:rgba(34,197,94,0.85); }
+  .a6-ctx-badge.beta { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:rgba(255,255,255,0.45); }
+
+  .a6-sub { font-size:13px; color:rgba(255,255,255,0.28); line-height:1.6; margin-bottom:20px; }
+  .a6-sub strong { color:rgba(34,197,94,0.7); font-weight:700; }
+
+  /* Evidence statement */
+  .a6-evidence {
+    padding:14px 18px;
+    background:rgba(34,197,94,0.04); border:1px solid rgba(34,197,94,0.12); border-radius:10px;
+  }
+  .a6-ev-label { font-size:8px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(34,197,94,0.5); margin-bottom:5px; }
+  .a6-ev-text { font-size:12px; font-weight:700; color:rgba(255,255,255,0.65); line-height:1.4; }
+  .a6-ev-sub  { font-size:10px; color:rgba(255,255,255,0.28); margin-top:3px; }
+
+  /* Right 2×2 metric grid */
+  .a6-metrics {
+    position:absolute; top:44px; left:688px; right:64px; height:460px;
+    display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:12px;
+  }
+
+  .a6-metric {
+    border-radius:13px; padding:20px 20px 16px; display:flex; flex-direction:column; justify-content:space-between; position:relative; overflow:hidden;
+  }
+  .a6-metric::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
+  .a6-metric.waitlist  { background:rgba(254,207,106,0.04); border:1px solid rgba(254,207,106,0.12); }
+  .a6-metric.community { background:rgba(14,165,233,0.04);  border:1px solid rgba(14,165,233,0.12); }
+  .a6-metric.engage    { background:rgba(34,197,94,0.04);   border:1px solid rgba(34,197,94,0.12); }
+  .a6-metric.cac       { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.07); }
+  .a6-metric.waitlist::before  { background:linear-gradient(to right,var(--c-tangerine),var(--c-gold)); }
+  .a6-metric.community::before { background:linear-gradient(to right,var(--c-sky),var(--c-blue-light)); }
+  .a6-metric.engage::before    { background:rgba(34,197,94,0.8); }
+  .a6-metric.cac::before       { background:var(--gradient); }
+
+  .a6-m-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; }
+  .a6-m-label.gold  { color:rgba(254,207,106,0.5); }
+  .a6-m-label.sky   { color:rgba(14,165,233,0.5); }
+  .a6-m-label.green { color:rgba(34,197,94,0.5); }
+  .a6-m-label.white { color:rgba(255,255,255,0.3); }
+
+  .a6-m-num {
+    font-family:'SF Pro Display','Inter',-apple-system,sans-serif;
+    font-weight:900; font-size:52px; letter-spacing:-2.5px; line-height:1;
+    margin:8px 0 4px;
+  }
+  .a6-m-num.gold  { background:linear-gradient(to right,var(--c-tangerine),var(--c-gold)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .a6-m-num.sky   { color:var(--c-sky); }
+  .a6-m-num.green { color:rgba(34,197,94,0.85); }
+  .a6-m-num.white { color:rgba(255,255,255,0.6); }
+  .a6-m-num.grad  { background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+  .a6-m-sub { font-size:9.5px; color:rgba(255,255,255,0.28); }
+  .a6-m-tag {
+    display:inline-flex; align-items:center; padding:2px 8px; border-radius:16px;
+    font-size:8px; font-weight:700; letter-spacing:0.5px; margin-top:4px; width:fit-content;
+  }
+  .a6-m-tag.organic { background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.2); color:rgba(34,197,94,0.75); }
+
+  /* Bottom PMF strip */
+  .a6-pmf {
+    position:absolute; left:64px; right:64px; bottom:52px; height:114px;
+    border-radius:13px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.07);
+    display:flex; align-items:stretch; overflow:hidden;
+  }
+  .a6-pmf::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:var(--gradient); opacity:0.4; }
+
+  .a6-pmf-left { flex:1; padding:16px 22px; display:flex; flex-direction:column; justify-content:center; border-right:1px solid rgba(255,255,255,0.06); }
+  .a6-pmf-tag  { font-size:8px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(34,197,94,0.45); margin-bottom:6px; }
+  .a6-pmf-stat { font-size:18px; font-weight:700; color:rgba(255,255,255,0.65); letter-spacing:-0.5px; margin-bottom:3px; }
+  .a6-pmf-sub  { font-size:10px; color:rgba(255,255,255,0.24); }
+
+  .a6-pmf-center { flex:1; padding:16px 22px; display:flex; flex-direction:column; justify-content:center; border-right:1px solid rgba(255,255,255,0.06); }
+
+  .a6-pmf-right { flex:1; padding:16px 22px; display:flex; flex-direction:column; justify-content:center; }
+  .a6-pmf-right .a6-pmf-stat { background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+  /* ======================================================
+     DESIGN 6C — SPLIT
+     Dark left: hero number + context
+     Light right: 4 metric cards + PMF statement
+  ====================================================== */
+  .slide-6c { display:flex; }
+
+  .c6-left { width:42%; background:var(--c-near-black); padding:44px 36px 52px 64px; display:flex; flex-direction:column; overflow:hidden; position:relative; }
+  .c6-left::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--gradient); }
+
+  .c6-overline { display:flex; align-items:center; gap:8px; margin-bottom:14px; }
+  .c6-overline .dot { width:5px; height:5px; border-radius:50%; background:var(--c-success); }
+  .c6-overline span { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(34,197,94,0.75); }
+
+  .c6-hero {
+    font-family:'SF Pro Display','Inter',-apple-system,sans-serif;
+    font-weight:900; font-size:72px; letter-spacing:-4px; line-height:1;
+    background:var(--gradient);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    margin-bottom:8px;
+  }
+
+  .c6-period { font-size:13px; font-weight:700; color:rgba(255,255,255,0.35); margin-bottom:20px; letter-spacing:0.3px; }
+
+  .c6-badges { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:24px; }
+  .c6-badge { padding:4px 11px; border-radius:20px; font-size:8.5px; font-weight:700; letter-spacing:0.5px; }
+  .c6-badge.days { background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.25); color:rgba(34,197,94,0.85); }
+  .c6-badge.beta { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:rgba(255,255,255,0.4); }
+  .c6-badge.zero { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:rgba(255,255,255,0.4); }
+
+  .c6-zero { margin-top:auto; }
+  .c6-zero-label { font-size:8px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.2); margin-bottom:6px; }
+  .c6-zero-num {
+    font-family:'SF Pro Display','Inter',-apple-system,sans-serif;
+    font-weight:900; font-size:40px; letter-spacing:-2px; line-height:1;
+    color:rgba(34,197,94,0.85); margin-bottom:4px;
+  }
+  .c6-zero-sub { font-size:10px; color:rgba(255,255,255,0.25); }
+
+  .c6-pmf-box { margin-top:20px; padding:12px 16px; background:rgba(34,197,94,0.05); border:1px solid rgba(34,197,94,0.12); border-radius:10px; }
+  .c6-pmf-text { font-size:11px; font-weight:700; color:rgba(34,197,94,0.65); line-height:1.4; }
+  .c6-pmf-sub  { font-size:9px; color:rgba(255,255,255,0.22); margin-top:3px; }
+
+  /* Right light panel */
+  .c6-right { flex:1; background:var(--c-bg-alt); padding:40px 44px 52px 36px; display:flex; flex-direction:column; overflow:hidden; border-left:1px solid #E4E4E7; }
+  .c6-right-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--c-text-5); margin-bottom:12px; }
+
+  .c6-grid { flex:1; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:10px; }
+
+  .c6-card { background:white; border:1px solid #E4E4E7; border-radius:12px; padding:18px 18px 14px; display:flex; flex-direction:column; position:relative; overflow:hidden; }
+  .c6-card::before { content:''; position:absolute; top:0; left:0; bottom:0; width:3px; }
+  .c6-card.w::before { background:linear-gradient(to bottom,var(--c-tangerine),var(--c-gold)); }
+  .c6-card.c::before { background:linear-gradient(to bottom,var(--c-sky),var(--c-blue-light)); }
+  .c6-card.e::before { background:rgba(34,197,94,0.8); }
+  .c6-card.z::before { background:var(--gradient); }
+
+  .c6-card-eye { font-size:8px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--c-text-5); margin-bottom:8px; }
+  .c6-card-num {
+    font-family:'SF Pro Display','Inter',-apple-system,sans-serif;
+    font-weight:900; font-size:44px; letter-spacing:-2.5px; line-height:1; margin-bottom:4px;
+  }
+  .c6-card-num.gold  { background:linear-gradient(to right,var(--c-tangerine),var(--c-gold)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .c6-card-num.sky   { color:var(--c-sky); }
+  .c6-card-num.green { color:rgba(34,197,94,0.85); }
+  .c6-card-num.grad  { background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+  .c6-card-label { font-size:11px; font-weight:700; color:var(--c-text); margin-bottom:2px; }
+  .c6-card-sub   { font-size:9px; color:var(--c-text-5); line-height:1.4; }
+  .c6-organic-tag { display:inline-flex; padding:2px 7px; border-radius:12px; background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.2); font-size:7.5px; font-weight:700; color:rgba(34,197,94,0.8); margin-top:6px; }
+</style>
+</head>
+<body>
+
+<!-- ====== DESIGN 6A ====== -->
+<div class="design-badge badge-a">✦ Design A — Dark Bloomberg | Traction Dashboard · Hero number + 4-metric grid + PMF strip</div>
+<div class="slide slide-6a">
+  <div class="gradient-bar"></div>
+
+  <!-- Left: Hero number -->
+  <div class="a6-left">
+    <div class="pill-tag"><div class="dot"></div><span>Traction</span></div>
+    <div class="a6-hero-num">$191,800</div>
+
+    <div class="a6-context">
+      <span class="a6-ctx-badge days">● &lt; 30 Days</span>
+      <span class="a6-ctx-badge beta">Closed Beta · Invite-Only</span>
+    </div>
+
+    <div class="a6-sub">
+      <strong>Zero paid acquisition.</strong> Pure organic demand.<br>
+      Before a public launch.
+    </div>
+
+    <div class="a6-evidence">
+      <div class="a6-ev-label">Evidence of Product-Market Fit</div>
+      <div class="a6-ev-text">This is not a projection.<br>This is proof.</div>
+      <div class="a6-ev-sub">Revenue positive. Raising to accelerate growth — not to survive.</div>
+    </div>
+  </div>
+
+  <!-- Right: 4-metric grid -->
+  <div class="a6-metrics">
+
+    <div class="a6-metric waitlist">
+      <div class="a6-m-label gold">Organic Waitlist</div>
+      <div>
+        <div class="a6-m-num gold">20,000+</div>
+        <div class="a6-m-sub">sign-ups · zero paid</div>
+        <div class="a6-m-tag organic">100% Organic</div>
+      </div>
+    </div>
+
+    <div class="a6-metric community">
+      <div class="a6-m-label sky">Community Reach</div>
+      <div>
+        <div class="a6-m-num sky">85,000+</div>
+        <div class="a6-m-sub">across platforms</div>
+        <div class="a6-m-tag organic">Organic</div>
+      </div>
+    </div>
+
+    <div class="a6-metric engage">
+      <div class="a6-m-label green">Engagements</div>
+      <div>
+        <div class="a6-m-num green">10,000+</div>
+        <div class="a6-m-sub">interactions · no ads</div>
+        <div class="a6-m-tag organic">Zero Paid</div>
+      </div>
+    </div>
+
+    <div class="a6-metric cac">
+      <div class="a6-m-label white">Paid Acquisition</div>
+      <div>
+        <div class="a6-m-num grad">$0</div>
+        <div class="a6-m-sub">customer acquisition cost</div>
+        <div class="a6-m-tag organic">Pure Organic</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom PMF strip -->
+  <div class="a6-pmf">
+    <div class="a6-pmf-left">
+      <div class="a6-pmf-tag">Organic Signal</div>
+      <div class="a6-pmf-stat">Zero Paid Acquisition</div>
+      <div class="a6-pmf-sub">Every dollar — every user — organic</div>
+    </div>
+    <div class="a6-pmf-center">
+      <div class="a6-pmf-tag">Stage</div>
+      <div class="a6-pmf-stat">Revenue Positive</div>
+      <div class="a6-pmf-sub">Closed beta, before public launch</div>
+    </div>
+    <div class="a6-pmf-right">
+      <div class="a6-pmf-tag">Raising For</div>
+      <div class="a6-pmf-stat">Accelerate Growth</div>
+      <div class="a6-pmf-sub">Not to survive — to scale what's working</div>
+    </div>
+  </div>
+
+  <div class="bottom-bar" style="border-top:1px solid rgba(255,255,255,0.06);">
+    <span class="bb-left">hello@nextrare.com</span>
+    <span class="bb-slide">06</span>
+    <span class="bb-right">Confidential · NextRare 2026</span>
+  </div>
+</div>
+
+
+<!-- ====== DESIGN 6C ====== -->
+<div class="design-badge badge-c">✦ Design C — Split | Dark left (hero + context) / Light right (4 metric cards)</div>
+<div class="slide slide-6c">
+
+  <!-- Left dark -->
+  <div class="c6-left">
+    <div class="c6-overline"><div class="dot"></div><span>Traction</span></div>
+    <div class="c6-hero">$191,800</div>
+    <div class="c6-period">in less than 30 days</div>
+
+    <div class="c6-badges">
+      <span class="c6-badge days">● &lt;30 Days</span>
+      <span class="c6-badge beta">Closed Beta</span>
+      <span class="c6-badge zero">Invite-Only</span>
+    </div>
+
+    <div class="c6-zero">
+      <div class="c6-zero-label">Paid Acquisition</div>
+      <div class="c6-zero-num">$0</div>
+      <div class="c6-zero-sub">Zero paid spend. Before public launch.</div>
+    </div>
+
+    <div class="c6-pmf-box">
+      <div class="c6-pmf-text">Evidence of product-market fit.<br>Not a projection — proof.</div>
+      <div class="c6-pmf-sub">Raising to accelerate, not to survive.</div>
+    </div>
+  </div>
+
+  <!-- Right light -->
+  <div class="c6-right">
+    <div class="c6-right-label">Traction Metrics · Organic Only</div>
+    <div class="c6-grid">
+
+      <div class="c6-card w">
+        <div class="c6-card-eye">Organic Waitlist</div>
+        <div class="c6-card-num gold">20,000+</div>
+        <div class="c6-card-label">Sign-ups</div>
+        <div class="c6-card-sub">No paid acquisition</div>
+        <div class="c6-organic-tag">100% Organic</div>
+      </div>
+
+      <div class="c6-card c">
+        <div class="c6-card-eye">Community Reach</div>
+        <div class="c6-card-num sky">85,000+</div>
+        <div class="c6-card-label">Across platforms</div>
+        <div class="c6-card-sub">Zero ad spend</div>
+        <div class="c6-organic-tag">Organic</div>
+      </div>
+
+      <div class="c6-card e">
+        <div class="c6-card-eye">Engagements</div>
+        <div class="c6-card-num green">10,000+</div>
+        <div class="c6-card-label">Interactions</div>
+        <div class="c6-card-sub">No boosting, no ads</div>
+        <div class="c6-organic-tag">Zero Paid</div>
+      </div>
+
+      <div class="c6-card z">
+        <div class="c6-card-eye">Customer Acq. Cost</div>
+        <div class="c6-card-num grad">$0</div>
+        <div class="c6-card-label">Paid CAC</div>
+        <div class="c6-card-sub">Pure demand, no spend</div>
+        <div class="c6-organic-tag">Pure Organic</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="bottom-bar" style="background:rgba(248,248,250,0.92);border-top:1px solid #E4E4E7;">
+    <span class="bb-left" style="color:#A1A1AA;">hello@nextrare.com</span>
+    <span class="bb-slide" style="color:#A1A1AA;">06</span>
+    <span class="bb-right" style="color:#A1A1AA;">Confidential · NextRare 2026</span>
+  </div>
+
+</div>
+</body>
+</html>

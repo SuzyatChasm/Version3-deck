@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Slide 7 — Business Model · Designs A & C</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --c-sky:#0EA5E9; --c-tangerine:#FFA45B; --c-peach:#FFC3A0; --c-gold:#FECF6A;
+    --c-blue-light:#A1E3FF; --c-near-black:#09090B; --c-white:#FFFFFF;
+    --c-text:#18181B; --c-text-4:#71717A; --c-text-5:#A1A1AA;
+    --c-bg-alt:#F8F8FA; --c-success:#22C55E;
+    --gradient:linear-gradient(to right,#FFA45B,#FFC3A0,#FECF6A,#0EA5E9);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Sora',sans-serif; background:#1a1a2e; padding:40px 20px; display:flex; flex-direction:column; gap:60px; align-items:center; }
+
+  .slide { width:1280px; height:720px; position:relative; overflow:hidden; flex-shrink:0; box-shadow:0 32px 80px rgba(0,0,0,0.5); }
+  .design-badge { display:inline-flex; align-items:center; gap:8px; padding:8px 20px; border-radius:24px; font-size:13px; font-weight:700; letter-spacing:0.5px; margin-bottom:12px; align-self:flex-start; width:1280px; }
+  .badge-a { background:#1a1a2e; color:#A1E3FF; border:1px solid #0EA5E9; }
+  .badge-c { background:#1a1a2e; color:#FECF6A; border:1px solid #FECF6A; }
+
+  .bottom-bar { position:absolute; bottom:0; left:0; right:0; height:40px; display:flex; align-items:center; justify-content:space-between; padding:0 64px; }
+  .bb-left,.bb-right { font-size:10px; letter-spacing:0.5px; color:var(--c-text-5); }
+  .bb-slide { font-size:10px; color:var(--c-text-5); letter-spacing:1px; }
+
+  .pill-tag { display:inline-flex; align-items:center; gap:6px; padding:4px 12px; background:rgba(14,165,233,0.1); border:1px solid rgba(14,165,233,0.2); border-radius:24px; width:fit-content; }
+  .pill-tag .dot { width:5px; height:5px; background:var(--c-sky); border-radius:50%; }
+  .pill-tag span { color:rgba(14,165,233,0.8); font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; }
+
+  /* ======================================================
+     DESIGN 7A — DARK BLOOMBERG "Revenue Stack"
+     3 revenue columns + bottom compounding strip
+  ====================================================== */
+  .slide-7a { background:var(--c-near-black); }
+  .slide-7a .gradient-bar { position:absolute; top:0; left:0; right:0; height:4px; background:var(--gradient); }
+
+  .a7-header { position:absolute; top:44px; left:64px; right:64px; }
+  .a7-title { font-size:26px; font-weight:700; line-height:1.2; color:var(--c-white); letter-spacing:-0.7px; margin-top:10px; }
+  .a7-title .grad { background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+  /* 3 Revenue columns */
+  .a7-cols { position:absolute; top:154px; left:64px; right:64px; height:296px; display:flex; gap:12px; }
+
+  .a7-col { flex:1; border-radius:14px; padding:16px 18px 14px; display:flex; flex-direction:column; position:relative; overflow:hidden; }
+  .a7-col.engine   { background:rgba(254,207,106,0.04); border:1px solid rgba(254,207,106,0.12); }
+  .a7-col.exchange { background:rgba(14,165,233,0.04);  border:1px solid rgba(14,165,233,0.12); }
+  .a7-col.edge     { background:rgba(34,197,94,0.04);   border:1px solid rgba(34,197,94,0.1); }
+  .a7-col.engine::before   { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right,var(--c-tangerine),var(--c-gold)); }
+  .a7-col.exchange::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right,var(--c-sky),var(--c-blue-light)); }
+  .a7-col.edge::before     { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:rgba(34,197,94,0.8); }
+
+  .a7-badge { display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:20px; font-size:8.5px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:8px; width:fit-content; }
+  .a7-badge.live { background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.25); color:rgba(34,197,94,0.85); }
+  .a7-badge.live .bd { width:5px; height:5px; border-radius:50%; background:rgba(34,197,94,0.85); }
+  .a7-badge.ph2  { background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.25); color:rgba(245,158,11,0.85); }
+  .a7-badge.arr  { background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.2); color:rgba(34,197,94,0.75); }
+
+  .a7-label { font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; margin-bottom:5px; }
+  .a7-label.gold  { color:rgba(254,207,106,0.5); }
+  .a7-label.sky   { color:rgba(14,165,233,0.5); }
+  .a7-label.green { color:rgba(34,197,94,0.5); }
+
+  .a7-hero { font-family:'SF Pro Display','Inter',-apple-system,sans-serif; font-weight:900; font-size:44px; letter-spacing:-2px; line-height:1; }
+  .a7-hero.gold  { background:linear-gradient(to right,var(--c-tangerine),var(--c-gold)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .a7-hero.sky   { color:var(--c-sky); }
+  .a7-hero.green { background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .a7-hero-sub { font-size:9.5px; color:rgba(255,255,255,0.28); margin-top:2px; margin-bottom:10px; }
+
+  .a7-model { display:inline-flex; padding:3px 9px; border-radius:16px; font-size:8px; font-weight:700; letter-spacing:0.3px; margin-bottom:10px; }
+  .a7-model.gold  { background:rgba(254,207,106,0.08); border:1px solid rgba(254,207,106,0.15); color:rgba(254,207,106,0.6); }
+  .a7-model.sky   { background:rgba(14,165,233,0.08);  border:1px solid rgba(14,165,233,0.15);  color:rgba(14,165,233,0.65); }
+  .a7-model.green { background:rgba(34,197,94,0.08);   border:1px solid rgba(34,197,94,0.15);   color:rgba(34,197,94,0.65); }
+
+  .a7-breakdown { display:flex; flex-direction:column; gap:5px; }
+  .a7-bd-item { display:flex; align-items:center; gap:6px; }
+  .a7-bd-dot { width:3px; height:3px; border-radius:50%; flex-shrink:0; }
+  .a7-bd-dot.gold  { background:rgba(254,207,106,0.4); }
+  .a7-bd-dot.sky   { background:rgba(14,165,233,0.4); }
+  .a7-bd-dot.green { background:rgba(34,197,94,0.4); }
+  .a7-bd-text { font-size:9.5px; color:rgba(255,255,255,0.38); }
+
+  /* Bottom compounding strip */
+  .a7-compound { position:absolute; left:64px; right:64px; top:462px; bottom:50px; border-radius:14px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.07); display:flex; align-items:stretch; overflow:hidden; }
+  .a7-compound::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:var(--gradient); opacity:0.35; }
+
+  .a7-cmp-box { flex:1; padding:14px 20px; display:flex; flex-direction:column; justify-content:center; border-right:1px solid rgba(255,255,255,0.06); position:relative; }
+  .a7-cmp-box:last-child { border-right:none; }
+  .a7-cmp-arrow { position:absolute; right:-10px; top:50%; transform:translateY(-50%); font-size:14px; color:rgba(255,255,255,0.18); z-index:2; }
+
+  .a7-cmp-tag { font-size:8px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:5px; }
+  .a7-cmp-tag.gold  { color:rgba(254,207,106,0.45); }
+  .a7-cmp-tag.sky   { color:rgba(14,165,233,0.45); }
+  .a7-cmp-tag.green { color:rgba(34,197,94,0.45); }
+  .a7-cmp-tag.white { color:rgba(255,255,255,0.2); }
+
+  .a7-cmp-stat { font-family:'SF Pro Display','Inter',-apple-system,sans-serif; font-weight:900; font-size:24px; letter-spacing:-1px; line-height:1; margin-bottom:3px; }
+  .a7-cmp-stat.gold  { background:linear-gradient(to right,var(--c-tangerine),var(--c-gold)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .a7-cmp-stat.sky   { color:var(--c-sky); }
+  .a7-cmp-stat.green { color:rgba(34,197,94,0.85); }
+  .a7-cmp-stat.grad  { background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .a7-cmp-sub { font-size:9px; color:rgba(255,255,255,0.25); }
+
+  /* ======================================================
+     DESIGN 7C — SPLIT
+     Dark left: 3 revenue rows + YoY growth
+     Light right: stacked bar chart (compounding visual)
+  ====================================================== */
+  .slide-7c { display:flex; }
+
+  .c7-left { width:38%; background:var(--c-near-black); padding:44px 32px 52px 64px; display:flex; flex-direction:column; overflow:hidden; position:relative; }
+  .c7-left::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--gradient); }
+
+  .c7-overline { display:flex; align-items:center; gap:8px; margin-bottom:12px; }
+  .c7-overline .dot { width:5px; height:5px; border-radius:50%; background:var(--c-sky); }
+  .c7-overline span { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(14,165,233,0.7); }
+
+  .c7-title { font-size:22px; font-weight:700; line-height:1.2; color:var(--c-white); letter-spacing:-0.6px; margin-bottom:22px; }
+  .c7-title .grad { background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+  .c7-streams { flex:1; display:flex; flex-direction:column; }
+  .c7-stream { flex:1; display:flex; align-items:center; gap:14px; border-top:1px solid rgba(255,255,255,0.05); padding:0 4px; }
+  .c7-stream:last-child { border-bottom:1px solid rgba(255,255,255,0.05); }
+
+  .c7-sn { font-family:'SF Pro Display','Inter',-apple-system,sans-serif; font-weight:900; line-height:1; min-width:110px; }
+  .c7-sn.lg  { font-size:36px; letter-spacing:-1.5px; }
+  .c7-sn.md  { font-size:28px; letter-spacing:-1px; }
+  .c7-sn.gold  { background:linear-gradient(to right,var(--c-tangerine),var(--c-gold)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .c7-sn.sky   { color:var(--c-sky); }
+  .c7-sn.green { background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+  .c7-stream-badge { display:inline-flex; padding:2px 8px; border-radius:16px; font-size:8px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:3px; width:fit-content; }
+  .c7-stream-badge.live  { background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.2); color:rgba(34,197,94,0.8); }
+  .c7-stream-badge.ph2   { background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.2); color:rgba(245,158,11,0.8); }
+  .c7-stream-badge.arr   { background:rgba(14,165,233,0.1); border:1px solid rgba(14,165,233,0.2); color:rgba(14,165,233,0.8); }
+
+  .c7-stream-name { font-size:13px; font-weight:700; color:rgba(255,255,255,0.72); }
+  .c7-stream-hint { font-size:9px; color:rgba(255,255,255,0.25); margin-top:2px; }
+
+  .c7-yoy { margin-top:14px; padding:12px 14px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px; display:flex; align-items:center; gap:12px; }
+  .c7-yoy-num { font-family:'SF Pro Display','Inter',-apple-system,sans-serif; font-weight:900; font-size:28px; letter-spacing:-1.5px; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; flex-shrink:0; }
+  .c7-yoy-label { font-size:10px; font-weight:700; color:rgba(255,255,255,0.45); }
+  .c7-yoy-sub   { font-size:8.5px; color:rgba(255,255,255,0.22); margin-top:2px; }
+
+  /* Right light panel */
+  .c7-right { flex:1; background:var(--c-bg-alt); padding:40px 44px 52px 36px; display:flex; flex-direction:column; overflow:hidden; border-left:1px solid #E4E4E7; }
+  .c7-right-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--c-text-5); margin-bottom:14px; }
+  .c7-chart { flex:1; min-height:0; }
+  .c7-chart svg { width:100%; height:100%; display:block; }
+</style>
+</head>
+<body>
+
+<!-- ====== DESIGN 7A ====== -->
+<div class="design-badge badge-a">✦ Design A — Dark Bloomberg | Revenue Stack · 3 streams + compounding growth strip</div>
+<div class="slide slide-7a">
+  <div class="gradient-bar"></div>
+
+  <div class="a7-header">
+    <div class="pill-tag"><div class="dot"></div><span>Business Model</span></div>
+    <div class="a7-title">
+      Three Revenue Streams.<br>
+      <span class="grad">Each One Compounds the Others.</span>
+    </div>
+  </div>
+
+  <div class="a7-cols">
+
+    <!-- ENGINE -->
+    <div class="a7-col engine">
+      <div class="a7-badge live"><div class="bd"></div>Live · Generating Revenue</div>
+      <div class="a7-label gold">ENGINE</div>
+      <div class="a7-hero gold">$100–200M</div>
+      <div class="a7-hero-sub">revenue potential</div>
+      <div class="a7-model gold">Transaction Fees + Franchise Rev. Share</div>
+      <div class="a7-breakdown">
+        <div class="a7-bd-item"><div class="a7-bd-dot gold"></div><span class="a7-bd-text">Pack transaction fees per pull</span></div>
+        <div class="a7-bd-item"><div class="a7-bd-dot gold"></div><span class="a7-bd-text">Franchise partner rev. share</span></div>
+        <div class="a7-bd-item"><div class="a7-bd-dot gold"></div><span class="a7-bd-text">Launchpad curation fees</span></div>
+      </div>
+    </div>
+
+    <!-- EXCHANGE -->
+    <div class="a7-col exchange">
+      <div class="a7-badge ph2">◎ Roadmap · Phase 2</div>
+      <div class="a7-label sky">EXCHANGE</div>
+      <div class="a7-hero sky">$1–2B</div>
+      <div class="a7-hero-sub">annual exchange volume</div>
+      <div class="a7-model sky">Volume-Based Trading Fees</div>
+      <div class="a7-breakdown">
+        <div class="a7-bd-item"><div class="a7-bd-dot sky"></div><span class="a7-bd-text">% of each settled trade</span></div>
+        <div class="a7-bd-item"><div class="a7-bd-dot sky"></div><span class="a7-bd-text">Cross-border transfer fee</span></div>
+        <div class="a7-bd-item"><div class="a7-bd-dot sky"></div><span class="a7-bd-text">Premium market access</span></div>
+      </div>
+    </div>
+
+    <!-- EDGE -->
+    <div class="a7-col edge">
+      <div class="a7-badge arr">◈ Scalable ARR</div>
+      <div class="a7-label green">EDGE</div>
+      <div class="a7-hero green">ARR</div>
+      <div class="a7-hero-sub">recurring institutional revenue</div>
+      <div class="a7-model green">Pro API + Data Subscriptions</div>
+      <div class="a7-breakdown">
+        <div class="a7-bd-item"><div class="a7-bd-dot green"></div><span class="a7-bd-text">Shop intelligence API</span></div>
+        <div class="a7-bd-item"><div class="a7-bd-dot green"></div><span class="a7-bd-text">Institutional data feeds</span></div>
+        <div class="a7-bd-item"><div class="a7-bd-dot green"></div><span class="a7-bd-text">EWAP price oracle access</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Compounding strip -->
+  <div class="a7-compound">
+
+    <div class="a7-cmp-box">
+      <div class="a7-cmp-tag gold">Engine · Now</div>
+      <div class="a7-cmp-stat gold">$100–200M</div>
+      <div class="a7-cmp-sub">Generates revenue today</div>
+      <div class="a7-cmp-arrow">→</div>
+    </div>
+
+    <div class="a7-cmp-box">
+      <div class="a7-cmp-tag sky">Exchange · Phase 2</div>
+      <div class="a7-cmp-stat sky">$1–2B vol</div>
+      <div class="a7-cmp-sub">Adds volume as liquidity deepens</div>
+      <div class="a7-cmp-arrow">→</div>
+    </div>
+
+    <div class="a7-cmp-box">
+      <div class="a7-cmp-tag green">Edge · Recurring</div>
+      <div class="a7-cmp-stat green">ARR</div>
+      <div class="a7-cmp-sub">Creates institutional recurring revenue</div>
+      <div class="a7-cmp-arrow">→</div>
+    </div>
+
+    <div class="a7-cmp-box">
+      <div class="a7-cmp-tag white">Est. YoY Growth</div>
+      <div class="a7-cmp-stat grad">100–200%</div>
+      <div class="a7-cmp-sub">Each product feeds the others</div>
+    </div>
+
+  </div>
+
+  <div class="bottom-bar" style="border-top:1px solid rgba(255,255,255,0.06);">
+    <span class="bb-left">hello@nextrare.com</span>
+    <span class="bb-slide">07</span>
+    <span class="bb-right">Confidential · NextRare 2026</span>
+  </div>
+</div>
+
+
+<!-- ====== DESIGN 7C ====== -->
+<div class="design-badge badge-c">✦ Design C — Split | Dark left (3 streams + YoY) / Light right (compounding bar chart)</div>
+<div class="slide slide-7c">
+
+  <!-- Left dark -->
+  <div class="c7-left">
+    <div class="c7-overline"><div class="dot"></div><span>Business Model</span></div>
+    <div class="c7-title">Three Streams.<br><span class="grad">Each Compounds the Others.</span></div>
+    <div class="c7-streams">
+
+      <div class="c7-stream">
+        <div class="c7-sn lg gold">$200M</div>
+        <div>
+          <div class="c7-stream-badge live">● Live</div>
+          <div class="c7-stream-name">ENGINE</div>
+          <div class="c7-stream-hint">Tx Fees + Franchise Rev. Share</div>
+        </div>
+      </div>
+
+      <div class="c7-stream">
+        <div class="c7-sn lg sky">$2B</div>
+        <div>
+          <div class="c7-stream-badge ph2">◎ Phase 2</div>
+          <div class="c7-stream-name">EXCHANGE</div>
+          <div class="c7-stream-hint">% of Settled Trade Volume</div>
+        </div>
+      </div>
+
+      <div class="c7-stream">
+        <div class="c7-sn md green">ARR</div>
+        <div>
+          <div class="c7-stream-badge arr">◈ Recurring</div>
+          <div class="c7-stream-name">EDGE</div>
+          <div class="c7-stream-hint">Pro API + Data Subscriptions</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="c7-yoy">
+      <div class="c7-yoy-num">100–200%</div>
+      <div>
+        <div class="c7-yoy-label">Est. YoY Growth</div>
+        <div class="c7-yoy-sub">Each product feeds the others</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right light: Stacked bar chart -->
+  <div class="c7-right">
+    <div class="c7-right-label">Revenue Compounding · Phase by Phase</div>
+    <div class="c7-chart">
+      <svg viewBox="0 0 580 440" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="bar-eng" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FECF6A" stop-opacity="0.75"/>
+            <stop offset="100%" stop-color="#FFA45B" stop-opacity="0.55"/>
+          </linearGradient>
+          <linearGradient id="bar-exc" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0EA5E9" stop-opacity="0.7"/>
+            <stop offset="100%" stop-color="#0EA5E9" stop-opacity="0.45"/>
+          </linearGradient>
+          <linearGradient id="bar-edg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#22C55E" stop-opacity="0.65"/>
+            <stop offset="100%" stop-color="#22C55E" stop-opacity="0.4"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Base line -->
+        <line x1="40" y1="330" x2="540" y2="330" stroke="#D4D4D8" stroke-width="1"/>
+
+        <!-- ── Phase 1: ENGINE ONLY ── -->
+        <!-- ENGINE bar: h=80 -->
+        <rect x="80" y="250" width="110" height="80" rx="6" fill="url(#bar-eng)"/>
+        <rect x="80" y="250" width="110" height="3" rx="1.5" fill="#FECF6A" opacity="0.9"/>
+        <!-- Label above -->
+        <text x="135" y="238" text-anchor="middle" font-size="13" fill="#FECF6A" font-weight="900" font-family="system-ui" letter-spacing="-0.5">$200M</text>
+        <!-- Phase label below -->
+        <text x="135" y="350" text-anchor="middle" font-size="10" fill="#555" font-weight="700" font-family="system-ui">TODAY</text>
+        <text x="135" y="363" text-anchor="middle" font-size="8.5" fill="#999" font-family="system-ui">Engine Live</text>
+
+        <!-- growth arrow -->
+        <line x1="200" y1="290" x2="240" y2="220" stroke="#D4D4D8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#grarr)"/>
+
+        <!-- ── Phase 2: ENGINE + EXCHANGE ── -->
+        <!-- EXCHANGE bar: h=140, ENGINE h=60 -->
+        <rect x="250" y="130" width="110" height="140" rx="6" fill="url(#bar-exc)"/>
+        <rect x="250" y="130" width="110" height="3" rx="1.5" fill="#0EA5E9" opacity="0.9"/>
+        <rect x="250" y="270" width="110" height="60" rx="0" fill="url(#bar-eng)" opacity="0.8"/>
+        <rect x="250" y="327" width="110" height="3" rx="1.5" fill="#FFA45B" opacity="0.6"/>
+        <!-- Label above -->
+        <text x="305" y="118" text-anchor="middle" font-size="13" fill="#0EA5E9" font-weight="900" font-family="system-ui" letter-spacing="-0.5">+$2B vol</text>
+        <!-- Phase label below -->
+        <text x="305" y="350" text-anchor="middle" font-size="10" fill="#555" font-weight="700" font-family="system-ui">PHASE 2</text>
+        <text x="305" y="363" text-anchor="middle" font-size="8.5" fill="#999" font-family="system-ui">Exchange Launches</text>
+
+        <!-- growth arrow -->
+        <line x1="370" y1="200" x2="410" y2="90" stroke="#D4D4D8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#grarr)"/>
+
+        <!-- ── Scale: ENGINE + EXCHANGE + EDGE ── -->
+        <!-- EDGE bar: h=90, EXCHANGE h=120, ENGINE h=55 -->
+        <rect x="420" y="65" width="110" height="90" rx="6" fill="url(#bar-edg)"/>
+        <rect x="420" y="65" width="110" height="3" rx="1.5" fill="#22C55E" opacity="0.9"/>
+        <rect x="420" y="155" width="110" height="120" rx="0" fill="url(#bar-exc)" opacity="0.8"/>
+        <rect x="420" y="275" width="110" height="55" rx="0" fill="url(#bar-eng)" opacity="0.75"/>
+        <rect x="420" y="327" width="110" height="3" rx="1.5" fill="#FFA45B" opacity="0.55"/>
+        <!-- Label above -->
+        <text x="475" y="53" text-anchor="middle" font-size="13" fill="#22C55E" font-weight="900" font-family="system-ui" letter-spacing="-0.5">+ARR</text>
+        <!-- Phase label below -->
+        <text x="475" y="350" text-anchor="middle" font-size="10" fill="#555" font-weight="700" font-family="system-ui">SCALE</text>
+        <text x="475" y="363" text-anchor="middle" font-size="8.5" fill="#999" font-family="system-ui">Edge Compounds</text>
+
+        <!-- 100-200% YoY annotation -->
+        <rect x="390" y="10" width="150" height="28" rx="6" fill="rgba(14,165,233,0.06)" stroke="rgba(14,165,233,0.2)" stroke-width="1"/>
+        <text x="465" y="28" text-anchor="middle" font-size="10" fill="#0EA5E9" font-weight="700" font-family="system-ui">↑ 100–200% YoY est.</text>
+
+        <!-- Arrow marker -->
+        <defs>
+          <marker id="grarr" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+            <path d="M 0,0 L 8,4 L 0,8" fill="none" stroke="#CCC" stroke-width="1.5"/>
+          </marker>
+        </defs>
+
+        <!-- Legend -->
+        <rect x="40" y="395" width="12" height="12" rx="2" fill="url(#bar-eng)"/>
+        <text x="58" y="406" font-size="9" fill="#555" font-family="system-ui" font-weight="600">ENGINE</text>
+        <rect x="130" y="395" width="12" height="12" rx="2" fill="url(#bar-exc)"/>
+        <text x="148" y="406" font-size="9" fill="#555" font-family="system-ui" font-weight="600">EXCHANGE</text>
+        <rect x="230" y="395" width="12" height="12" rx="2" fill="url(#bar-edg)"/>
+        <text x="248" y="406" font-size="9" fill="#555" font-family="system-ui" font-weight="600">EDGE (ARR)</text>
+        <text x="380" y="406" font-size="9" fill="#999" font-family="system-ui">Each stream feeds the next →</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="bottom-bar" style="background:rgba(248,248,250,0.92);border-top:1px solid #E4E4E7;">
+    <span class="bb-left" style="color:#A1A1AA;">hello@nextrare.com</span>
+    <span class="bb-slide" style="color:#A1A1AA;">07</span>
+    <span class="bb-right" style="color:#A1A1AA;">Confidential · NextRare 2026</span>
+  </div>
+
+</div>
+</body>
+</html>

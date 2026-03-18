@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 10 — The Raise · Concepts A & C</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --c-sky: #0EA5E9;
+    --c-tangerine: #FFA45B;
+    --c-gold: #FECF6A;
+    --c-peach: #FFC3A0;
+    --c-near-black: #09090B;
+    --c-success: #22C55E;
+    --c-bg-alt: #F8F8FA;
+    --gradient: linear-gradient(to right, #FFA45B, #FFC3A0, #FECF6A, #0EA5E9);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Sora', sans-serif;
+    background: #111827;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .design-label {
+    font-family: 'Sora', sans-serif;
+    color: #9CA3AF;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 8px 20px;
+    background: #1F2937;
+    border-radius: 6px;
+    border: 1px solid #374151;
+  }
+
+  /* ============================================================
+     SHARED SLIDE BASE
+  ============================================================ */
+  .slide {
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    position: relative;
+    font-family: 'Sora', sans-serif;
+  }
+
+  /* ============================================================
+     DESIGN A — DARK BLOOMBERG
+  ============================================================ */
+  .slide-a {
+    background: #09090B;
+  }
+
+  /* gradient top bar */
+  .slide-a .top-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(to right, #FFA45B, #FFC3A0, #FECF6A, #0EA5E9);
+    z-index: 10;
+  }
+
+  /* hero block top-left */
+  .slide-a .hero-block {
+    position: absolute;
+    top: 28px;
+    left: 52px;
+  }
+
+  .slide-a .overline-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,164,91,0.15);
+    border: 1px solid rgba(255,164,91,0.35);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #FFA45B;
+    margin-bottom: 10px;
+  }
+
+  .slide-a .hero-raise {
+    font-size: 80px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -2px;
+    background: linear-gradient(to right, #FFA45B, #FFC3A0, #FECF6A, #0EA5E9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .slide-a .hero-sub {
+    font-size: 13px;
+    font-weight: 400;
+    color: #52525B;
+    margin-top: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  .slide-a .headline {
+    position: absolute;
+    top: 180px;
+    left: 52px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #A1A1AA;
+    max-width: 420px;
+    line-height: 1.5;
+  }
+
+  .slide-a .headline span {
+    color: #FECF6A;
+  }
+
+  /* Left zone: donut */
+  .slide-a .left-zone {
+    position: absolute;
+    top: 230px;
+    left: 52px;
+    width: 430px;
+    bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .slide-a .zone-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #3F3F46;
+    margin-bottom: 12px;
+    align-self: flex-start;
+  }
+
+  .slide-a .donut-wrap {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+  }
+
+  .slide-a .legend {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .slide-a .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .slide-a .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .slide-a .legend-text {
+    font-size: 11px;
+    font-weight: 500;
+    color: #A1A1AA;
+  }
+
+  .slide-a .legend-pct {
+    font-size: 11px;
+    font-weight: 700;
+    color: #E4E4E7;
+    margin-left: 2px;
+  }
+
+  /* Right zone: timeline */
+  .slide-a .right-zone {
+    position: absolute;
+    top: 28px;
+    left: 530px;
+    right: 32px;
+    bottom: 60px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .slide-a .right-zone .zone-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #3F3F46;
+    margin-bottom: 12px;
+    margin-top: 30px;
+  }
+
+  .slide-a .phase-row {
+    display: flex;
+    gap: 12px;
+    flex: 1;
+    align-items: stretch;
+  }
+
+  .slide-a .phase-box {
+    flex: 1;
+    border-radius: 10px;
+    padding: 16px 14px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide-a .phase-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .slide-a .phase-1 { background: rgba(255,164,91,0.08); border: 1px solid rgba(255,164,91,0.2); }
+  .slide-a .phase-1::before { background: #FFA45B; }
+
+  .slide-a .phase-2 { background: rgba(14,165,233,0.08); border: 1px solid rgba(14,165,233,0.2); }
+  .slide-a .phase-2::before { background: #0EA5E9; }
+
+  .slide-a .phase-3 { background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2); }
+  .slide-a .phase-3::before { background: #22C55E; }
+
+  .slide-a .phase-tag {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .slide-a .phase-1 .phase-tag { color: #FFA45B; }
+  .slide-a .phase-2 .phase-tag { color: #0EA5E9; }
+  .slide-a .phase-3 .phase-tag { color: #22C55E; }
+
+  .slide-a .phase-period {
+    font-size: 10px;
+    font-weight: 500;
+    color: #52525B;
+    margin-bottom: 8px;
+  }
+
+  .slide-a .phase-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #E4E4E7;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .slide-a .phase-mrr {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+    line-height: 1;
+  }
+  .slide-a .phase-1 .phase-mrr { color: #FFA45B; }
+  .slide-a .phase-2 .phase-mrr { color: #0EA5E9; }
+  .slide-a .phase-3 .phase-mrr { color: #22C55E; }
+
+  .slide-a .phase-mrr-label {
+    font-size: 9px;
+    font-weight: 500;
+    color: #52525B;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .slide-a .phase-milestones {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: auto;
+  }
+
+  .slide-a .milestone {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 10.5px;
+    font-weight: 400;
+    color: #71717A;
+    line-height: 1.4;
+  }
+
+  .slide-a .milestone::before {
+    content: '→';
+    font-size: 10px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: #3F3F46;
+  }
+
+  /* bottom metrics strip */
+  .slide-a .metrics-strip {
+    position: absolute;
+    bottom: 40px;
+    left: 52px;
+    right: 32px;
+    height: 54px;
+    display: flex;
+    gap: 10px;
+  }
+
+  .slide-a .metric-box {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+  }
+
+  .slide-a .metric-val {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: linear-gradient(to right, #FFA45B, #FECF6A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+
+  .slide-a .metric-val.sky {
+    background: linear-gradient(to right, #0EA5E9, #38BDF8);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .slide-a .metric-val.green {
+    background: linear-gradient(to right, #22C55E, #4ADE80);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .slide-a .metric-lbl {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #52525B;
+  }
+
+  /* bottom bar */
+  .slide-a .bottom-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 40px;
+    background: rgba(255,255,255,0.03);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    padding: 0 52px;
+    gap: 0;
+  }
+
+  .slide-a .bottom-left {
+    font-size: 10.5px;
+    color: #3F3F46;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+
+  .slide-a .bottom-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-weight: 600;
+    color: #52525B;
+    letter-spacing: 0.06em;
+  }
+
+  .slide-a .bottom-right {
+    margin-left: auto;
+    font-size: 10px;
+    color: #27272A;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+
+  /* cap accent */
+  .slide-a .cap-pill {
+    display: inline-block;
+    background: rgba(254,207,106,0.12);
+    border: 1px solid rgba(254,207,106,0.25);
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #FECF6A;
+    margin-top: 8px;
+  }
+
+  /* separator line between left and right zones */
+  .slide-a .divider {
+    position: absolute;
+    top: 40px;
+    bottom: 60px;
+    left: 506px;
+    width: 1px;
+    background: rgba(255,255,255,0.06);
+  }
+
+  /* ============================================================
+     DESIGN C — SPLIT
+  ============================================================ */
+  .slide-c {
+    background: #09090B;
+    display: flex;
+    flex-direction: row;
+  }
+
+  /* Left panel */
+  .slide-c .panel-left {
+    width: 400px;
+    flex-shrink: 0;
+    background: #09090B;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .slide-c .panel-left .top-bar {
+    position: absolute;
+    top: 0; left: 0;
+    width: 400px;
+    height: 4px;
+    background: linear-gradient(to right, #FFA45B, #FFC3A0, #FECF6A, #0EA5E9);
+    z-index: 10;
+  }
+
+  .slide-c .panel-left-inner {
+    padding: 36px 36px 48px;
+    display: flex;
+    flex-direction: column;
+    height: 720px;
+    position: relative;
+  }
+
+  .slide-c .overline-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,164,91,0.15);
+    border: 1px solid rgba(255,164,91,0.35);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #FFA45B;
+    margin-top: 24px;
+    margin-bottom: 14px;
+    width: fit-content;
+  }
+
+  .slide-c .c-headline {
+    font-size: 17px;
+    font-weight: 700;
+    color: #E4E4E7;
+    line-height: 1.45;
+    margin-bottom: 36px;
+  }
+
+  .slide-c .c-headline span {
+    color: #FECF6A;
+  }
+
+  .slide-c .hero-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .slide-c .hero-stat-row {
+    display: flex;
+    flex-direction: column;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .slide-c .hero-stat-row:first-child {
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .slide-c .stat-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #52525B;
+    margin-bottom: 4px;
+  }
+
+  .slide-c .stat-number {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+
+  .slide-c .stat-number.tangerine {
+    background: linear-gradient(to right, #FFA45B, #FFC3A0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .slide-c .stat-number.gold {
+    background: linear-gradient(to right, #FECF6A, #FFA45B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .slide-c .stat-number.green {
+    background: linear-gradient(to right, #22C55E, #4ADE80);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .slide-c .stat-sub {
+    font-size: 11px;
+    font-weight: 400;
+    color: #52525B;
+    margin-top: 3px;
+  }
+
+  .slide-c .cap-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 24px;
+    padding: 12px 14px;
+    background: rgba(254,207,106,0.07);
+    border: 1px solid rgba(254,207,106,0.18);
+    border-radius: 8px;
+  }
+
+  .slide-c .cap-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: #52525B;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .slide-c .cap-val {
+    font-size: 22px;
+    font-weight: 800;
+    color: #FECF6A;
+    letter-spacing: -0.5px;
+    margin-left: auto;
+  }
+
+  /* Left bottom bar portion */
+  .slide-c .panel-left .bottom-bar {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 400px;
+    height: 40px;
+    background: rgba(255,255,255,0.03);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  .slide-c .panel-left .bottom-bar .bl-email {
+    font-size: 10.5px;
+    color: #3F3F46;
+    font-weight: 400;
+  }
+
+  /* Right panel */
+  .slide-c .panel-right {
+    flex: 1;
+    background: #F8F8FA;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .slide-c .panel-right .top-bar {
+    position: absolute;
+    top: 0; right: 0;
+    left: 0;
+    height: 4px;
+    background: rgba(0,0,0,0.05);
+    z-index: 10;
+  }
+
+  .slide-c .right-inner {
+    padding: 28px 36px 52px 36px;
+    display: flex;
+    flex-direction: column;
+    height: 720px;
+    position: relative;
+  }
+
+  .slide-c .right-section-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #A1A1AA;
+    margin-bottom: 8px;
+    margin-top: 8px;
+  }
+
+  /* Donut on right */
+  .slide-c .donut-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .slide-c .legend {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .slide-c .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .slide-c .legend-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .slide-c .legend-text {
+    font-size: 11px;
+    font-weight: 500;
+    color: #52525B;
+  }
+
+  .slide-c .legend-pct {
+    font-size: 11px;
+    font-weight: 700;
+    color: #18181B;
+    margin-left: 2px;
+  }
+
+  /* Phase bars */
+  .slide-c .phases-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .slide-c .phase-bar-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .slide-c .phase-bar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .slide-c .phase-bar-name {
+    font-size: 11px;
+    font-weight: 700;
+    color: #18181B;
+  }
+
+  .slide-c .phase-bar-period {
+    font-size: 10px;
+    color: #A1A1AA;
+    font-weight: 400;
+  }
+
+  .slide-c .phase-bar-mrr {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+
+  .slide-c .phase-bar-track {
+    height: 6px;
+    background: rgba(0,0,0,0.06);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 4px;
+  }
+
+  .slide-c .phase-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+  }
+
+  .slide-c .phase-milestones-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .slide-c .phase-milestone-tag {
+    font-size: 9.5px;
+    font-weight: 500;
+    color: #71717A;
+    background: rgba(0,0,0,0.05);
+    border-radius: 4px;
+    padding: 2px 7px;
+  }
+
+  /* right panel bottom bar */
+  .slide-c .panel-right .bottom-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 40px;
+    background: rgba(0,0,0,0.04);
+    border-top: 1px solid rgba(0,0,0,0.07);
+    display: flex;
+    align-items: center;
+    padding: 0 36px;
+  }
+
+  .slide-c .panel-right .bottom-bar .br-slide {
+    font-size: 11px;
+    font-weight: 600;
+    color: #A1A1AA;
+    margin: 0 auto;
+  }
+
+  .slide-c .panel-right .bottom-bar .br-conf {
+    font-size: 10px;
+    color: #C4C4C8;
+    font-weight: 400;
+    margin-left: auto;
+  }
+
+  /* left panel vertical edge shadow */
+  .slide-c .panel-left::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 1px;
+    height: 100%;
+    background: rgba(255,255,255,0.08);
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     DESIGN A — DARK BLOOMBERG
+============================================================ -->
+<div class="design-label">Design A — Dark Bloomberg</div>
+
+<div class="slide slide-a">
+  <!-- Gradient top bar -->
+  <div class="top-bar"></div>
+
+  <!-- Hero block top-left -->
+  <div class="hero-block">
+    <div class="overline-pill">THE RAISE</div>
+    <div class="hero-raise">$3M</div>
+    <div class="cap-pill">$30M Cap · Safe Note</div>
+    <div class="hero-sub">Seed round · NextRare TCG · 2026</div>
+  </div>
+
+  <!-- Headline -->
+  <div class="headline">
+    <span>$3M. $30M Cap.</span> The Starting Line<br>of a $90B Market.
+  </div>
+
+  <!-- Divider -->
+  <div class="divider"></div>
+
+  <!-- Left zone: Donut chart -->
+  <div class="left-zone">
+    <div class="zone-label">Fund Allocation · $3M</div>
+    <div class="donut-wrap">
+      <!-- SVG Donut -->
+      <svg width="190" height="190" viewBox="0 0 190 190" style="flex-shrink:0;">
+        <circle cx="95" cy="95" r="70" fill="none" stroke="#1A1A1E" stroke-width="32"/>
+        <!-- Total circumference of r=70: 2π×70 ≈ 439.82 -->
+        <!-- Team 58%: 439.82*0.58 ≈ 255.10 -->
+        <circle cx="95" cy="95" r="70" fill="none" stroke="#FFA45B" stroke-width="32"
+          stroke-dasharray="255.10 184.72"
+          stroke-dashoffset="0"
+          transform="rotate(-90 95 95)"/>
+        <!-- Product 17%: 439.82*0.17 ≈ 74.77; offset=255.10 → dashoffset=-255.10 -->
+        <circle cx="95" cy="95" r="70" fill="none" stroke="#0EA5E9" stroke-width="32"
+          stroke-dasharray="74.77 365.05"
+          stroke-dashoffset="-255.10"
+          transform="rotate(-90 95 95)"/>
+        <!-- Marketing 12%: 439.82*0.12 ≈ 52.78; offset=329.87 -->
+        <circle cx="95" cy="95" r="70" fill="none" stroke="#FECF6A" stroke-width="32"
+          stroke-dasharray="52.78 387.04"
+          stroke-dashoffset="-329.87"
+          transform="rotate(-90 95 95)"/>
+        <!-- Infra 6%: 439.82*0.06 ≈ 26.39; offset=382.65 -->
+        <circle cx="95" cy="95" r="70" fill="none" stroke="#FFC3A0" stroke-width="32"
+          stroke-dasharray="26.39 413.43"
+          stroke-dashoffset="-382.65"
+          transform="rotate(-90 95 95)"/>
+        <!-- BD 4%: 439.82*0.04 ≈ 17.59; offset=409.04 -->
+        <circle cx="95" cy="95" r="70" fill="none" stroke="#22C55E" stroke-width="32"
+          stroke-dasharray="17.59 422.23"
+          stroke-dashoffset="-409.04"
+          transform="rotate(-90 95 95)"/>
+        <!-- Reserve 3%: 439.82*0.03 ≈ 13.19; offset=426.63 -->
+        <circle cx="95" cy="95" r="70" fill="none" stroke="#52525B" stroke-width="32"
+          stroke-dasharray="13.19 426.63"
+          stroke-dashoffset="-426.63"
+          transform="rotate(-90 95 95)"/>
+        <!-- Center label -->
+        <text x="95" y="88" text-anchor="middle" font-family="Sora,sans-serif" font-size="22" font-weight="800" fill="#E4E4E7">$3M</text>
+        <text x="95" y="107" text-anchor="middle" font-family="Sora,sans-serif" font-size="9" font-weight="500" fill="#52525B" letter-spacing="1">RAISE</text>
+      </svg>
+
+      <!-- Legend -->
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#FFA45B;"></div>
+          <span class="legend-text">Team</span>
+          <span class="legend-pct">58% <span style="color:#3F3F46;font-weight:400;">$1.74M</span></span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#0EA5E9;"></div>
+          <span class="legend-text">Product & Eng</span>
+          <span class="legend-pct">17% <span style="color:#3F3F46;font-weight:400;">$510K</span></span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#FECF6A;"></div>
+          <span class="legend-text">Marketing</span>
+          <span class="legend-pct">12% <span style="color:#3F3F46;font-weight:400;">$360K</span></span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#FFC3A0;"></div>
+          <span class="legend-text">Infra & Legal</span>
+          <span class="legend-pct">6% <span style="color:#3F3F46;font-weight:400;">$180K</span></span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#22C55E;"></div>
+          <span class="legend-text">Partnerships</span>
+          <span class="legend-pct">4% <span style="color:#3F3F46;font-weight:400;">$120K</span></span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#52525B;"></div>
+          <span class="legend-text">Reserve</span>
+          <span class="legend-pct">3% <span style="color:#3F3F46;font-weight:400;">$90K</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right zone: Phase timeline -->
+  <div class="right-zone">
+    <div class="zone-label">18-Month Roadmap</div>
+
+    <!-- Connector line between phases -->
+    <div style="position:relative;">
+      <div class="phase-row">
+
+        <!-- Phase 1 -->
+        <div class="phase-box phase-1">
+          <div class="phase-tag">Phase 1</div>
+          <div class="phase-period">M1 – M6</div>
+          <div class="phase-name">Engine at Scale</div>
+          <div class="phase-mrr">$1M</div>
+          <span class="phase-mrr-label">MRR Target</span>
+          <div class="phase-milestones">
+            <div class="milestone">Malaysia, SG, TH, PH GTM</div>
+            <div class="milestone">3+ franchise partners live</div>
+            <div class="milestone">50K+ users · 30K MAU</div>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div style="display:flex;align-items:center;flex-shrink:0;">
+          <svg width="20" height="20" viewBox="0 0 20 20">
+            <path d="M4 10 L14 10 M10 6 L14 10 L10 14" stroke="#3F3F46" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- Phase 2 -->
+        <div class="phase-box phase-2">
+          <div class="phase-tag">Phase 2</div>
+          <div class="phase-period">M7 – M12</div>
+          <div class="phase-name">Exchange Beta</div>
+          <div class="phase-mrr">$5M</div>
+          <span class="phase-mrr-label">MRR Target</span>
+          <div class="phase-milestones">
+            <div class="milestone">Exchange beta live</div>
+            <div class="milestone">Japan ↔ SEA ↔ Korea XB</div>
+            <div class="milestone">500K+ users · DAU/MAU 30%</div>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div style="display:flex;align-items:center;flex-shrink:0;">
+          <svg width="20" height="20" viewBox="0 0 20 20">
+            <path d="M4 10 L14 10 M10 6 L14 10 L10 14" stroke="#3F3F46" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="phase-box phase-3">
+          <div class="phase-tag">Phase 3</div>
+          <div class="phase-period">M13 – M18</div>
+          <div class="phase-name">Series A Ready</div>
+          <div class="phase-mrr">$10M</div>
+          <span class="phase-mrr-label">MRR Target</span>
+          <div class="phase-milestones">
+            <div class="milestone">Exchange: $10M+ monthly GMV</div>
+            <div class="milestone">Pro API + institutional</div>
+            <div class="milestone">Series A: $10–15M @ $80–100M</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom metrics strip -->
+  <div class="metrics-strip">
+    <div class="metric-box">
+      <div class="metric-val">$10M</div>
+      <div class="metric-lbl">MRR @ 18mo</div>
+    </div>
+    <div class="metric-box">
+      <div class="metric-val">$10M</div>
+      <div class="metric-lbl">Monthly GMV</div>
+    </div>
+    <div class="metric-box">
+      <div class="metric-val sky">500K+</div>
+      <div class="metric-lbl">Registered Users</div>
+    </div>
+    <div class="metric-box">
+      <div class="metric-val sky">30%+</div>
+      <div class="metric-lbl">DAU / MAU</div>
+    </div>
+    <div class="metric-box">
+      <div class="metric-val green">50x+</div>
+      <div class="metric-lbl">YoY Revenue Growth</div>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="bottom-bar">
+    <div class="bottom-left">hello@nextrare.com</div>
+    <div class="bottom-center">10</div>
+    <div class="bottom-right">Confidential · NextRare 2026</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     DESIGN C — SPLIT
+============================================================ -->
+<div class="design-label">Design C — Split</div>
+
+<div class="slide slide-c">
+
+  <!-- LEFT PANEL: dark -->
+  <div class="panel-left">
+    <div class="top-bar"></div>
+
+    <div class="panel-left-inner">
+      <div class="overline-pill">THE RAISE</div>
+
+      <div class="c-headline">
+        <span>$3M. $30M Cap.</span><br>The Starting Line<br>of a $90B Market.
+      </div>
+
+      <!-- Hero stat rows -->
+      <div class="hero-stats">
+        <div class="hero-stat-row">
+          <div class="stat-label">Raise Amount</div>
+          <div class="stat-number tangerine">$3M</div>
+          <div class="stat-sub">Safe Note · Seed Round</div>
+        </div>
+        <div class="hero-stat-row">
+          <div class="stat-label">18-Month MRR Target</div>
+          <div class="stat-number gold">$10M</div>
+          <div class="stat-sub">Monthly Recurring Revenue</div>
+        </div>
+        <div class="hero-stat-row">
+          <div class="stat-label">Revenue Growth</div>
+          <div class="stat-number green">50x+</div>
+          <div class="stat-sub">Year-over-Year</div>
+        </div>
+      </div>
+
+      <!-- Cap accent -->
+      <div class="cap-row">
+        <div class="cap-label">Valuation Cap</div>
+        <div class="cap-val">$30M</div>
+      </div>
+    </div>
+
+    <!-- Left bottom bar segment -->
+    <div class="bottom-bar">
+      <div class="bl-email">hello@nextrare.com</div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL: light -->
+  <div class="panel-right">
+    <div class="top-bar"></div>
+
+    <div class="right-inner">
+
+      <!-- Allocation section -->
+      <div class="right-section-label" style="margin-top:16px;">Fund Allocation · $3M</div>
+
+      <div class="donut-section">
+        <!-- Donut SVG (light version) -->
+        <svg width="160" height="160" viewBox="0 0 160 160" style="flex-shrink:0;">
+          <circle cx="80" cy="80" r="58" fill="none" stroke="#E8E8EC" stroke-width="26"/>
+          <!-- circumference r=58: 2π×58 ≈ 364.42 -->
+          <!-- Team 58%: 364.42*0.58 ≈ 211.36 -->
+          <circle cx="80" cy="80" r="58" fill="none" stroke="#FFA45B" stroke-width="26"
+            stroke-dasharray="211.36 153.06"
+            stroke-dashoffset="0"
+            transform="rotate(-90 80 80)"/>
+          <!-- Product 17%: 364.42*0.17 ≈ 61.95; offset=-211.36 -->
+          <circle cx="80" cy="80" r="58" fill="none" stroke="#0EA5E9" stroke-width="26"
+            stroke-dasharray="61.95 302.47"
+            stroke-dashoffset="-211.36"
+            transform="rotate(-90 80 80)"/>
+          <!-- Marketing 12%: 364.42*0.12 ≈ 43.73; offset=-273.31 -->
+          <circle cx="80" cy="80" r="58" fill="none" stroke="#FECF6A" stroke-width="26"
+            stroke-dasharray="43.73 320.69"
+            stroke-dashoffset="-273.31"
+            transform="rotate(-90 80 80)"/>
+          <!-- Infra 6%: 364.42*0.06 ≈ 21.87; offset=-317.04 -->
+          <circle cx="80" cy="80" r="58" fill="none" stroke="#FFC3A0" stroke-width="26"
+            stroke-dasharray="21.87 342.55"
+            stroke-dashoffset="-317.04"
+            transform="rotate(-90 80 80)"/>
+          <!-- BD 4%: 364.42*0.04 ≈ 14.58; offset=-338.91 -->
+          <circle cx="80" cy="80" r="58" fill="none" stroke="#22C55E" stroke-width="26"
+            stroke-dasharray="14.58 349.84"
+            stroke-dashoffset="-338.91"
+            transform="rotate(-90 80 80)"/>
+          <!-- Reserve 3%: 364.42*0.03 ≈ 10.93; offset=-353.49 -->
+          <circle cx="80" cy="80" r="58" fill="none" stroke="#A1A1AA" stroke-width="26"
+            stroke-dasharray="10.93 353.49"
+            stroke-dashoffset="-353.49"
+            transform="rotate(-90 80 80)"/>
+          <!-- Center -->
+          <text x="80" y="75" text-anchor="middle" font-family="Sora,sans-serif" font-size="18" font-weight="800" fill="#18181B">$3M</text>
+          <text x="80" y="92" text-anchor="middle" font-family="Sora,sans-serif" font-size="8.5" font-weight="500" fill="#A1A1AA" letter-spacing="1">RAISE</text>
+        </svg>
+
+        <!-- Legend -->
+        <div class="legend">
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#FFA45B;"></div>
+            <span class="legend-text">Team</span>
+            <span class="legend-pct">58% <span style="color:#A1A1AA;font-weight:400;font-size:10px;">$1.74M</span></span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#0EA5E9;"></div>
+            <span class="legend-text">Product & Eng</span>
+            <span class="legend-pct">17% <span style="color:#A1A1AA;font-weight:400;font-size:10px;">$510K</span></span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#FECF6A;"></div>
+            <span class="legend-text">Marketing</span>
+            <span class="legend-pct">12% <span style="color:#A1A1AA;font-weight:400;font-size:10px;">$360K</span></span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#FFC3A0;"></div>
+            <span class="legend-text">Infra & Legal</span>
+            <span class="legend-pct">6% <span style="color:#A1A1AA;font-weight:400;font-size:10px;">$180K</span></span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#22C55E;"></div>
+            <span class="legend-text">Partnerships</span>
+            <span class="legend-pct">4% <span style="color:#A1A1AA;font-weight:400;font-size:10px;">$120K</span></span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#A1A1AA;"></div>
+            <span class="legend-text">Reserve</span>
+            <span class="legend-pct">3% <span style="color:#A1A1AA;font-weight:400;font-size:10px;">$90K</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase progression bars -->
+      <div class="right-section-label">18-Month Roadmap</div>
+
+      <div class="phases-section">
+
+        <!-- Phase 1 -->
+        <div class="phase-bar-row">
+          <div class="phase-bar-header">
+            <div>
+              <span class="phase-bar-name" style="color:#FFA45B;">Phase 1</span>
+              <span style="font-size:10px;color:#A1A1AA;font-weight:400;margin-left:6px;">M1–6 · Engine at Scale</span>
+            </div>
+            <div class="phase-bar-mrr" style="color:#FFA45B;">$1M MRR</div>
+          </div>
+          <div class="phase-bar-track">
+            <div class="phase-bar-fill" style="width:10%;background:linear-gradient(to right,#FFA45B,#FFC3A0);"></div>
+          </div>
+          <div class="phase-milestones-row">
+            <div class="phase-milestone-tag">3+ franchise partners</div>
+            <div class="phase-milestone-tag">MY · SG · TH · PH</div>
+            <div class="phase-milestone-tag">50K+ users</div>
+            <div class="phase-milestone-tag">30K MAU</div>
+          </div>
+        </div>
+
+        <!-- Phase 2 -->
+        <div class="phase-bar-row">
+          <div class="phase-bar-header">
+            <div>
+              <span class="phase-bar-name" style="color:#0EA5E9;">Phase 2</span>
+              <span style="font-size:10px;color:#A1A1AA;font-weight:400;margin-left:6px;">M7–12 · Exchange Beta</span>
+            </div>
+            <div class="phase-bar-mrr" style="color:#0EA5E9;">$5M MRR</div>
+          </div>
+          <div class="phase-bar-track">
+            <div class="phase-bar-fill" style="width:50%;background:linear-gradient(to right,#0EA5E9,#38BDF8);"></div>
+          </div>
+          <div class="phase-milestones-row">
+            <div class="phase-milestone-tag">Exchange beta live</div>
+            <div class="phase-milestone-tag">Japan ↔ SEA ↔ Korea</div>
+            <div class="phase-milestone-tag">500K+ users</div>
+            <div class="phase-milestone-tag">DAU/MAU 30%+</div>
+          </div>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="phase-bar-row">
+          <div class="phase-bar-header">
+            <div>
+              <span class="phase-bar-name" style="color:#22C55E;">Phase 3</span>
+              <span style="font-size:10px;color:#A1A1AA;font-weight:400;margin-left:6px;">M13–18 · Series A Ready</span>
+            </div>
+            <div class="phase-bar-mrr" style="color:#22C55E;">$10M MRR</div>
+          </div>
+          <div class="phase-bar-track">
+            <div class="phase-bar-fill" style="width:100%;background:linear-gradient(to right,#22C55E,#4ADE80);"></div>
+          </div>
+          <div class="phase-milestones-row">
+            <div class="phase-milestone-tag">$10M+ monthly GMV</div>
+            <div class="phase-milestone-tag">Pro API + institutional</div>
+            <div class="phase-milestone-tag">Series A $10–15M</div>
+            <div class="phase-milestone-tag">$80–100M cap</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Right bottom bar -->
+    <div class="bottom-bar">
+      <div class="br-slide">10</div>
+      <div class="br-conf">Confidential · NextRare 2026</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

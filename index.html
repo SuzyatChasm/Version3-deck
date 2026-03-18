@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NextRare · Seed Round Deck</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --c-sky: #0EA5E9;
+    --c-tangerine: #FFA45B;
+    --c-gold: #FECF6A;
+    --c-near-black: #09090B;
+    --gradient: linear-gradient(to right, #FFA45B, #FFC3A0, #FECF6A, #0EA5E9);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Sora', sans-serif;
+    background: var(--c-near-black);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 40px 80px;
+  }
+
+  /* Header */
+  .header {
+    width: 100%;
+    max-width: 960px;
+    margin-bottom: 56px;
+  }
+
+  .gradient-bar {
+    width: 100%;
+    height: 3px;
+    background: var(--gradient);
+    border-radius: 2px;
+    margin-bottom: 36px;
+  }
+
+  .logo-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .logo-dot {
+    width: 8px; height: 8px;
+    background: var(--c-sky);
+    border-radius: 50%;
+  }
+
+  .logo-name {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+
+  h1 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    color: white;
+    line-height: 1.1;
+  }
+
+  h1 .grad {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    color: rgba(255,255,255,0.3);
+    margin-top: 8px;
+  }
+
+  /* Grid */
+  .grid {
+    width: 100%;
+    max-width: 960px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  /* Slide card */
+  .card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s, background 0.2s;
+    display: block;
+  }
+
+  .card:hover {
+    border-color: rgba(14,165,233,0.35);
+    background: rgba(14,165,233,0.04);
+    transform: translateY(-2px);
+  }
+
+  .card-preview {
+    width: 100%;
+    height: 160px;
+    background: rgba(255,255,255,0.02);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-preview iframe {
+    width: 1280px;
+    height: 720px;
+    border: none;
+    transform: scale(0.225);
+    transform-origin: top left;
+    pointer-events: none;
+    position: absolute;
+    top: 0; left: 0;
+  }
+
+  .card-body {
+    padding: 16px 18px 18px;
+  }
+
+  .card-num {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--c-sky);
+    margin-bottom: 4px;
+  }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: -0.3px;
+    margin-bottom: 4px;
+  }
+
+  .card-desc {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    line-height: 1.5;
+  }
+
+  .card-designs {
+    display: flex;
+    gap: 6px;
+    margin-top: 12px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-a { background: rgba(14,165,233,0.1); color: rgba(161,227,255,0.8); border: 1px solid rgba(14,165,233,0.2); }
+  .badge-c { background: rgba(254,207,106,0.1); color: rgba(254,207,106,0.8); border: 1px solid rgba(254,207,106,0.2); }
+
+  /* Coming soon card */
+  .card.soon {
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .card.soon .card-num { color: rgba(255,255,255,0.3); }
+
+  .soon-badge {
+    padding: 3px 8px; border-radius: 20px;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.5px;
+    background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 60px;
+    font-size: 10px;
+    color: rgba(255,255,255,0.15);
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="gradient-bar"></div>
+  <div class="logo-row">
+    <div class="logo-dot"></div>
+    <span class="logo-name">NextRare</span>
+  </div>
+  <h1>Seed Round <span class="grad">Pitch Deck</span></h1>
+  <p class="subtitle">Design mockups · Sky Blue Design System · Confidential 2026</p>
+</div>
+
+<div class="grid">
+
+  <!-- Slide 2 -->
+  <a class="card" href="slide2-designs.html">
+    <div class="card-preview">
+      <iframe src="slide2-designs.html" scrolling="no" tabindex="-1"></iframe>
+    </div>
+    <div class="card-body">
+      <div class="card-num">Slide 02</div>
+      <div class="card-title">The Industry</div>
+      <div class="card-desc">$90B TCG market · projection chart · market breakdown</div>
+      <div class="card-designs">
+        <span class="badge badge-a">A — Dark Bloomberg</span>
+        <span class="badge badge-c">C — Split</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Slide 3 -->
+  <a class="card" href="slide3-designs.html">
+    <div class="card-preview">
+      <iframe src="slide3-designs.html" scrolling="no" tabindex="-1"></iframe>
+    </div>
+    <div class="card-body">
+      <div class="card-num">Slide 03</div>
+      <div class="card-title">The Opportunity</div>
+      <div class="card-desc">Platform landscape · APAC gap · cross-border growth</div>
+      <div class="card-designs">
+        <span class="badge badge-a">A — Dark Bloomberg</span>
+        <span class="badge badge-c">C — Split</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Slide 4 -->
+  <a class="card" href="slide4-designs.html">
+    <div class="card-preview">
+      <iframe src="slide4-designs.html" scrolling="no" tabindex="-1"></iframe>
+    </div>
+    <div class="card-body">
+      <div class="card-num">Slide 04</div>
+      <div class="card-title">The Problem</div>
+      <div class="card-desc">$570 price spread · ×3 barriers · 0 bridges Japan↔SEA</div>
+      <div class="card-designs">
+        <span class="badge badge-a">A — Dark Bloomberg</span>
+        <span class="badge badge-c">C — Visual Narrative</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Slide 5 -->
+  <a class="card" href="slide5-designs.html">
+    <div class="card-preview">
+      <iframe src="slide5-designs.html" scrolling="no" tabindex="-1"></iframe>
+    </div>
+    <div class="card-body">
+      <div class="card-num">Slide 05</div>
+      <div class="card-title">The Solution</div>
+      <div class="card-desc">Engine · Exchange · Edge · EWAP flywheel</div>
+      <div class="card-designs">
+        <span class="badge badge-a">A — Dark Bloomberg</span>
+        <span class="badge badge-c">C — Architecture</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Slide 6 -->
+  <a class="card" href="slide6-designs.html">
+    <div class="card-preview">
+      <iframe src="slide6-designs.html" scrolling="no" tabindex="-1"></iframe>
+    </div>
+    <div class="card-body">
+      <div class="card-num">Slide 06</div>
+      <div class="card-title">Traction</div>
+      <div class="card-desc">$191,800 · 20K+ waitlist · $0 CAC · PMF evidence</div>
+      <div class="card-designs">
+        <span class="badge badge-a">A — Dark Bloomberg</span>
+        <span class="badge badge-c">C — Split</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Slide 7 -->
+  <a class="card" href="slide7-designs.html">
+    <div class="card-preview">
+      <iframe src="slide7-designs.html" scrolling="no" tabindex="-1"></iframe>
+    </div>
+    <div class="card-body">
+      <div class="card-num">Slide 07</div>
+      <div class="card-title">Business Model</div>
+      <div class="card-desc">Three revenue streams · Engine · Exchange · Edge · compounding YoY</div>
+      <div class="card-designs">
+        <span class="badge badge-a">A — Dark Bloomberg</span>
+        <span class="badge badge-c">C — Split</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Slide 8 -->
+  <a class="card" href="slide8-designs.html">
+    <div class="card-preview">
+      <iframe src="slide8-designs.html" scrolling="no" tabindex="-1"></iframe>
+    </div>
+    <div class="card-body">
+      <div class="card-num">Slide 08</div>
+      <div class="card-title">Strategic Partners</div>
+      <div class="card-desc">$30M+ GMV · $15M+ Japan · ARS Auth · supply chain map</div>
+      <div class="card-designs">
+        <span class="badge badge-a">A — Dark Bloomberg</span>
+        <span class="badge badge-c">C — Split</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Slide 9 -->
+  <a class="card" href="slide9-designs.html">
+    <div class="card-preview">
+      <iframe src="slide9-designs.html" scrolling="no" tabindex="-1"></iframe>
+    </div>
+    <div class="card-body">
+      <div class="card-num">Slide 09</div>
+      <div class="card-title">The Team</div>
+      <div class="card-desc">$73M+ capital · 200M+ views · CEO/CTO/COO/CBO credential map</div>
+      <div class="card-designs">
+        <span class="badge badge-a">A — Dark Bloomberg</span>
+        <span class="badge badge-c">C — Split</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Slide 10 -->
+  <a class="card" href="slide10-designs.html">
+    <div class="card-preview">
+      <iframe src="slide10-designs.html" scrolling="no" tabindex="-1"></iframe>
+    </div>
+    <div class="card-body">
+      <div class="card-num">Slide 10</div>
+      <div class="card-title">The Raise</div>
+      <div class="card-desc">$3M · $30M cap · allocation donut · 18-month roadmap · 50x growth</div>
+      <div class="card-designs">
+        <span class="badge badge-a">A — Dark Bloomberg</span>
+        <span class="badge badge-c">C — Split</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Slide 11 -->
+  <a class="card" href="slide11-designs.html">
+    <div class="card-preview">
+      <iframe src="slide11-designs.html" scrolling="no" tabindex="-1"></iframe>
+    </div>
+    <div class="card-body">
+      <div class="card-num">Slide 11</div>
+      <div class="card-title">Vision & Contact</div>
+      <div class="card-desc">Brand Every Collector Knows · deck@nextrare.cards · Seed Round Open</div>
+      <div class="card-designs">
+        <span class="badge badge-a">A — Dark Bloomberg</span>
+        <span class="badge badge-c">C — Split</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Slide 12 — coming soon -->
+  <div class="card soon">
+    <div class="card-preview" style="background:rgba(255,255,255,0.01);">
+      <span style="font-size:28px;opacity:0.2;">+</span>
+    </div>
+    <div class="card-body">
+      <div class="card-num">Slide 12</div>
+      <div class="card-title">Coming Soon</div>
+      <div class="card-desc">Next slide in progress</div>
+      <div class="card-designs">
+        <span class="soon-badge">In progress</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">hello@nextrare.com · Confidential · NextRare 2026</div>
+
+</body>
+</html>

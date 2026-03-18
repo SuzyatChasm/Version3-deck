@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Slide 5 — The Solution · Designs A & C</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --c-sky:#0EA5E9; --c-tangerine:#FFA45B; --c-peach:#FFC3A0; --c-gold:#FECF6A;
+    --c-blue-light:#A1E3FF; --c-near-black:#09090B; --c-white:#FFFFFF;
+    --c-text:#18181B; --c-text-4:#71717A; --c-text-5:#A1A1AA;
+    --c-bg-alt:#F8F8FA; --c-success:#22C55E; --c-warning:#F59E0B;
+    --gradient:linear-gradient(to right,#FFA45B,#FFC3A0,#FECF6A,#0EA5E9);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Sora',sans-serif; background:#1a1a2e; padding:40px 20px; display:flex; flex-direction:column; gap:60px; align-items:center; }
+
+  .slide { width:1280px; height:720px; position:relative; overflow:hidden; flex-shrink:0; box-shadow:0 32px 80px rgba(0,0,0,0.5); }
+  .design-badge { display:inline-flex; align-items:center; gap:8px; padding:8px 20px; border-radius:24px; font-size:13px; font-weight:700; letter-spacing:0.5px; margin-bottom:12px; align-self:flex-start; width:1280px; }
+  .badge-a { background:#1a1a2e; color:#A1E3FF; border:1px solid #0EA5E9; }
+  .badge-c { background:#1a1a2e; color:#FECF6A; border:1px solid #FECF6A; }
+
+  .bottom-bar { position:absolute; bottom:0; left:0; right:0; height:40px; display:flex; align-items:center; justify-content:space-between; padding:0 64px; }
+  .bb-left,.bb-right { font-size:10px; letter-spacing:0.5px; color:var(--c-text-5); }
+  .bb-slide { font-size:10px; color:var(--c-text-5); letter-spacing:1px; }
+
+  .pill-tag { display:inline-flex; align-items:center; gap:6px; padding:4px 12px; background:rgba(14,165,233,0.1); border:1px solid rgba(14,165,233,0.2); border-radius:24px; width:fit-content; }
+  .pill-tag .dot { width:5px; height:5px; background:var(--c-sky); border-radius:50%; }
+  .pill-tag span { color:rgba(14,165,233,0.8); font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; }
+
+  /* ======================================================
+     DESIGN 5A — DARK BLOOMBERG  "Three-Layer Architecture"
+     ENGINE + EXCHANGE (top) / EDGE foundation (bottom)
+  ====================================================== */
+  .slide-5a { background:var(--c-near-black); }
+  .slide-5a .gradient-bar { position:absolute; top:0; left:0; right:0; height:4px; background:var(--gradient); }
+
+  .a5-header { position:absolute; top:44px; left:64px; right:64px; }
+  .a5-title { font-size:28px; font-weight:700; line-height:1.18; color:var(--c-white); letter-spacing:-0.7px; margin-top:10px; }
+  .a5-title .grad { background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+  /* Two product columns */
+  .a5-top { position:absolute; top:158px; left:64px; right:64px; height:272px; display:flex; gap:12px; }
+
+  .a5-col { flex:1; border-radius:14px; padding:18px 20px 16px; display:flex; flex-direction:column; position:relative; overflow:hidden; }
+  .a5-col.engine   { background:rgba(254,207,106,0.04); border:1px solid rgba(254,207,106,0.12); }
+  .a5-col.exchange { background:rgba(14,165,233,0.04);  border:1px solid rgba(14,165,233,0.12); }
+  .a5-col.engine::before   { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right,var(--c-tangerine),var(--c-gold)); }
+  .a5-col.exchange::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right,var(--c-sky),var(--c-blue-light)); }
+
+  /* Status badge */
+  .a5-badge { display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:20px; font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:10px; width:fit-content; }
+  .a5-badge.live  { background:rgba(34,197,94,0.1);  border:1px solid rgba(34,197,94,0.25);  color:rgba(34,197,94,0.85); }
+  .a5-badge.ph2   { background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.25); color:rgba(245,158,11,0.85); }
+  .a5-badge-dot { width:5px; height:5px; border-radius:50%; flex-shrink:0; }
+  .a5-badge.live .a5-badge-dot  { background:rgba(34,197,94,0.85); }
+  .a5-badge.ph2  .a5-badge-dot  { background:rgba(245,158,11,0.85); }
+
+  .a5-prod-label { font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; margin-bottom:6px; }
+  .a5-prod-label.gold { color:rgba(254,207,106,0.5); }
+  .a5-prod-label.sky  { color:rgba(14,165,233,0.5); }
+
+  .a5-hero { font-family:'SF Pro Display','Inter',-apple-system,sans-serif; font-weight:900; font-size:52px; letter-spacing:-2.5px; line-height:1; }
+  .a5-hero.gold { background:linear-gradient(to right,var(--c-tangerine),var(--c-gold)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .a5-hero.sky  { color:var(--c-sky); }
+  .a5-hero-sub  { font-size:10px; color:rgba(255,255,255,0.28); margin-top:2px; margin-bottom:12px; }
+
+  .a5-tags { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:10px; }
+  .a5-tag { padding:3px 9px; border-radius:20px; font-size:8.5px; font-weight:700; letter-spacing:0.3px; }
+  .a5-tag.gold  { background:rgba(254,207,106,0.08); border:1px solid rgba(254,207,106,0.15); color:rgba(254,207,106,0.65); }
+  .a5-tag.sky   { background:rgba(14,165,233,0.08);  border:1px solid rgba(14,165,233,0.15);  color:rgba(14,165,233,0.7); }
+  .a5-tag.white { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); color:rgba(255,255,255,0.4); }
+
+  .a5-geo { flex:1; display:flex; align-items:center; min-height:0; }
+  .a5-geo svg { width:100%; display:block; }
+
+  /* EDGE foundation strip */
+  .a5-edge { position:absolute; top:442px; left:64px; right:64px; bottom:50px; border-radius:14px; background:linear-gradient(135deg,rgba(14,165,233,0.06),rgba(14,165,233,0.03)); border:1px solid rgba(14,165,233,0.2); display:flex; align-items:stretch; overflow:hidden; }
+  .a5-edge::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right,var(--c-sky),var(--c-blue-light),var(--c-sky)); }
+
+  .a5-edge-left { padding:16px 22px; display:flex; flex-direction:column; justify-content:center; border-right:1px solid rgba(14,165,233,0.1); flex-shrink:0; min-width:190px; }
+  .a5-el-tag   { font-size:8px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:rgba(14,165,233,0.45); margin-bottom:4px; }
+  .a5-el-name  { font-family:'SF Pro Display','Inter',-apple-system,sans-serif; font-weight:900; font-size:26px; letter-spacing:-1.5px; color:var(--c-sky); line-height:1; margin-bottom:3px; }
+  .a5-el-sub   { font-size:9px; color:rgba(255,255,255,0.26); line-height:1.4; }
+
+  .a5-edge-center { flex:1; padding:14px 24px; display:flex; flex-direction:column; justify-content:center; border-right:1px solid rgba(14,165,233,0.1); }
+  .a5-fw-label { font-size:8px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.18); margin-bottom:10px; }
+  .a5-flywheel { display:flex; align-items:center; gap:0; }
+  .a5-fw-node  { padding:6px 11px; background:rgba(14,165,233,0.1); border:1px solid rgba(14,165,233,0.22); border-radius:20px; font-size:9px; font-weight:700; color:rgba(14,165,233,0.8); white-space:nowrap; }
+  .a5-fw-arrow { font-size:13px; color:rgba(14,165,233,0.3); padding:0 5px; }
+  .a5-fw-loop  { font-size:16px; color:rgba(14,165,233,0.45); padding-left:4px; }
+
+  .a5-edge-right { padding:16px 20px; display:flex; flex-direction:column; justify-content:center; flex-shrink:0; min-width:170px; }
+  .a5-moat-tag   { font-size:8px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.18); margin-bottom:6px; }
+  .a5-moat-title { font-size:13px; font-weight:700; color:rgba(255,255,255,0.62); line-height:1.3; margin-bottom:4px; letter-spacing:-0.2px; }
+  .a5-moat-sub   { font-size:9px; color:rgba(255,255,255,0.24); line-height:1.5; }
+
+  /* ======================================================
+     DESIGN 5C — SPLIT
+     Dark left: 3 hero stats (ENGINE / EXCHANGE / EDGE)
+     Light right: Architecture stack diagram
+  ====================================================== */
+  .slide-5c { display:flex; }
+
+  .c5-left { width:38%; background:var(--c-near-black); padding:44px 32px 52px 64px; display:flex; flex-direction:column; overflow:hidden; position:relative; }
+  .c5-left::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--gradient); }
+
+  .c5-overline { display:flex; align-items:center; gap:8px; margin-bottom:12px; }
+  .c5-overline .dot { width:5px; height:5px; border-radius:50%; background:var(--c-sky); }
+  .c5-overline span { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(14,165,233,0.7); }
+
+  .c5-title { font-size:22px; font-weight:700; line-height:1.2; color:var(--c-white); letter-spacing:-0.6px; margin-bottom:22px; }
+  .c5-title .grad { background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+  .c5-stats { flex:1; display:flex; flex-direction:column; }
+  .c5-stat { flex:1; display:flex; align-items:center; gap:14px; border-top:1px solid rgba(255,255,255,0.05); padding:0 4px; }
+  .c5-stat:last-child { border-bottom:1px solid rgba(255,255,255,0.05); }
+
+  .c5-sn { font-family:'SF Pro Display','Inter',-apple-system,sans-serif; font-weight:900; line-height:1; min-width:108px; }
+  .c5-sn.lg { font-size:44px; letter-spacing:-2px; }
+  .c5-sn.md { font-size:34px; letter-spacing:-1.5px; }
+  .c5-sn.gold { background:linear-gradient(to right,var(--c-tangerine),var(--c-gold)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .c5-sn.sky  { color:var(--c-sky); }
+
+  .c5-stat-badge { display:inline-flex; align-items:center; gap:4px; padding:2px 8px; border-radius:20px; font-size:8px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:4px; width:fit-content; }
+  .c5-stat-badge.live { background:rgba(34,197,94,0.1);  border:1px solid rgba(34,197,94,0.2);  color:rgba(34,197,94,0.8); }
+  .c5-stat-badge.ph2  { background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.2); color:rgba(245,158,11,0.8); }
+  .c5-stat-badge.os   { background:rgba(14,165,233,0.1); border:1px solid rgba(14,165,233,0.2); color:rgba(14,165,233,0.8); }
+
+  .c5-stat-name { font-size:13px; font-weight:700; color:rgba(255,255,255,0.72); }
+  .c5-stat-hint { font-size:9px; color:rgba(255,255,255,0.25); margin-top:2px; }
+
+  .c5-right { flex:1; background:var(--c-bg-alt); padding:40px 44px 52px 36px; display:flex; flex-direction:column; overflow:hidden; border-left:1px solid #E4E4E7; }
+  .c5-right-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--c-text-5); margin-bottom:14px; }
+  .c5-arch { flex:1; min-height:0; }
+  .c5-arch svg { width:100%; height:100%; display:block; }
+</style>
+</head>
+<body>
+
+<!-- ====== DESIGN 5A ====== -->
+<div class="design-badge badge-a">✦ Design A — Dark Bloomberg | Three-Layer Architecture · ENGINE / EXCHANGE / EDGE</div>
+<div class="slide slide-5a">
+  <div class="gradient-bar"></div>
+
+  <div class="a5-header">
+    <div class="pill-tag"><div class="dot"></div><span>The Solution</span></div>
+    <div class="a5-title">
+      Engine. Exchange. <span class="grad">Edge.</span><br>
+      One Platform. Built for Every Collector.
+    </div>
+  </div>
+
+  <!-- Top: ENGINE + EXCHANGE -->
+  <div class="a5-top">
+
+    <!-- ENGINE -->
+    <div class="a5-col engine">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div class="a5-badge live"><div class="a5-badge-dot"></div>Live · Generating Revenue</div>
+      </div>
+      <div class="a5-prod-label gold">ENGINE</div>
+      <div class="a5-hero gold">$100–200M</div>
+      <div class="a5-hero-sub">est. revenue potential</div>
+      <div class="a5-tags">
+        <span class="a5-tag gold">Gamified Gacha Packs</span>
+        <span class="a5-tag gold">Franchise Model</span>
+        <span class="a5-tag gold">App-Native</span>
+        <span class="a5-tag white">TCG Shops · Dev-Free</span>
+      </div>
+      <div style="font-size:10px;color:rgba(254,207,106,0.45);font-weight:700;letter-spacing:0.3px;">Phase 1 Flagship · We own this format.</div>
+    </div>
+
+    <!-- EXCHANGE -->
+    <div class="a5-col exchange">
+      <div class="a5-badge ph2"><div class="a5-badge-dot"></div>Roadmap · Phase 2</div>
+      <div class="a5-prod-label sky">EXCHANGE</div>
+      <div class="a5-hero sky">$1–2B</div>
+      <div class="a5-hero-sub">est. annual exchange volume</div>
+      <div class="a5-geo">
+        <svg viewBox="0 0 520 68" preserveAspectRatio="xMidYMid meet">
+          <!-- Japan node -->
+          <circle cx="50" cy="34" r="26" fill="rgba(14,165,233,0.06)" stroke="rgba(14,165,233,0.25)" stroke-width="1.5"/>
+          <text x="50" y="29" text-anchor="middle" font-size="18" font-family="system-ui">🇯🇵</text>
+          <text x="50" y="44" text-anchor="middle" font-size="8.5" fill="rgba(14,165,233,0.75)" font-weight="700" font-family="system-ui">JAPAN</text>
+          <!-- line JP→SEA -->
+          <line x1="77" y1="34" x2="183" y2="34" stroke="rgba(14,165,233,0.25)" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <text x="130" y="28" text-anchor="middle" font-size="8" fill="rgba(14,165,233,0.35)" font-family="system-ui">tariff-free</text>
+          <!-- SEA node -->
+          <circle cx="210" cy="34" r="26" fill="rgba(14,165,233,0.06)" stroke="rgba(14,165,233,0.25)" stroke-width="1.5"/>
+          <text x="210" y="29" text-anchor="middle" font-size="18" font-family="system-ui">🌏</text>
+          <text x="210" y="44" text-anchor="middle" font-size="8.5" fill="rgba(14,165,233,0.75)" font-weight="700" font-family="system-ui">SEA</text>
+          <!-- line SEA→KR -->
+          <line x1="237" y1="34" x2="343" y2="34" stroke="rgba(14,165,233,0.25)" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <text x="290" y="28" text-anchor="middle" font-size="8" fill="rgba(14,165,233,0.35)" font-family="system-ui">instant match</text>
+          <!-- Korea node -->
+          <circle cx="370" cy="34" r="26" fill="rgba(14,165,233,0.06)" stroke="rgba(14,165,233,0.25)" stroke-width="1.5"/>
+          <text x="370" y="29" text-anchor="middle" font-size="18" font-family="system-ui">🇰🇷</text>
+          <text x="370" y="44" text-anchor="middle" font-size="8.5" fill="rgba(14,165,233,0.75)" font-weight="700" font-family="system-ui">KOREA</text>
+          <!-- Discover stat -->
+          <rect x="408" y="14" width="108" height="40" rx="8" fill="rgba(14,165,233,0.06)" stroke="rgba(14,165,233,0.15)" stroke-width="1"/>
+          <text x="462" y="30" text-anchor="middle" font-size="13" fill="#0EA5E9" font-weight="900" font-family="system-ui">$30M+</text>
+          <text x="462" y="44" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.3)" font-family="system-ui">DISCOVER GMV</text>
+        </svg>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- EDGE Foundation Strip -->
+  <div class="a5-edge">
+
+    <div class="a5-edge-left">
+      <div class="a5-el-tag">The Intelligence Layer</div>
+      <div class="a5-el-name">EDGE</div>
+      <div class="a5-el-sub">First authoritative price oracle<br>for collectibles</div>
+    </div>
+
+    <div class="a5-edge-center">
+      <div class="a5-fw-label">The Flywheel · The Moat</div>
+      <div class="a5-flywheel">
+        <span class="a5-fw-node">More Collectors</span>
+        <span class="a5-fw-arrow">→</span>
+        <span class="a5-fw-node">Feed EDGE</span>
+        <span class="a5-fw-arrow">→</span>
+        <span class="a5-fw-node">Better EWAP</span>
+        <span class="a5-fw-arrow">→</span>
+        <span class="a5-fw-node">Better Matches</span>
+        <span class="a5-fw-arrow">→</span>
+        <span class="a5-fw-node">More Collectors</span>
+        <span class="a5-fw-loop">↻</span>
+      </div>
+    </div>
+
+    <div class="a5-edge-right">
+      <div class="a5-moat-tag">The Moat</div>
+      <div class="a5-moat-title">EWAP — Event-Weighted<br>Average Price</div>
+      <div class="a5-moat-sub">Grows smarter with every<br>transaction. Self-reinforcing.</div>
+    </div>
+
+  </div>
+
+  <div class="bottom-bar" style="border-top:1px solid rgba(255,255,255,0.06);">
+    <span class="bb-left">hello@nextrare.com</span>
+    <span class="bb-slide">05</span>
+    <span class="bb-right">Confidential · NextRare 2026</span>
+  </div>
+</div>
+
+
+<!-- ====== DESIGN 5C ====== -->
+<div class="design-badge badge-c">✦ Design C — Split | Dark left (3 hero stats) / Light right (architecture diagram)</div>
+<div class="slide slide-5c">
+
+  <!-- Left dark -->
+  <div class="c5-left">
+    <div class="c5-overline"><div class="dot"></div><span>The Solution</span></div>
+    <div class="c5-title">
+      Engine. Exchange. <span class="grad">Edge.</span><br>
+      One platform, one data layer.
+    </div>
+    <div class="c5-stats">
+
+      <div class="c5-stat">
+        <div class="c5-sn lg gold">$200M</div>
+        <div>
+          <div class="c5-stat-badge live">● Live</div>
+          <div class="c5-stat-name">ENGINE</div>
+          <div class="c5-stat-hint">Gacha · Franchise · App-Native</div>
+        </div>
+      </div>
+
+      <div class="c5-stat">
+        <div class="c5-sn lg sky">$2B</div>
+        <div>
+          <div class="c5-stat-badge ph2">◎ Phase 2</div>
+          <div class="c5-stat-name">EXCHANGE</div>
+          <div class="c5-stat-hint">Japan · SEA · Korea · Tariff-Free</div>
+        </div>
+      </div>
+
+      <div class="c5-stat">
+        <div class="c5-sn md sky">EWAP</div>
+        <div>
+          <div class="c5-stat-badge os">◈ The OS</div>
+          <div class="c5-stat-name">EDGE</div>
+          <div class="c5-stat-hint">Price oracle · Flywheel · The Moat</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Right light: Architecture Diagram -->
+  <div class="c5-right">
+    <div class="c5-right-label">Platform Architecture</div>
+    <div class="c5-arch">
+      <svg viewBox="0 0 660 530" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <marker id="arr-up" markerWidth="10" markerHeight="10" refX="5" refY="9" orient="auto">
+            <path d="M 0,10 L 5,0 L 10,10" fill="none" stroke="rgba(14,165,233,0.45)" stroke-width="1.5"/>
+          </marker>
+          <linearGradient id="edge-fill" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#0EA5E9" stop-opacity="0.08"/>
+            <stop offset="50%" stop-color="#0EA5E9" stop-opacity="0.05"/>
+            <stop offset="100%" stop-color="#0EA5E9" stop-opacity="0.08"/>
+          </linearGradient>
+        </defs>
+
+        <!-- ENGINE box -->
+        <rect x="0" y="0" width="310" height="120" rx="14" fill="rgba(254,207,106,0.04)" stroke="rgba(254,207,106,0.25)" stroke-width="1.5"/>
+        <rect x="0" y="0" width="310" height="3" rx="1.5" fill="url(#grad-eng)"/>
+        <defs>
+          <linearGradient id="grad-eng" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#FFA45B"/>
+            <stop offset="100%" stop-color="#FECF6A"/>
+          </linearGradient>
+        </defs>
+        <text x="16" y="26" font-size="8.5" fill="rgba(254,207,106,0.5)" font-weight="700" letter-spacing="2" font-family="system-ui">ENGINE</text>
+        <!-- LIVE badge -->
+        <rect x="210" y="14" width="84" height="18" rx="9" fill="rgba(34,197,94,0.1)" stroke="rgba(34,197,94,0.3)" stroke-width="1"/>
+        <circle cx="223" cy="23" r="3" fill="rgba(34,197,94,0.85)"/>
+        <text x="250" y="27" text-anchor="middle" font-size="8" fill="rgba(34,197,94,0.85)" font-weight="700" font-family="system-ui">LIVE</text>
+        <text x="16" y="62" font-size="26" fill="#FECF6A" font-weight="900" font-family="system-ui" letter-spacing="-1">$100–200M</text>
+        <text x="16" y="80" font-size="9" fill="rgba(255,255,255,0.3)" font-family="system-ui">Est. revenue potential</text>
+        <text x="16" y="100" font-size="8.5" fill="rgba(254,207,106,0.5)" font-family="system-ui">Gacha Packs · Franchise Model · App-Native</text>
+
+        <!-- EXCHANGE box -->
+        <rect x="350" y="0" width="310" height="120" rx="14" fill="rgba(14,165,233,0.04)" stroke="rgba(14,165,233,0.25)" stroke-width="1.5"/>
+        <rect x="350" y="0" width="310" height="3" rx="1.5" fill="url(#grad-exc)"/>
+        <defs>
+          <linearGradient id="grad-exc" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#0EA5E9"/>
+            <stop offset="100%" stop-color="#A1E3FF"/>
+          </linearGradient>
+        </defs>
+        <text x="366" y="26" font-size="8.5" fill="rgba(14,165,233,0.5)" font-weight="700" letter-spacing="2" font-family="system-ui">EXCHANGE</text>
+        <!-- PHASE 2 badge -->
+        <rect x="536" y="14" width="108" height="18" rx="9" fill="rgba(245,158,11,0.1)" stroke="rgba(245,158,11,0.3)" stroke-width="1"/>
+        <text x="590" y="27" text-anchor="middle" font-size="8" fill="rgba(245,158,11,0.85)" font-weight="700" font-family="system-ui">PHASE 2</text>
+        <text x="366" y="62" font-size="26" fill="#0EA5E9" font-weight="900" font-family="system-ui" letter-spacing="-1">$1–2B</text>
+        <text x="366" y="80" font-size="9" fill="rgba(255,255,255,0.3)" font-family="system-ui">Est. annual exchange volume</text>
+        <text x="366" y="100" font-size="8.5" fill="rgba(14,165,233,0.5)" font-family="system-ui">Japan · SEA · Korea · Tariff-Free Transfer</text>
+
+        <!-- "Powers" connecting arrows -->
+        <!-- Arrow from EDGE (155,330) up to ENGINE bottom (155,120) -->
+        <line x1="155" y1="310" x2="155" y2="124" stroke="rgba(14,165,233,0.3)" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-up)"/>
+        <text x="168" y="225" font-size="8" fill="rgba(14,165,233,0.4)" font-family="system-ui" font-weight="700">POWERS</text>
+        <!-- Arrow from EDGE (505,330) up to EXCHANGE bottom (505,120) -->
+        <line x1="505" y1="310" x2="505" y2="124" stroke="rgba(14,165,233,0.3)" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-up)"/>
+        <text x="518" y="225" font-size="8" fill="rgba(14,165,233,0.4)" font-family="system-ui" font-weight="700">POWERS</text>
+
+        <!-- Bracket label above EDGE -->
+        <line x1="60" y1="162" x2="600" y2="162" stroke="rgba(14,165,233,0.1)" stroke-width="1"/>
+        <text x="330" y="175" text-anchor="middle" font-size="8" fill="rgba(14,165,233,0.35)" font-family="system-ui" letter-spacing="1">INTELLIGENCE LAYER</text>
+
+        <!-- EDGE foundation box -->
+        <rect x="0" y="190" width="660" height="145" rx="14" fill="url(#edge-fill)" stroke="rgba(14,165,233,0.3)" stroke-width="1.5"/>
+        <rect x="0" y="190" width="660" height="3" rx="1.5" fill="url(#grad-exc)"/>
+
+        <!-- EDGE left: name + sub -->
+        <text x="20" y="222" font-size="8.5" fill="rgba(14,165,233,0.45)" font-weight="700" letter-spacing="2" font-family="system-ui">EDGE — INTELLIGENCE LAYER</text>
+        <text x="20" y="256" font-size="30" fill="#0EA5E9" font-weight="900" font-family="system-ui" letter-spacing="-1.5">EWAP</text>
+        <text x="20" y="276" font-size="9" fill="rgba(255,255,255,0.3)" font-family="system-ui">Event-Weighted Average Price</text>
+        <text x="20" y="292" font-size="9" fill="rgba(255,255,255,0.25)" font-family="system-ui">First authoritative price oracle for collectibles</text>
+        <line x1="220" y1="200" x2="220" y2="325" stroke="rgba(14,165,233,0.1)" stroke-width="1"/>
+
+        <!-- EDGE center: flywheel -->
+        <text x="240" y="222" font-size="8" fill="rgba(255,255,255,0.18)" font-weight="700" letter-spacing="2" font-family="system-ui">THE FLYWHEEL</text>
+        <!-- Flywheel pills -->
+        <rect x="236" y="232" width="88" height="22" rx="11" fill="rgba(14,165,233,0.12)" stroke="rgba(14,165,233,0.25)" stroke-width="1"/>
+        <text x="280" y="247" text-anchor="middle" font-size="8.5" fill="#0EA5E9" font-weight="700" font-family="system-ui">Collectors</text>
+        <text x="328" y="246" font-size="12" fill="rgba(14,165,233,0.35)" font-family="system-ui">→</text>
+        <rect x="340" y="232" width="72" height="22" rx="11" fill="rgba(14,165,233,0.12)" stroke="rgba(14,165,233,0.25)" stroke-width="1"/>
+        <text x="376" y="247" text-anchor="middle" font-size="8.5" fill="#0EA5E9" font-weight="700" font-family="system-ui">EDGE</text>
+        <text x="416" y="246" font-size="12" fill="rgba(14,165,233,0.35)" font-family="system-ui">→</text>
+        <rect x="428" y="232" width="100" height="22" rx="11" fill="rgba(14,165,233,0.12)" stroke="rgba(14,165,233,0.25)" stroke-width="1"/>
+        <text x="478" y="247" text-anchor="middle" font-size="8.5" fill="#0EA5E9" font-weight="700" font-family="system-ui">Better Prices</text>
+        <!-- Loop arrow -->
+        <path d="M 534,243 C 570,243 570,280 478,280 C 386,280 386,243 236,243" fill="none" stroke="rgba(14,165,233,0.18)" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <polygon points="236,243 242,238 242,248" fill="rgba(14,165,233,0.35)"/>
+
+        <text x="353" y="310" text-anchor="middle" font-size="8.5" fill="rgba(14,165,233,0.4)" font-weight="700" font-family="system-ui">↻ Self-reinforcing · Grows with every transaction</text>
+
+        <line x1="548" y1="200" x2="548" y2="325" stroke="rgba(14,165,233,0.1)" stroke-width="1"/>
+        <!-- EDGE right: moat -->
+        <text x="562" y="222" font-size="8" fill="rgba(255,255,255,0.18)" font-weight="700" letter-spacing="2" font-family="system-ui">THE MOAT</text>
+        <text x="562" y="256" font-size="22" fill="#0EA5E9" font-weight="900" font-family="system-ui">More Data</text>
+        <text x="562" y="272" font-size="9" fill="rgba(255,255,255,0.28)" font-family="system-ui">Better Edge</text>
+        <text x="562" y="288" font-size="9" fill="rgba(255,255,255,0.28)" font-family="system-ui">More Collectors</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="bottom-bar" style="background:rgba(248,248,250,0.92);border-top:1px solid #E4E4E7;">
+    <span class="bb-left" style="color:#A1A1AA;">hello@nextrare.com</span>
+    <span class="bb-slide" style="color:#A1A1AA;">05</span>
+    <span class="bb-right" style="color:#A1A1AA;">Confidential · NextRare 2026</span>
+  </div>
+
+</div>
+</body>
+</html>
