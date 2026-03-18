@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slide 10B – 18-Month Targets</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --c-sky: #0EA5E9;
+      --c-tangerine: #FFA45B;
+      --c-gold: #FECF6A;
+      --c-peach: #FFC3A0;
+      --c-near-black: #09090B;
+      --c-success: #22C55E;
+      --c-bg-alt: #F8F8FA;
+      --gradient: linear-gradient(to right, #FFA45B, #FFC3A0, #FECF6A, #0EA5E9);
+    }
+
+    body {
+      font-family: 'Sora', sans-serif;
+      background: #1a1a1f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 0 80px;
+      gap: 0;
+    }
+
+    .design-label {
+      width: 1280px;
+      padding: 20px 32px;
+      background: #111114;
+      color: #666;
+      font-family: 'Sora', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border-left: 3px solid var(--c-tangerine);
+    }
+
+    .slide {
+      width: 1280px;
+      height: 720px;
+      overflow: hidden;
+      position: relative;
+      font-family: 'Sora', sans-serif;
+    }
+
+    /* =============================================
+       DESIGN A — Dark Bloomberg
+       ============================================= */
+    .slide-a {
+      background: #09090B;
+    }
+
+    .slide-a .top-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--gradient);
+      z-index: 10;
+    }
+
+    .slide-a .dot-grid {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 32px 32px;
+      z-index: 1;
+    }
+
+    /* Left hero zone */
+    .slide-a .hero-zone {
+      position: absolute;
+      top: 32px;
+      left: 52px;
+      width: 440px;
+      bottom: 48px;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .slide-a .overline-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(34,197,94,0.12);
+      border: 1px solid rgba(34,197,94,0.3);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #22C55E;
+      margin-bottom: 16px;
+      width: fit-content;
+    }
+
+    .slide-a .hero-label {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 8px;
+    }
+
+    .slide-a .hero-50x {
+      font-size: 160px;
+      font-weight: 900;
+      line-height: 0.88;
+      letter-spacing: -6px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    .slide-a .hero-sub {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    /* MRR ladder */
+    .slide-a .mrr-ladder {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .slide-a .mrr-rung {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .slide-a .mrr-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .slide-a .mrr-period {
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.3);
+      width: 36px;
+    }
+
+    .slide-a .mrr-val {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .slide-a .mrr-label {
+      font-size: 10px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* Chart zone right */
+    .slide-a .chart-zone {
+      position: absolute;
+      top: 32px;
+      left: 500px;
+      right: 48px;
+      bottom: 56px;
+      z-index: 5;
+    }
+
+    .slide-a .chart-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      margin-bottom: 8px;
+    }
+
+    /* Metrics strip */
+    .slide-a .metrics-strip {
+      position: absolute;
+      bottom: 40px;
+      left: 0; right: 0;
+      height: 48px;
+      background: rgba(255,255,255,0.02);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: stretch;
+      z-index: 5;
+    }
+
+    .slide-a .metric-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      border-right: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .slide-a .metric-box:last-child { border-right: none; }
+
+    .slide-a .metric-val {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      color: white;
+    }
+
+    .slide-a .metric-val.tangerine { color: var(--c-tangerine); }
+    .slide-a .metric-val.sky { color: var(--c-sky); }
+    .slide-a .metric-val.green { color: var(--c-success); }
+    .slide-a .metric-val.gold { color: var(--c-gold); }
+
+    .slide-a .metric-lbl {
+      font-size: 8.5px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.05em;
+    }
+
+    /* Bottom bar */
+    .slide-a .bottom-bar {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 40px;
+      background: rgba(255,255,255,0.02);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      z-index: 10;
+    }
+
+    .slide-a .bb-left, .slide-a .bb-right {
+      font-size: 10px;
+      color: rgba(255,255,255,0.18);
+    }
+
+    .slide-a .bb-center {
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.22);
+      letter-spacing: 0.1em;
+    }
+
+    /* =============================================
+       DESIGN C — Split
+       ============================================= */
+    .slide-c {
+      background: var(--c-near-black);
+      display: flex;
+    }
+
+    .slide-c .top-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--gradient);
+      z-index: 10;
+    }
+
+    /* LEFT PANEL */
+    .slide-c .panel-left {
+      width: 400px;
+      flex-shrink: 0;
+      height: 720px;
+      background: var(--c-near-black);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 32px 28px 40px 40px;
+    }
+
+    .slide-c .panel-left::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 1px;
+      height: 100%;
+      background: rgba(255,255,255,0.07);
+    }
+
+    .slide-c .c-overline {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 14px;
+      margin-top: 12px;
+    }
+
+    .slide-c .c-50x {
+      font-size: 130px;
+      font-weight: 900;
+      line-height: 0.88;
+      letter-spacing: -4px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    .slide-c .c-hero-sub {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .slide-c .c-mrr-ladder {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      margin-bottom: 20px;
+    }
+
+    .slide-c .c-mrr-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .slide-c .c-mrr-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .slide-c .c-mrr-period {
+      font-size: 9px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.28);
+      width: 40px;
+    }
+
+    .slide-c .c-mrr-val {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      flex: 1;
+    }
+
+    .slide-c .c-mrr-name {
+      font-size: 9px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.25);
+      text-align: right;
+    }
+
+    .slide-c .c-cap-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(14,165,233,0.1);
+      border: 1px solid rgba(14,165,233,0.2);
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--c-sky);
+      margin-top: auto;
+    }
+
+    /* LEFT BOTTOM BAR */
+    .slide-c .panel-left .bottom-bar {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 400px;
+      height: 40px;
+      background: rgba(255,255,255,0.02);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .slide-c .panel-left .bottom-bar .bl-email {
+      font-size: 10px;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* RIGHT PANEL */
+    .slide-c .panel-right {
+      flex: 1;
+      height: 720px;
+      background: var(--c-bg-alt);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide-c .panel-right .top-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: rgba(0,0,0,0.04);
+      z-index: 10;
+    }
+
+    .slide-c .right-inner {
+      padding: 28px 36px 52px 36px;
+      height: 720px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slide-c .right-section-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #A1A1AA;
+      margin-bottom: 8px;
+    }
+
+    /* What We'll Have Built grid */
+    .slide-c .targets-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .slide-c .target-card {
+      background: white;
+      border-radius: 10px;
+      padding: 12px 14px;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .slide-c .target-val {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+
+    .slide-c .target-lbl {
+      font-size: 10px;
+      font-weight: 400;
+      color: #A1A1AA;
+    }
+
+    .slide-c .target-val.tangerine { color: var(--c-tangerine); }
+    .slide-c .target-val.sky { color: var(--c-sky); }
+    .slide-c .target-val.green { color: var(--c-success); }
+    .slide-c .target-val.gold { color: var(--c-gold); }
+    .slide-c .target-val.dark { color: #18181B; }
+
+    /* Series A callout */
+    .slide-c .series-a-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      border-radius: 10px;
+      padding: 10px 14px;
+      border: 1px solid rgba(14,165,233,0.15);
+      margin-bottom: 10px;
+    }
+
+    .slide-c .sa-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(14,165,233,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .slide-c .sa-main {
+      font-size: 15px;
+      font-weight: 800;
+      color: #18181B;
+      letter-spacing: -0.3px;
+    }
+
+    .slide-c .sa-sub {
+      font-size: 10px;
+      color: #A1A1AA;
+      margin-top: 1px;
+    }
+
+    /* Chart zone */
+    .slide-c .chart-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Right bottom bar */
+    .slide-c .panel-right .bottom-bar {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 40px;
+      background: rgba(0,0,0,0.04);
+      border-top: 1px solid rgba(0,0,0,0.07);
+      display: flex;
+      align-items: center;
+      padding: 0 36px;
+    }
+
+    .slide-c .panel-right .bottom-bar .br-slide {
+      font-size: 11px;
+      font-weight: 600;
+      color: #A1A1AA;
+      margin: 0 auto;
+    }
+
+    .slide-c .panel-right .bottom-bar .br-conf {
+      font-size: 10px;
+      color: #C4C4C8;
+      margin-left: auto;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     DESIGN A — Dark Bloomberg
+============================================================ -->
+<div class="design-label">DESIGN A — Dark Bloomberg · 18-Month Targets</div>
+
+<div class="slide slide-a">
+  <div class="top-bar"></div>
+  <div class="dot-grid"></div>
+
+  <!-- Left: 50x hero + MRR ladder -->
+  <div class="hero-zone">
+    <div class="overline-pill">18-MONTH TARGETS</div>
+    <div class="hero-label">Revenue Growth</div>
+    <div class="hero-50x">50x</div>
+    <div class="hero-sub">Year-over-year · $200K → $10M+ MRR<br>in 18 months.</div>
+
+    <div class="mrr-ladder">
+      <div class="mrr-rung">
+        <div class="mrr-dot" style="background:#3F3F46;"></div>
+        <div class="mrr-period">M0</div>
+        <div class="mrr-val" style="color:#52525B;">$200K</div>
+        <div class="mrr-label">Today</div>
+      </div>
+      <div class="mrr-rung">
+        <div class="mrr-dot" style="background:#FFA45B;"></div>
+        <div class="mrr-period">M6</div>
+        <div class="mrr-val" style="color:#FFA45B;">$1M</div>
+        <div class="mrr-label">Engine at Scale</div>
+      </div>
+      <div class="mrr-rung">
+        <div class="mrr-dot" style="background:#0EA5E9;"></div>
+        <div class="mrr-period">M12</div>
+        <div class="mrr-val" style="color:#0EA5E9;">$5M</div>
+        <div class="mrr-label">Exchange Beta</div>
+      </div>
+      <div class="mrr-rung">
+        <div class="mrr-dot" style="background:#22C55E;"></div>
+        <div class="mrr-period">M18</div>
+        <div class="mrr-val" style="color:#22C55E;">$10M+</div>
+        <div class="mrr-label">Series A Ready</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: Hockey-stick SVG chart -->
+  <div class="chart-zone">
+    <div class="chart-label">MRR Growth Trajectory · 18 Months</div>
+    <svg viewBox="0 0 700 560" width="100%" height="100%" style="display:block;">
+      <defs>
+        <linearGradient id="a-curve-fill" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#0EA5E9" stop-opacity="0.25"/>
+          <stop offset="100%" stop-color="#FFA45B" stop-opacity="0.03"/>
+        </linearGradient>
+        <linearGradient id="a-curve-stroke" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#FFA45B"/>
+          <stop offset="40%" stop-color="#FECF6A"/>
+          <stop offset="100%" stop-color="#0EA5E9"/>
+        </linearGradient>
+        <!-- Grid line -->
+        <line id="gl" x1="80" x2="660" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+      </defs>
+
+      <!-- Y-axis grid lines -->
+      <line x1="80" y1="480" x2="660" y2="480" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="80" y1="370" x2="660" y2="370" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="80" y1="260" x2="660" y2="260" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="80" y1="150" x2="660" y2="150" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="80" y1="40"  x2="660" y2="40"  stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+
+      <!-- Y-axis labels -->
+      <text x="72" y="485" text-anchor="end" font-family="Sora,sans-serif" font-size="10" fill="rgba(255,255,255,0.25)">$0</text>
+      <text x="72" y="375" text-anchor="end" font-family="Sora,sans-serif" font-size="10" fill="rgba(255,255,255,0.25)">$2.5M</text>
+      <text x="72" y="265" text-anchor="end" font-family="Sora,sans-serif" font-size="10" fill="rgba(255,255,255,0.25)">$5M</text>
+      <text x="72" y="155" text-anchor="end" font-family="Sora,sans-serif" font-size="10" fill="rgba(255,255,255,0.25)">$7.5M</text>
+      <text x="72" y="45"  text-anchor="end" font-family="Sora,sans-serif" font-size="10" fill="rgba(255,255,255,0.25)">$10M+</text>
+
+      <!-- X-axis line -->
+      <line x1="80" y1="480" x2="660" y2="480" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+
+      <!-- X-axis ticks & labels: M0=80, M6=272, M12=464, M18=660 -->
+      <line x1="80"  y1="480" x2="80"  y2="488" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+      <line x1="272" y1="480" x2="272" y2="488" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+      <line x1="464" y1="480" x2="464" y2="488" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+      <line x1="660" y1="480" x2="660" y2="488" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+      <text x="80"  y="502" text-anchor="middle" font-family="Sora,sans-serif" font-size="10" font-weight="600" fill="rgba(255,255,255,0.3)">M0</text>
+      <text x="272" y="502" text-anchor="middle" font-family="Sora,sans-serif" font-size="10" font-weight="600" fill="rgba(255,255,255,0.3)">M6</text>
+      <text x="464" y="502" text-anchor="middle" font-family="Sora,sans-serif" font-size="10" font-weight="600" fill="rgba(255,255,255,0.3)">M12</text>
+      <text x="660" y="502" text-anchor="middle" font-family="Sora,sans-serif" font-size="10" font-weight="600" fill="rgba(255,255,255,0.3)">M18</text>
+
+      <!-- Fill area under curve -->
+      <!-- M0(80,475) M6(272,436) M12(464,260) M18(660,42) -->
+      <path d="M 80,475 C 180,475 220,460 272,436 C 340,405 400,100 660,42 L 660,480 L 80,480 Z"
+            fill="url(#a-curve-fill)"/>
+
+      <!-- Hockey-stick curve -->
+      <path d="M 80,475 C 180,475 220,460 272,436 C 340,405 400,100 660,42"
+            fill="none"
+            stroke="url(#a-curve-stroke)"
+            stroke-width="3"
+            stroke-linecap="round"/>
+
+      <!-- Data point: M0 -->
+      <circle cx="80"  cy="475" r="5" fill="#3F3F46" stroke="#09090B" stroke-width="2"/>
+
+      <!-- Data point: M6 -->
+      <circle cx="272" cy="436" r="7" fill="#FFA45B" stroke="#09090B" stroke-width="2"/>
+      <text x="272" y="422" text-anchor="middle" font-family="Sora,sans-serif" font-size="13" font-weight="800" fill="#FFA45B">$1M</text>
+
+      <!-- Data point: M12 -->
+      <circle cx="464" cy="260" r="7" fill="#FECF6A" stroke="#09090B" stroke-width="2"/>
+      <text x="464" y="246" text-anchor="middle" font-family="Sora,sans-serif" font-size="13" font-weight="800" fill="#FECF6A">$5M</text>
+
+      <!-- Data point: M18 -->
+      <circle cx="660" cy="42" r="9" fill="#0EA5E9" stroke="#09090B" stroke-width="2"/>
+      <text x="660" y="28" text-anchor="middle" font-family="Sora,sans-serif" font-size="13" font-weight="800" fill="#0EA5E9">$10M+</text>
+
+      <!-- 50x annotation -->
+      <text x="500" y="200" font-family="Sora,sans-serif" font-size="64" font-weight="900" fill="rgba(255,255,255,0.04)" letter-spacing="-2">50x</text>
+
+      <!-- MRR label -->
+      <text x="80" y="525" font-family="Sora,sans-serif" font-size="9" font-weight="500" fill="rgba(255,255,255,0.18)" letter-spacing="1.5">MONTHLY RECURRING REVENUE</text>
+    </svg>
+  </div>
+
+  <!-- Bottom metrics strip -->
+  <div class="metrics-strip">
+    <div class="metric-box">
+      <div class="metric-val green">$10M+</div>
+      <div class="metric-lbl">MRR @ M18</div>
+    </div>
+    <div class="metric-box">
+      <div class="metric-val tangerine">$10M+</div>
+      <div class="metric-lbl">Monthly GMV</div>
+    </div>
+    <div class="metric-box">
+      <div class="metric-val sky">500K+</div>
+      <div class="metric-lbl">Registered Users</div>
+    </div>
+    <div class="metric-box">
+      <div class="metric-val gold">30%+</div>
+      <div class="metric-lbl">DAU / MAU Ratio</div>
+    </div>
+    <div class="metric-box">
+      <div class="metric-val" style="color:#FFC3A0;">5+</div>
+      <div class="metric-lbl">IP / Franchise Partners</div>
+    </div>
+    <div class="metric-box">
+      <div class="metric-val green">Series A</div>
+      <div class="metric-lbl">$10–15M @ $80–100M cap</div>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="bottom-bar">
+    <span class="bb-left">hello@nextrare.com</span>
+    <span class="bb-center">10B</span>
+    <span class="bb-right">Confidential · NextRare 2026</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     DESIGN C — Split
+============================================================ -->
+<div class="design-label">DESIGN C — Split · 18-Month Targets</div>
+
+<div class="slide slide-c">
+  <div class="top-bar"></div>
+
+  <!-- LEFT PANEL: dark, 50x hero -->
+  <div class="panel-left">
+    <div class="c-overline">18-Month Targets</div>
+    <div class="c-50x">50x</div>
+    <div class="c-hero-sub">Year-over-year revenue growth<br>$200K today → $10M+ MRR</div>
+
+    <div class="c-mrr-ladder">
+      <div class="c-mrr-row">
+        <div class="c-mrr-dot" style="background:#3F3F46;"></div>
+        <div class="c-mrr-period">Today</div>
+        <div class="c-mrr-val" style="color:#52525B;">$200K</div>
+        <div class="c-mrr-name">Baseline</div>
+      </div>
+      <div class="c-mrr-row">
+        <div class="c-mrr-dot" style="background:#FFA45B;"></div>
+        <div class="c-mrr-period">M6</div>
+        <div class="c-mrr-val" style="color:#FFA45B;">$1M</div>
+        <div class="c-mrr-name">Engine at Scale</div>
+      </div>
+      <div class="c-mrr-row">
+        <div class="c-mrr-dot" style="background:#0EA5E9;"></div>
+        <div class="c-mrr-period">M12</div>
+        <div class="c-mrr-val" style="color:#0EA5E9;">$5M</div>
+        <div class="c-mrr-name">Exchange Beta</div>
+      </div>
+      <div class="c-mrr-row">
+        <div class="c-mrr-dot" style="background:#22C55E;"></div>
+        <div class="c-mrr-period">M18</div>
+        <div class="c-mrr-val" style="color:#22C55E;">$10M+</div>
+        <div class="c-mrr-name">Series A Ready</div>
+      </div>
+    </div>
+
+    <div class="c-cap-pill">18-Month Runway · $3M Raise</div>
+
+    <div class="bottom-bar">
+      <div class="bl-email">hello@nextrare.com</div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL: light, chart + what we'll have built -->
+  <div class="panel-right">
+    <div class="top-bar"></div>
+
+    <div class="right-inner">
+      <!-- Hockey-stick chart -->
+      <div class="right-section-label">MRR Growth Trajectory</div>
+      <div class="chart-section">
+        <svg viewBox="0 0 840 260" width="100%" style="display:block;margin-bottom:12px;">
+          <defs>
+            <linearGradient id="c-fill" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#0EA5E9" stop-opacity="0.18"/>
+              <stop offset="100%" stop-color="#FFA45B" stop-opacity="0.02"/>
+            </linearGradient>
+            <linearGradient id="c-stroke" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#FFA45B"/>
+              <stop offset="50%" stop-color="#FECF6A"/>
+              <stop offset="100%" stop-color="#0EA5E9"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Grid -->
+          <line x1="60" y1="220" x2="820" y2="220" stroke="rgba(0,0,0,0.06)" stroke-width="1"/>
+          <line x1="60" y1="160" x2="820" y2="160" stroke="rgba(0,0,0,0.06)" stroke-width="1"/>
+          <line x1="60" y1="100" x2="820" y2="100" stroke="rgba(0,0,0,0.06)" stroke-width="1"/>
+          <line x1="60" y1="40"  x2="820" y2="40"  stroke="rgba(0,0,0,0.04)" stroke-width="1"/>
+
+          <!-- Y labels -->
+          <text x="52" y="225" text-anchor="end" font-family="Sora,sans-serif" font-size="9" fill="#A1A1AA">$0</text>
+          <text x="52" y="165" text-anchor="end" font-family="Sora,sans-serif" font-size="9" fill="#A1A1AA">$3M</text>
+          <text x="52" y="105" text-anchor="end" font-family="Sora,sans-serif" font-size="9" fill="#A1A1AA">$6M</text>
+          <text x="52" y="45"  text-anchor="end" font-family="Sora,sans-serif" font-size="9" fill="#A1A1AA">$10M+</text>
+
+          <!-- X axis -->
+          <line x1="60" y1="220" x2="820" y2="220" stroke="rgba(0,0,0,0.12)" stroke-width="1.5"/>
+
+          <!-- X labels: M0=60, M6=253, M12=446, M18=820 — actually width=760, /18*6=253 -->
+          <!-- M0=60, M6=60+253=313, M12=60+507=567, M18=820 -->
+          <text x="60"  y="235" text-anchor="middle" font-family="Sora,sans-serif" font-size="9" font-weight="600" fill="#A1A1AA">M0</text>
+          <text x="313" y="235" text-anchor="middle" font-family="Sora,sans-serif" font-size="9" font-weight="600" fill="#A1A1AA">M6</text>
+          <text x="567" y="235" text-anchor="middle" font-family="Sora,sans-serif" font-size="9" font-weight="600" fill="#A1A1AA">M12</text>
+          <text x="820" y="235" text-anchor="middle" font-family="Sora,sans-serif" font-size="9" font-weight="600" fill="#A1A1AA">M18</text>
+
+          <!-- Fill under curve: M0(60,218) M6(313,196) M12(567,100) M18(820,40) -->
+          <path d="M 60,218 C 170,218 250,208 313,196 C 400,182 480,55 820,40 L 820,220 L 60,220 Z"
+                fill="url(#c-fill)"/>
+
+          <!-- Curve -->
+          <path d="M 60,218 C 170,218 250,208 313,196 C 400,182 480,55 820,40"
+                fill="none" stroke="url(#c-stroke)" stroke-width="2.5" stroke-linecap="round"/>
+
+          <!-- Data points -->
+          <circle cx="60"  cy="218" r="4" fill="#A1A1AA"/>
+          <circle cx="313" cy="196" r="6" fill="#FFA45B"/>
+          <text x="313" y="184" text-anchor="middle" font-family="Sora,sans-serif" font-size="11" font-weight="800" fill="#FFA45B">$1M</text>
+          <circle cx="567" cy="100" r="6" fill="#FECF6A"/>
+          <text x="567" y="88" text-anchor="middle" font-family="Sora,sans-serif" font-size="11" font-weight="800" fill="#D4A800">$5M</text>
+          <circle cx="820" cy="40" r="7" fill="#0EA5E9"/>
+          <text x="820" y="28" text-anchor="middle" font-family="Sora,sans-serif" font-size="11" font-weight="800" fill="#0EA5E9">$10M+</text>
+        </svg>
+
+        <!-- What We'll Have Built -->
+        <div class="right-section-label" style="margin-top:4px;">What We'll Have Built in 18 Months</div>
+        <div class="targets-grid">
+          <div class="target-card">
+            <div class="target-val green">$10M+</div>
+            <div class="target-lbl">Monthly MRR</div>
+          </div>
+          <div class="target-card">
+            <div class="target-val tangerine">$10M+</div>
+            <div class="target-lbl">Monthly GMV (Exchange)</div>
+          </div>
+          <div class="target-card">
+            <div class="target-val sky">500K+</div>
+            <div class="target-lbl">Registered Users</div>
+          </div>
+          <div class="target-card">
+            <div class="target-val gold">30%+</div>
+            <div class="target-lbl">DAU / MAU Ratio</div>
+          </div>
+          <div class="target-card">
+            <div class="target-val" style="color:#FFC3A0;">5+</div>
+            <div class="target-lbl">IP / Franchise Partners</div>
+          </div>
+          <div class="target-card">
+            <div class="target-val dark">Exchange</div>
+            <div class="target-lbl">Operational · JP↔SEA↔KR</div>
+          </div>
+        </div>
+
+        <div class="series-a-row">
+          <div class="sa-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <div>
+            <div class="sa-main">Series A: $10–15M @ $80–100M cap</div>
+            <div class="sa-sub">Target raise at end of 18-month runway · Exchange + Edge fully live</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right bottom bar -->
+    <div class="bottom-bar">
+      <div class="br-slide">10B</div>
+      <div class="br-conf">Confidential · NextRare 2026</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
