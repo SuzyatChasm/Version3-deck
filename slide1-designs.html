@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 1 — Market Opportunity · Concepts A & C</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&display=swap');
+
+  :root {
+    --c-sky: #0EA5E9;
+    --c-tangerine: #FFA45B;
+    --c-peach: #FFC3A0;
+    --c-gold: #FECF6A;
+    --c-blue-light: #A1E3FF;
+    --c-blue-dark: #0284C7;
+    --c-blue-soft: #EFF9FF;
+    --c-near-black: #09090B;
+    --c-white: #FFFFFF;
+    --c-text: #18181B;
+    --c-text-2: #3F3F46;
+    --c-text-3: #52525B;
+    --c-text-4: #71717A;
+    --c-text-5: #A1A1AA;
+    --c-border: #D4D4D8;
+    --c-border-2: #E4E4E7;
+    --c-bg-alt: #F8F8FA;
+    --c-success: #22C55E;
+    --gradient: linear-gradient(to right, #FFA45B, #FFC3A0, #FECF6A, #0EA5E9);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Sora', sans-serif;
+    background: #1a1a2e;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    align-items: center;
+  }
+
+  /* ── Shared slide shell ── */
+  .slide {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  /* ── DESIGN A — FULL DARK ── */
+  .slide-a {
+    background: var(--c-near-black);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* gradient top bar */
+  .a-bar-top {
+    height: 4px;
+    background: var(--gradient);
+    flex-shrink: 0;
+  }
+
+  /* content area */
+  .a-body {
+    flex: 1;
+    display: flex;
+    padding: 44px 64px 0 64px;
+    gap: 0;
+  }
+
+  /* left content zone */
+  .a-left {
+    width: 580px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .a-overline {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--c-sky);
+    font-family: 'Sora', sans-serif;
+  }
+
+  .a-title {
+    font-family: 'SF Pro Display', 'Inter', -apple-system, sans-serif;
+    font-size: 52px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1.0;
+    color: var(--c-white);
+  }
+  .a-title em {
+    font-style: normal;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .a-sub {
+    font-size: 13px;
+    color: var(--c-text-5);
+    font-family: 'Sora', sans-serif;
+    letter-spacing: 0.2px;
+  }
+
+  /* TAM / SAM / SOM metric rows */
+  .a-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .a-metric-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 14px 20px;
+    position: relative;
+  }
+
+  .a-metric-row::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    border-radius: 3px 0 0 3px;
+  }
+  .a-metric-row.tam::before  { background: var(--c-sky); }
+  .a-metric-row.sam::before  { background: var(--c-tangerine); }
+  .a-metric-row.som::before  { background: var(--c-gold); }
+
+  .a-metric-label-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 70px;
+    flex-shrink: 0;
+  }
+  .a-metric-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .tam .a-metric-tag  { color: var(--c-sky); }
+  .sam .a-metric-tag  { color: var(--c-tangerine); }
+  .som .a-metric-tag  { color: var(--c-gold); }
+
+  .a-metric-desc {
+    font-size: 9px;
+    color: var(--c-text-5);
+    white-space: nowrap;
+  }
+
+  .a-metric-divider {
+    width: 1px;
+    height: 36px;
+    background: rgba(255,255,255,0.08);
+    flex-shrink: 0;
+  }
+
+  .a-metric-hero {
+    font-family: 'SF Pro Display', 'Inter', -apple-system, sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: -1.2px;
+    line-height: 1;
+  }
+  .tam .a-metric-hero  { color: var(--c-sky); }
+  .sam .a-metric-hero  { color: var(--c-tangerine); }
+  .som .a-metric-hero  { color: var(--c-gold); }
+
+  .a-metric-sub {
+    font-size: 11px;
+    color: var(--c-text-4);
+    margin-left: auto;
+    text-align: right;
+    line-height: 1.4;
+  }
+
+  .a-cagr-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(254,207,106,0.12);
+    border: 1px solid rgba(254,207,106,0.2);
+    border-radius: 20px;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--c-gold);
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .a-cagr-badge.sky {
+    background: rgba(14,165,233,0.1);
+    border-color: rgba(14,165,233,0.2);
+    color: var(--c-sky);
+  }
+  .a-cagr-badge.tan {
+    background: rgba(255,164,91,0.1);
+    border-color: rgba(255,164,91,0.2);
+    color: var(--c-tangerine);
+  }
+
+  /* right SVG zone */
+  .a-right {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* bottom bar */
+  .a-bar-bot {
+    height: 40px;
+    background: rgba(255,255,255,0.03);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 64px;
+    flex-shrink: 0;
+  }
+  .a-bar-bot span {
+    font-size: 10px;
+    color: var(--c-text-5);
+    letter-spacing: 0.5px;
+  }
+  .bb-center {
+    font-family: 'SF Pro Display', 'Inter', -apple-system, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--c-text-5);
+    letter-spacing: 2px;
+  }
+
+
+  /* ─────────────────────────────────────────
+     DESIGN C — SPLIT DARK / LIGHT
+  ───────────────────────────────────────── */
+  .slide-c {
+    display: flex;
+    background: var(--c-bg-alt);
+  }
+
+  /* left dark panel */
+  .c-left {
+    width: 400px;
+    flex-shrink: 0;
+    background: var(--c-near-black);
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .c-left-bar { height: 4px; background: var(--gradient); }
+
+  .c-left-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 36px 32px 0 32px;
+    gap: 20px;
+  }
+
+  .c-overline {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--c-sky);
+  }
+
+  .c-title {
+    font-family: 'SF Pro Display', 'Inter', -apple-system, sans-serif;
+    font-size: 34px;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    line-height: 1.05;
+    color: var(--c-white);
+  }
+  .c-title em {
+    font-style: normal;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* left stat rows */
+  .c-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .c-stat-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 10px;
+    border-left: 3px solid transparent;
+  }
+  .c-stat-row.tam { border-left-color: var(--c-sky); }
+  .c-stat-row.sam { border-left-color: var(--c-tangerine); }
+  .c-stat-row.som { border-left-color: var(--c-gold); }
+
+  .c-stat-tag {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    width: 36px;
+    flex-shrink: 0;
+  }
+  .c-stat-row.tam .c-stat-tag { color: var(--c-sky); }
+  .c-stat-row.sam .c-stat-tag { color: var(--c-tangerine); }
+  .c-stat-row.som .c-stat-tag { color: var(--c-gold); }
+
+  .c-stat-num {
+    font-family: 'SF Pro Display', 'Inter', -apple-system, sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -0.8px;
+    line-height: 1;
+  }
+  .c-stat-row.tam .c-stat-num { color: var(--c-sky); }
+  .c-stat-row.sam .c-stat-num { color: var(--c-tangerine); }
+  .c-stat-row.som .c-stat-num { color: var(--c-gold); }
+
+  .c-stat-meta {
+    margin-left: auto;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .c-stat-meta-label {
+    font-size: 9px;
+    color: var(--c-text-5);
+  }
+  .c-stat-meta-cagr {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--c-gold);
+  }
+  .c-stat-row.tam .c-stat-meta-cagr { color: var(--c-sky); }
+  .c-stat-row.sam .c-stat-meta-cagr { color: var(--c-tangerine); }
+
+  /* left bottom bar */
+  .c-left-bot {
+    height: 40px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    padding: 0 32px;
+    flex-shrink: 0;
+  }
+  .c-left-bot span {
+    font-size: 10px;
+    color: var(--c-text-5);
+  }
+  .br-slide {
+    font-family: 'SF Pro Display', 'Inter', -apple-system, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--c-text-5);
+    letter-spacing: 2px;
+    margin-left: auto;
+  }
+
+  /* right light panel */
+  .c-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 36px 40px 40px 40px;
+    gap: 16px;
+    position: relative;
+  }
+
+  .c-right-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--c-text-4);
+  }
+
+  .c-right-title {
+    font-family: 'SF Pro Display', 'Inter', -apple-system, sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--c-text);
+  }
+
+  /* nested ellipse chart container */
+  .c-chart-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* bottom-right contact */
+  .c-right-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .c-right-footer span {
+    font-size: 10px;
+    color: var(--c-text-5);
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════
+     DESIGN A — FULL DARK
+════════════════════════════════════════════════════════ -->
+<div class="slide slide-a">
+  <div class="a-bar-top"></div>
+
+  <div class="a-body">
+    <!-- LEFT: copy + metrics -->
+    <div class="a-left">
+      <div>
+        <div class="a-overline">Market Opportunity · TAM · SAM · SOM</div>
+        <div style="height:10px"></div>
+        <div class="a-title">A <em>$90B+</em><br>Market in Motion</div>
+        <div style="height:8px"></div>
+        <div class="a-sub">Global TCG &amp; collectibles — fastest growing APAC-led digital asset class</div>
+      </div>
+
+      <div class="a-metrics">
+        <!-- TAM -->
+        <div class="a-metric-row tam">
+          <div class="a-metric-label-wrap">
+            <div class="a-metric-tag">TAM</div>
+            <div class="a-metric-desc">Total Market</div>
+          </div>
+          <div class="a-metric-divider"></div>
+          <div class="a-metric-hero">↑ 7.1%</div>
+          <div class="a-metric-sub">Global TCG<br>$90B by 2032</div>
+          <div class="a-cagr-badge sky">CAGR · Global</div>
+        </div>
+
+        <!-- SAM -->
+        <div class="a-metric-row sam">
+          <div class="a-metric-label-wrap">
+            <div class="a-metric-tag">SAM</div>
+            <div class="a-metric-desc">Serviceable</div>
+          </div>
+          <div class="a-metric-divider"></div>
+          <div class="a-metric-hero">$15B</div>
+          <div class="a-metric-sub">CCG Market<br>$14.7B → 2034</div>
+          <div class="a-cagr-badge tan">↑ 10.98% CAGR</div>
+        </div>
+
+        <!-- SOM -->
+        <div class="a-metric-row som">
+          <div class="a-metric-label-wrap">
+            <div class="a-metric-tag">SOM</div>
+            <div class="a-metric-desc">Obtainable</div>
+          </div>
+          <div class="a-metric-divider"></div>
+          <div class="a-metric-hero">$500M</div>
+          <div class="a-metric-sub">APAC Secondary<br>JP · KR · SEA</div>
+          <div class="a-cagr-badge">↑ 9.4% CAGR</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: nested circles SVG -->
+    <div class="a-right">
+      <svg viewBox="0 0 520 580" width="520" height="580" style="position:absolute;right:-30px;top:-30px;">
+        <defs>
+          <radialGradient id="tam-grad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#0EA5E9" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#0EA5E9" stop-opacity="0.04"/>
+          </radialGradient>
+          <radialGradient id="sam-grad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FFA45B" stop-opacity="0.22"/>
+            <stop offset="100%" stop-color="#FFA45B" stop-opacity="0.05"/>
+          </radialGradient>
+          <radialGradient id="som-grad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FECF6A" stop-opacity="0.28"/>
+            <stop offset="100%" stop-color="#FECF6A" stop-opacity="0.08"/>
+          </radialGradient>
+          <!-- glow filters -->
+          <filter id="glow-sky" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="8" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="glow-tan" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="6" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="glow-gold" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="5" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- TAM — largest ring -->
+        <ellipse cx="260" cy="300" rx="240" ry="240"
+          fill="url(#tam-grad)"
+          stroke="#0EA5E9" stroke-width="1.5" stroke-opacity="0.3"/>
+        <ellipse cx="260" cy="300" rx="240" ry="240"
+          fill="none"
+          stroke="#0EA5E9" stroke-width="0.5" stroke-opacity="0.15"
+          stroke-dasharray="6 4"/>
+
+        <!-- TAM label arc top -->
+        <text font-family="'SF Pro Display','Inter',sans-serif" font-size="10" font-weight="700"
+          fill="#0EA5E9" fill-opacity="0.7" letter-spacing="3" text-anchor="middle"
+          x="260" y="72">T A M</text>
+        <text font-family="'Sora',sans-serif" font-size="9" font-weight="400"
+          fill="#0EA5E9" fill-opacity="0.5" text-anchor="middle"
+          x="260" y="86">Global TCG · $90B · ↑7.1% CAGR</text>
+
+        <!-- SAM — medium ring -->
+        <ellipse cx="260" cy="320" rx="168" ry="162"
+          fill="url(#sam-grad)"
+          stroke="#FFA45B" stroke-width="1.5" stroke-opacity="0.35"/>
+
+        <!-- SAM label -->
+        <text font-family="'SF Pro Display','Inter',sans-serif" font-size="10" font-weight="700"
+          fill="#FFA45B" fill-opacity="0.8" letter-spacing="3" text-anchor="middle"
+          x="260" y="168">S A M</text>
+        <text font-family="'Sora',sans-serif" font-size="9"
+          fill="#FFA45B" fill-opacity="0.55" text-anchor="middle"
+          x="260" y="181">CCG Market · $15B · ↑10.98% CAGR</text>
+
+        <!-- SOM — inner ring -->
+        <ellipse cx="260" cy="338" rx="98" ry="90"
+          fill="url(#som-grad)"
+          stroke="#FECF6A" stroke-width="1.5" stroke-opacity="0.45"
+          filter="url(#glow-gold)"/>
+
+        <!-- SOM label -->
+        <text font-family="'SF Pro Display','Inter',sans-serif" font-size="10" font-weight="700"
+          fill="#FECF6A" fill-opacity="0.9" letter-spacing="3" text-anchor="middle"
+          x="260" y="318">S O M</text>
+        <text font-family="'SF Pro Display','Inter',sans-serif" font-size="18" font-weight="900"
+          fill="#FECF6A" fill-opacity="0.95" text-anchor="middle" letter-spacing="-0.5"
+          x="260" y="342">$500M</text>
+        <text font-family="'Sora',sans-serif" font-size="8"
+          fill="#FECF6A" fill-opacity="0.6" text-anchor="middle"
+          x="260" y="357">APAC · JP · KR · SEA</text>
+
+        <!-- decorative tick marks at 12 o'clock of each ring -->
+        <!-- TAM tick -->
+        <line x1="260" y1="60" x2="260" y2="50" stroke="#0EA5E9" stroke-width="1.5" stroke-opacity="0.4"/>
+        <!-- SAM tick -->
+        <line x1="260" y1="158" x2="260" y2="148" stroke="#FFA45B" stroke-width="1.5" stroke-opacity="0.4"/>
+        <!-- SOM tick -->
+        <line x1="260" y1="248" x2="260" y2="238" stroke="#FECF6A" stroke-width="1.5" stroke-opacity="0.5"/>
+
+        <!-- bottom brand mark -->
+        <text font-family="'SF Pro Display','Inter',sans-serif" font-size="9" font-weight="700"
+          fill="rgba(255,255,255,0.12)" letter-spacing="4" text-anchor="middle"
+          x="260" y="560">N E X T R A R E</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="a-bar-bot">
+    <span>hello@nextrare.com</span>
+    <span class="bb-center">01</span>
+    <span>Confidential · NextRare 2026</span>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════
+     DESIGN C — SPLIT DARK / LIGHT
+════════════════════════════════════════════════════════ -->
+<div class="slide slide-c">
+
+  <!-- LEFT DARK PANEL -->
+  <div class="c-left">
+    <div class="c-left-bar"></div>
+    <div class="c-left-content">
+      <div class="c-overline">Market Opportunity</div>
+      <div class="c-title">A <em>$90B+</em><br>Market in<br>Motion</div>
+      <div style="font-size:11px;color:var(--c-text-5);line-height:1.5;">
+        Global TCG &amp; collectibles — fastest growing APAC-led digital asset class
+      </div>
+
+      <div class="c-stats">
+        <div class="c-stat-row tam">
+          <div class="c-stat-tag">TAM</div>
+          <div class="c-stat-num">↑7.1%</div>
+          <div class="c-stat-meta">
+            <div class="c-stat-meta-label">Global TCG · $90B/2032</div>
+            <div class="c-stat-meta-cagr">CAGR · GLOBAL</div>
+          </div>
+        </div>
+        <div class="c-stat-row sam">
+          <div class="c-stat-tag">SAM</div>
+          <div class="c-stat-num">$15B</div>
+          <div class="c-stat-meta">
+            <div class="c-stat-meta-label">CCG Market by 2034</div>
+            <div class="c-stat-meta-cagr">↑10.98% CAGR</div>
+          </div>
+        </div>
+        <div class="c-stat-row som">
+          <div class="c-stat-tag">SOM</div>
+          <div class="c-stat-num">$500M</div>
+          <div class="c-stat-meta">
+            <div class="c-stat-meta-label">APAC · JP · KR · SEA</div>
+            <div class="c-stat-meta-cagr">↑9.4% CAGR</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-left-bot">
+      <span>hello@nextrare.com</span>
+      <div class="br-slide">01</div>
+    </div>
+  </div>
+
+  <!-- RIGHT LIGHT PANEL -->
+  <div class="c-right">
+    <div class="c-right-label">TAM · SAM · SOM Analysis</div>
+    <div class="c-right-title">APAC-first. CCG-native. $90B in play.</div>
+
+    <div class="c-chart-wrap">
+      <!-- Nested ellipses on light background -->
+      <svg viewBox="0 0 740 540" width="740" height="540">
+        <defs>
+          <radialGradient id="c-tam-g" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#0EA5E9" stop-opacity="0.10"/>
+            <stop offset="100%" stop-color="#0EA5E9" stop-opacity="0.02"/>
+          </radialGradient>
+          <radialGradient id="c-sam-g" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FFA45B" stop-opacity="0.14"/>
+            <stop offset="100%" stop-color="#FFA45B" stop-opacity="0.03"/>
+          </radialGradient>
+          <radialGradient id="c-som-g" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FECF6A" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#FECF6A" stop-opacity="0.10"/>
+          </radialGradient>
+          <filter id="c-glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="4" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- TAM outermost ellipse -->
+        <ellipse cx="370" cy="275" rx="330" ry="240"
+          fill="url(#c-tam-g)"
+          stroke="#0EA5E9" stroke-width="1.5" stroke-opacity="0.25"/>
+
+        <!-- TAM label: top-right -->
+        <line x1="640" y1="195" x2="665" y2="175" stroke="#0EA5E9" stroke-width="1" stroke-opacity="0.5"/>
+        <rect x="666" y="155" width="68" height="38" rx="6" fill="#EFF9FF"/>
+        <text font-family="'SF Pro Display','Inter',sans-serif" font-size="9" font-weight="700"
+          fill="#0EA5E9" letter-spacing="2" x="672" y="169">T A M</text>
+        <text font-family="'SF Pro Display','Inter',sans-serif" font-size="13" font-weight="900"
+          fill="#0EA5E9" letter-spacing="-0.3" x="672" y="186">↑ 7.1%</text>
+
+        <!-- SAM middle ellipse -->
+        <ellipse cx="370" cy="295" rx="220" ry="163"
+          fill="url(#c-sam-g)"
+          stroke="#FFA45B" stroke-width="1.5" stroke-opacity="0.35"/>
+
+        <!-- SAM label: top-left -->
+        <line x1="165" y1="200" x2="140" y2="178" stroke="#FFA45B" stroke-width="1" stroke-opacity="0.5"/>
+        <rect x="60" y="156" width="78" height="38" rx="6" fill="#FFF5EE"/>
+        <text font-family="'SF Pro Display','Inter',sans-serif" font-size="9" font-weight="700"
+          fill="#FFA45B" letter-spacing="2" x="66" y="170">S A M</text>
+        <text font-family="'SF Pro Display','Inter',sans-serif" font-size="13" font-weight="900"
+          fill="#FFA45B" letter-spacing="-0.3" x="66" y="187">$15B</text>
+
+        <!-- SOM inner ellipse -->
+        <ellipse cx="370" cy="308" rx="118" ry="88"
+          fill="url(#c-som-g)"
+          stroke="#FECF6A" stroke-width="2" stroke-opacity="0.6"
+          filter="url(#c-glow)"/>
+
+        <!-- SOM: centred content inside -->
+        <text font-family="'SF Pro Display','Inter',sans-serif" font-size="9" font-weight="700"
+          fill="#B45309" fill-opacity="0.7" letter-spacing="2.5" text-anchor="middle"
+          x="370" y="284">S O M</text>
+        <text font-family="'SF Pro Display','Inter',sans-serif" font-size="26" font-weight="900"
+          fill="#92400E" letter-spacing="-1" text-anchor="middle"
+          x="370" y="316">$500M</text>
+        <text font-family="'Sora',sans-serif" font-size="9"
+          fill="#92400E" fill-opacity="0.7" text-anchor="middle"
+          x="370" y="332">APAC · JP · KR · SEA</text>
+
+        <!-- SOM label: bottom -->
+        <line x1="370" y1="396" x2="370" y2="412" stroke="#FECF6A" stroke-width="1.2" stroke-opacity="0.6"/>
+        <rect x="296" y="412" width="148" height="34" rx="6" fill="#FFFBEB"/>
+        <text font-family="'Sora',sans-serif" font-size="9"
+          fill="#92400E" fill-opacity="0.8" text-anchor="middle"
+          x="370" y="425">Obtainable · APAC secondary</text>
+        <text font-family="'SF Pro Display','Inter',sans-serif" font-size="10" font-weight="700"
+          fill="#92400E" text-anchor="middle"
+          x="370" y="439">↑9.4% APAC CAGR</text>
+
+        <!-- Bottom metrics strip: TAM / SAM labels with $$ -->
+        <!-- TAM info bottom -->
+        <rect x="20" y="468" width="218" height="50" rx="8" fill="rgba(14,165,233,0.06)" stroke="#0EA5E9" stroke-opacity="0.15" stroke-width="1"/>
+        <text font-family="'SF Pro Display','Inter',sans-serif" font-size="9" font-weight="700"
+          fill="#0EA5E9" letter-spacing="2" x="32" y="484">TAM · TOTAL AVAILABLE MARKET</text>
+        <text font-family="'SF Pro Display','Inter',sans-serif" font-size="16" font-weight="900"
+          fill="#0EA5E9" letter-spacing="-0.5" x="32" y="504">$90B by 2032 · ↑7.1% CAGR</text>
+
+        <!-- SAM info bottom -->
+        <rect x="254" y="468" width="218" height="50" rx="8" fill="rgba(255,164,91,0.06)" stroke="#FFA45B" stroke-opacity="0.2" stroke-width="1"/>
+        <text font-family="'SF Pro Display','Inter',sans-serif" font-size="9" font-weight="700"
+          fill="#FFA45B" letter-spacing="2" x="266" y="484">SAM · SERVICEABLE MARKET</text>
+        <text font-family="'SF Pro Display','Inter',sans-serif" font-size="16" font-weight="900"
+          fill="#FFA45B" letter-spacing="-0.5" x="266" y="504">$15B by 2034 · ↑10.98%</text>
+
+        <!-- SOM info bottom -->
+        <rect x="490" y="468" width="218" height="50" rx="8" fill="rgba(254,207,106,0.08)" stroke="#FECF6A" stroke-opacity="0.3" stroke-width="1"/>
+        <text font-family="'SF Pro Display','Inter',sans-serif" font-size="9" font-weight="700"
+          fill="#B45309" letter-spacing="2" x="502" y="484">SOM · OBTAINABLE MARKET</text>
+        <text font-family="'SF Pro Display','Inter',sans-serif" font-size="16" font-weight="900"
+          fill="#92400E" letter-spacing="-0.5" x="502" y="504">$500M · APAC Digital TCG</text>
+      </svg>
+    </div>
+
+    <div class="c-right-footer">
+      <span>hello@nextrare.com</span>
+      <span>Confidential · NextRare 2026</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
